@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr8jx7twsluun"]
+
+[ext_resource type="Script" path="res://shooter.gd" id="1_45t8h"]
+[ext_resource type="Script" path="res://shooter_node2d.gd" id="2_f4s1k"]
+
+[node name="Shooter" type="Node2D"]
+position = Vector2(441, 273)
+rotation = 1.55509
+script = ExtResource("1_45t8h")
+
+[node name="shooter_circle" type="Node2D" parent="."]
+rotation = 3.17672
+script = ExtResource("2_f4s1k")
+metadata/_edit_lock_ = true
