@@ -25,7 +25,7 @@ position = Vector2(239, 40)
 
 [node name="UI frame" type="ReferenceRect" parent="."]
 offset_left = 2.0
-offset_top = 313.0
+offset_top = 436.0
 offset_right = 1153.0
 offset_bottom = 648.0
 border_width = 4.0
