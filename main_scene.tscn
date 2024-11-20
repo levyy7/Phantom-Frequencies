@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xwbhovlmtqx"]
+
+[ext_resource type="Script" path="res://main_scene.gd" id="1_b5ekj"]
+[ext_resource type="PackedScene" uid="uid://c1in2400ogy3s" path="res://track/Track.tscn" id="2_8lqjo"]
+[ext_resource type="PackedScene" uid="uid://df7w0f3hmaa7q" path="res://TowerSlotGroup.tscn" id="3_u4dbx"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_b5ekj")
+
+[node name="SlotGroup3" parent="." instance=ExtResource("3_u4dbx")]
+position = Vector2(665, 39)
+
+[node name="Track" parent="." instance=ExtResource("2_8lqjo")]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = 233.0
+offset_right = 1153.0
+offset_bottom = 270.0
+
+[node name="SlotGroup1" parent="." instance=ExtResource("3_u4dbx")]
+position = Vector2(82, 39)
+
+[node name="SlotGroup2" parent="." instance=ExtResource("3_u4dbx")]
+position = Vector2(239, 40)
+
+[node name="UI frame" type="ReferenceRect" parent="."]
+offset_left = 2.0
+offset_top = 313.0
+offset_right = 1153.0
+offset_bottom = 648.0
+border_width = 4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI frame"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 92.0
+offset_right = 969.0
+offset_bottom = 199.0
+theme_override_font_sizes/normal_font_size = 56
+text = "Random UI elements"
+tab_size = 5

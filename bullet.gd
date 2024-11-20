@@ -24,5 +24,4 @@ func _draw():
 
 
 func _on_screen_exited() -> void:
-	print("Screen exited")
 	queue_free()

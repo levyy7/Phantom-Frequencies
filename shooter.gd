@@ -1,20 +1,18 @@
-@tool
+class_name Shooter
 extends Node2D
 
-@export var spawn_test_bullet: bool = false:
-	set(value):
-		spawn_test_bullet = value
-		if Engine.is_editor_hint() and value:
-			spawn_bullet()
-			spawn_test_bullet = false
 
 const bullet_scene = preload("res://Bullet.tscn")
 var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
-const BULLET_SPEED: float = 600.0
+const BULLET_SPEED: float = 1400.0
+
+var targeting: EnemyList
 
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():  # Only spawn bullets in game mode
+		if targeting == null:
+			print("Targeting still null")
 		spawn_timer += delta
 		
 		if spawn_timer >= SPAWN_INTERVAL:
@@ -24,18 +22,23 @@ func _process(delta: float) -> void:
 	
 
 func spawn_bullet() -> void:
+	var target: Enemy = targeting.get_target()
+	
+	
 	var bullet = bullet_scene.instantiate()
 	
-	var random_angle = randf_range(0, PI * 2.0)
-	bullet.rotation = random_angle
-	bullet.position = Vector2(cos(random_angle), sin(random_angle)) * (bullet.length / 2 + 10.0)
+	var angle = global_position.angle_to_point(target.global_position)
+
+	# TODO: actually make sure that the parent rotation is 0, else this doesn't work since angle is in global coordinates
+	# angle only equals local rotation if parent rotation is 0
+	bullet.global_rotation = angle
+	bullet.position = Vector2(cos(angle), sin(angle)) * (bullet.length / 2 + 10.0)
 	
-	var velocity = Vector2(cos(random_angle), sin(random_angle)) * BULLET_SPEED
+	var velocity = Vector2(cos(angle), sin(angle)) * BULLET_SPEED
 	bullet.set_meta("velocity", velocity)
-	print("Velocity", velocity)
 	
-	$shooter_circle.rotation = random_angle
+	$shooter_circle.rotation = angle
 	
-	#rotation += random_angle
+	#rotation += angle
 	
 	add_child(bullet)

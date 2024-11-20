@@ -24,8 +24,8 @@ texture = ExtResource("1_ljx5t")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(470.935, 224.56)
+position = Vector2(626.964, 96.5933)
 rotation = -0.31765
-scale = Vector2(0.25265, 73.8539)
+scale = Vector2(2.22226, 64.0351)
 texture = SubResource("CanvasTexture_k2se0")
 script = ExtResource("2_victq")

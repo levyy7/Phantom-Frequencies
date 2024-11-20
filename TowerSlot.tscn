@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cncrfmerlkfbf"]
+
+[ext_resource type="Script" path="res://tower_slot.gd" id="1_elfc6"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 0.737255, 1)
+script = ExtResource("1_elfc6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
