@@ -4,7 +4,8 @@ extends Node2D
 @export var speed: float = 100.0  # Speed in pixels per second
 @export var loop_path: bool = true  # Whether to loop the path or stop at the end
 
-
+var hp: int = 100
+var health_bar
 var enemy_identifier: String = "I am an enemy"
 var path_follow: PathFollow2D
 var is_moving: bool = true
@@ -16,7 +17,18 @@ var color: Color = Color.BLACK:
 signal enemy_clicked(enemy)
 
 func _ready() -> void:
+	health_bar = $ProgressBar 
+	health_bar.max_value = hp
+	health_bar.value = hp
 	$ColorRect.color = color
+
+func take_damage(amount: int) -> void:
+	hp -= amount
+	hp = max(hp, 0)
+	health_bar.value = hp
+	
+	if hp == 0:
+		die()
 
 func initialize_path_follow(pf: PathFollow2D) -> void:
 	path_follow = pf
@@ -46,3 +58,6 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
 			enemy_clicked.emit(self)
 			
+
+func die():
+	queue_free()

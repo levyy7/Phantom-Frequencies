@@ -22,8 +22,12 @@ func _process(delta: float) -> void:
 	
 
 func spawn_bullet() -> void:
-	var target: Enemy = targeting.get_target()
+	var nTargets = targeting.get_child_count()
 	
+	if nTargets == 0:
+		return
+	
+	var target: Enemy = targeting.get_target()
 	
 	var bullet = bullet_scene.instantiate()
 	
