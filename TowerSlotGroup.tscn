@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://tower_slot_group.gd" id="1_73tln"]
 [ext_resource type="PackedScene" uid="uid://cncrfmerlkfbf" path="res://TowerSlot.tscn" id="1_qdg76"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["pausable"]]
 script = ExtResource("1_73tln")
 
 [node name="TowerSlot3" parent="." instance=ExtResource("1_qdg76")]
