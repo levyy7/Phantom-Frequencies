@@ -14,3 +14,7 @@ config/name="music1"
 run/main_scene="res://Shooter.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+pausable=""
