@@ -36,7 +36,19 @@ func initialize_path_follow(pf: PathFollow2D) -> void:
 	path_follow.loop = loop_path
 	path_follow.rotates = true  # Make the enemy rotate with the path
 
+func advance() -> void:
+	print("Advancing")
+	# Move along the path
+	path_follow.progress += speed * 0.1
+	
+	# Update our position to match the PathFollow2D
+	global_position = path_follow.global_position
+	global_rotation = path_follow.global_rotation
+	
+	
 func _process(delta: float) -> void:
+	print("_process enemy")
+	return
 	if not is_moving:
 		return
 		

@@ -8,6 +8,10 @@ extends Node2D
 		for child in get_children():
 			child.targeting = v
 
+func play_one_round():
+	print("Playing")
+	for node: TowerSlot in get_children():
+		node.play_one_round()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
