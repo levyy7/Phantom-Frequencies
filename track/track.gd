@@ -23,6 +23,9 @@ func _ready() -> void:
 	add_child(path)
 	enemy_list.set_path(path)
 	
+func advance_enemies():
+	enemy_list.advance_enemies()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

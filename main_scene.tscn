@@ -40,14 +40,14 @@ theme_override_font_sizes/normal_font_size = 56
 text = "Random UI elements"
 tab_size = 5
 
-[node name="PauseButton" type="Button" parent="UI frame"]
+[node name="NextRoundButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
 offset_left = 47.0
 offset_top = 19.0
 offset_right = 205.0
 offset_bottom = 67.0
-toggle_mode = true
 text = "Pause"
 
-[connection signal="toggled" from="UI frame/PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="pressed" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_pressed"]
+[connection signal="toggled" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_toggled"]

@@ -4,6 +4,11 @@ extends Node2D
 var _path: Path2D
 var selected: Enemy
 
+func advance_enemies():
+	for child in get_children():
+		assert(child is Enemy)
+		child.advance()
+		
 func set_path(new_path: Path2D) -> void:
 	assert(_path == null, "EnemyList.Path is already set")
 	self._path = new_path
@@ -44,8 +49,9 @@ func get_target() -> Enemy:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	for child in get_children():
-		child._process(delta)
+	pass
+	#for child in get_children():
+		#child._process(delta)
 
 	
 func first_child() -> Enemy:
