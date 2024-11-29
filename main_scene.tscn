@@ -47,7 +47,7 @@ offset_left = 47.0
 offset_top = 19.0
 offset_right = 205.0
 offset_bottom = 67.0
-text = "Pause"
+text = "Next Round"
 
 [connection signal="pressed" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_pressed"]
 [connection signal="toggled" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_toggled"]
