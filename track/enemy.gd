@@ -4,8 +4,6 @@ extends Node2D
 @export var speed: float = 100.0  # Speed in pixels per second
 @export var loop_path: bool = true  # Whether to loop the path or stop at the end
 
-
-var enemy_identifier: String = "I am an enemy"
 var path_follow: PathFollow2D
 var is_moving: bool = true
 
@@ -24,7 +22,19 @@ func initialize_path_follow(pf: PathFollow2D) -> void:
 	path_follow.loop = loop_path
 	path_follow.rotates = true  # Make the enemy rotate with the path
 
+func advance() -> void:
+	print("Advancing")
+	# Move along the path
+	path_follow.progress += speed * 0.1
+	
+	# Update our position to match the PathFollow2D
+	global_position = path_follow.global_position
+	global_rotation = path_follow.global_rotation
+	
+	
 func _process(delta: float) -> void:
+	print("_process enemy")
+	return
 	if not is_moving:
 		return
 		

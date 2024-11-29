@@ -9,15 +9,19 @@ const BULLET_SPEED: float = 1400.0
 
 var targeting: EnemyList
 
+func shoot_once():
+	spawn_bullet()
+	
 func _process(delta: float) -> void:
-	if not Engine.is_editor_hint():  # Only spawn bullets in game mode
-		if targeting == null:
-			print("Targeting still null")
-		spawn_timer += delta
-		
-		if spawn_timer >= SPAWN_INTERVAL:
-			spawn_bullet()
-			spawn_timer = 0.0
+	pass
+	#if not Engine.is_editor_hint():  # Only spawn bullets in game mode
+		#if targeting == null:
+			#print("Targeting still null")
+		#spawn_timer += delta
+		#
+		#if spawn_timer >= SPAWN_INTERVAL:
+			#spawn_bullet()
+			#spawn_timer = 0.0
 	
 	
 
