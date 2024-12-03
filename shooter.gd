@@ -7,6 +7,8 @@ var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
 const BULLET_SPEED: float = 1400.0
 
+var damage = 50
+
 var targeting: EnemyList
 
 func shoot_once():
@@ -22,7 +24,6 @@ func _process(delta: float) -> void:
 		#if spawn_timer >= SPAWN_INTERVAL:
 			#spawn_bullet()
 			#spawn_timer = 0.0
-	
 	
 
 func spawn_bullet() -> void:
