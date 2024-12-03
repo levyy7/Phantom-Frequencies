@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=4 uid="uid://c1kjgq3f7pgq8"]
+
+[ext_resource type="Texture2D" uid="uid://djw8nvap31aj3" path="res://assets/grass.png" id="1_dmqmw"]
+[ext_resource type="Texture2D" uid="uid://bcnoypdtan7km" path="res://assets/paths.png" id="2_2140o"]
+[ext_resource type="Script" path="res://tile_manager.gd" id="3_tshls"]
+[ext_resource type="PackedScene" uid="uid://dt5elvcbfc3lx" path="res://PathTile.tscn" id="4_nbj0q"]
+[ext_resource type="PackedScene" uid="uid://s0s21hadodh7" path="res://GrassTile.tscn" id="5_rgk78"]
+
+[sub_resource type="GDScript" id="GDScript_b8rf2"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4jcp"]
+texture = ExtResource("1_dmqmw")
+margins = Vector2i(1, 1)
+0:0/size_in_atlas = Vector2i(5, 5)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(5, 5)
+5:0/0 = 0
+10:0/size_in_atlas = Vector2i(5, 5)
+10:0/0 = 0
+15:0/size_in_atlas = Vector2i(5, 5)
+15:0/0 = 0
+20:0/size_in_atlas = Vector2i(5, 5)
+20:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk5bj"]
+texture = ExtResource("2_2140o")
+0:0/size_in_atlas = Vector2i(5, 5)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(5, 5)
+5:0/0 = 0
+10:0/size_in_atlas = Vector2i(5, 5)
+10:0/0 = 0
+15:0/size_in_atlas = Vector2i(5, 5)
+15:0/0 = 0
+15:5/size_in_atlas = Vector2i(5, 5)
+15:5/0 = 0
+15:10/size_in_atlas = Vector2i(5, 5)
+15:10/0 = 0
+10:5/size_in_atlas = Vector2i(5, 5)
+10:5/0 = 0
+5:5/size_in_atlas = Vector2i(5, 5)
+5:5/0 = 0
+0:5/size_in_atlas = Vector2i(5, 5)
+0:5/0 = 0
+0:10/size_in_atlas = Vector2i(5, 5)
+0:10/0 = 0
+5:10/size_in_atlas = Vector2i(5, 5)
+5:10/0 = 0
+10:10/size_in_atlas = Vector2i(5, 5)
+10:10/0 = 0
+20:0/size_in_atlas = Vector2i(5, 5)
+20:0/0 = 0
+25:0/size_in_atlas = Vector2i(5, 5)
+25:0/0 = 0
+30:0/size_in_atlas = Vector2i(5, 5)
+30:0/0 = 0
+20:5/size_in_atlas = Vector2i(5, 5)
+20:5/0 = 0
+25:5/size_in_atlas = Vector2i(5, 5)
+25:5/0 = 0
+20:10/size_in_atlas = Vector2i(5, 5)
+20:10/0 = 0
+25:10/size_in_atlas = Vector2i(5, 5)
+25:10/0 = 0
+30:5/size_in_atlas = Vector2i(5, 5)
+30:5/0 = 0
+30:10/size_in_atlas = Vector2i(5, 5)
+30:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sqa2w"]
+tile_size = Vector2i(80, 80)
+sources/0 = SubResource("TileSetAtlasSource_p4jcp")
+sources/1 = SubResource("TileSetAtlasSource_dk5bj")
+
+[node name="Map" type="Node2D"]
+script = SubResource("GDScript_b8rf2")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAEAAQAUAAAAAAABAAEAAQAZAAAAAAACAAEAAQAZAAAAAAADAAEAAQAeAAAAAAA=")
+tile_set = SubResource("TileSet_sqa2w")
+
+[node name="TileManager" type="Node2D" parent="."]
+script = ExtResource("3_tshls")
+
+[node name="PathTile0" parent="TileManager" instance=ExtResource("4_nbj0q")]
+position = Vector2(119, 359)
+
+[node name="PathTile1" parent="TileManager" instance=ExtResource("4_nbj0q")]
+position = Vector2(360, 360)
+
+[node name="PathTile2" parent="TileManager" instance=ExtResource("4_nbj0q")]
+position = Vector2(599, 360)
+
+[node name="PathTile3" parent="TileManager" instance=ExtResource("4_nbj0q")]
+position = Vector2(840, 363)
+
+[node name="GrassTile0" parent="TileManager" instance=ExtResource("5_rgk78")]
+position = Vector2(119, 122)
+
+[node name="GrassTile1" parent="TileManager" instance=ExtResource("5_rgk78")]
+position = Vector2(355, 120)
+
+[node name="GrassTile2" parent="TileManager" instance=ExtResource("5_rgk78")]
+position = Vector2(598, 121)
+
+[node name="GrassTile3" parent="TileManager" instance=ExtResource("5_rgk78")]
+position = Vector2(837, 120)
