@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjbwdpt3snwom"]
+
+[ext_resource type="Script" path="res://AudioGenerator.cs" id="1_5a0n0"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_7g8vy"]
+
+[node name="AudioGenerator" type="Node" node_paths=PackedStringArray("Player")]
+script = ExtResource("1_5a0n0")
+Player = NodePath("Player")
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamGenerator_7g8vy")
+autoplay = true

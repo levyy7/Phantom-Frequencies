@@ -1,6 +1,118 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4txb66ecdnnv"]
+[gd_scene load_steps=29 format=3 uid="uid://c4txb66ecdnnv"]
 
 [ext_resource type="Script" path="res://visualizer.gd" id="1_of4xd"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2_cmnwk"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="3_83l6q"]
+[ext_resource type="AudioStream" uid="uid://kwfj2137d2e0" path="res://Note_samples/violin/violin_C4_1_fortissimo_arco-normal.mp3" id="4_8rsm4"]
+[ext_resource type="AudioStream" uid="uid://8xefxf6ma32o" path="res://Note_samples/violin/violin_Cs4_1_fortissimo_arco-normal.mp3" id="5_6g5vi"]
+[ext_resource type="AudioStream" uid="uid://dc7tk1bmmbnj" path="res://Note_samples/violin/violin_D4_1_mezzo-forte_arco-normal.mp3" id="6_hw2oy"]
+[ext_resource type="AudioStream" uid="uid://bh6l63dio8ggy" path="res://Note_samples/violin/violin_Ds4_1_fortissimo_arco-normal.mp3" id="7_xbudl"]
+[ext_resource type="AudioStream" uid="uid://bcpk1t2w0lma3" path="res://Note_samples/violin/violin_E4_1_fortissimo_arco-normal.mp3" id="8_a3kfd"]
+[ext_resource type="AudioStream" uid="uid://jk4c34c7837x" path="res://Note_samples/violin/violin_F4_1_fortissimo_arco-normal.mp3" id="9_xw8a1"]
+[ext_resource type="AudioStream" uid="uid://c7yklgspprjyg" path="res://Note_samples/violin/violin_Fs4_1_fortissimo_arco-normal.mp3" id="10_1n2fh"]
+[ext_resource type="AudioStream" uid="uid://c42x0x35ux1fn" path="res://Note_samples/violin/violin_G4_1_fortissimo_arco-normal.mp3" id="11_mleem"]
+[ext_resource type="AudioStream" uid="uid://buyr3wcabctu4" path="res://Note_samples/violin/violin_Gs4_1_fortissimo_arco-normal.mp3" id="12_hq3gd"]
+[ext_resource type="AudioStream" uid="uid://d14st84tnqpme" path="res://Note_samples/violin/violin_A4_1_fortissimo_arco-normal.mp3" id="13_b5f88"]
+[ext_resource type="AudioStream" uid="uid://dsstwlttbffke" path="res://Note_samples/violin/violin_As4_1_fortissimo_arco-normal.mp3" id="14_xcasd"]
+[ext_resource type="AudioStream" uid="uid://bx52bfbdbhrax" path="res://Note_samples/violin/violin_B4_1_fortissimo_arco-normal.mp3" id="15_lx01x"]
+
+[sub_resource type="Resource" id="Resource_375mo"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("4_8rsm4")
+tone = "C"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_edk75"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("5_6g5vi")
+tone = "C#"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_jd623"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("6_hw2oy")
+tone = "D"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_l2ssf"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("7_xbudl")
+tone = "D#"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_6heif"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("8_a3kfd")
+tone = "E"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_dx1vp"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("9_xw8a1")
+tone = "F"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_sasfx"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("10_1n2fh")
+tone = "F#"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_575kn"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("11_mleem")
+tone = "G"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_num2m"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("12_hq3gd")
+tone = "G#"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_ayj52"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("13_b5f88")
+tone = "A"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_dxe48"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("14_xcasd")
+tone = "A#"
+octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_c83qv"]
+script = ExtResource("3_83l6q")
+stream = ExtResource("15_lx01x")
+tone = "B"
+octave = 4
+velocity = 5
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_qadje"]
+format = 1
 
 [node name="Visualization" type="Node2D"]
 script = ExtResource("1_of4xd")
+
+[node name="Sampler" type="AudioStreamPlayer" parent="."]
+bus = &"TowerMusic"
+script = ExtResource("2_cmnwk")
+samples = Array[ExtResource("3_83l6q")]([SubResource("Resource_375mo"), SubResource("Resource_edk75"), SubResource("Resource_jd623"), SubResource("Resource_l2ssf"), SubResource("Resource_6heif"), SubResource("Resource_dx1vp"), SubResource("Resource_sasfx"), SubResource("Resource_575kn"), SubResource("Resource_num2m"), SubResource("Resource_ayj52"), SubResource("Resource_dxe48"), SubResource("Resource_c83qv")])
+
+[node name="Recorder" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamWAV_qadje")
+
+[connection signal="finished" from="Sampler" to="." method="_on_sampler_finished"]
+[connection signal="music_playing" from="Sampler" to="." method="_start_recording_tower_audio"]

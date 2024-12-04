@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgqe8wxrjg7ra"]
+
+[ext_resource type="Texture2D" uid="uid://ct631ytk7ml7a" path="res://icon.svg" id="1_4hcvn"]
+[ext_resource type="Script" path="res://shooter_menu.gd" id="2_jcwhi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pdmqs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jmgrx"]
+
+[node name="ShooterMenu" type="MenuButton"]
+offset_left = 34.0
+offset_top = 34.0
+offset_right = 170.0
+offset_bottom = 170.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(0, -68)
+toggle_mode = false
+icon = ExtResource("1_4hcvn")
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Sell Tower"
+popup/item_0/icon = SubResource("PlaceholderTexture2D_pdmqs")
+popup/item_1/text = "Set Tone(s)"
+popup/item_1/icon = SubResource("PlaceholderTexture2D_jmgrx")
+popup/item_1/id = 1
+script = ExtResource("2_jcwhi")

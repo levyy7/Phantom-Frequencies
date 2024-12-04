@@ -14,3 +14,12 @@ config/name="music1"
 run/main_scene="res://Shooter.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+NoteValue="*res://addons/SimpleSampler/note_value.gd"
+FFT="*res://addons/godot-fft/Fft.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Godot-FFT/plugin.cfg", "res://addons/SimpleSampler/plugin.cfg", "res://addons/midi/plugin.cfg")
