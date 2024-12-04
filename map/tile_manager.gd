@@ -53,8 +53,6 @@ func towers_set_shoot():
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
-		# var totalDamage = currentGT.compute_damage()
-		# currentPT.enemies_take_damage(totalDamage)
 		currentGT.tower_slot_group.shoot_bullets(currentPT)
 	
 
