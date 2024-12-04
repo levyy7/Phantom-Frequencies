@@ -6,7 +6,6 @@ var targeting: EnemyList
 
 var current_shooter: Shooter = null
 
-
 	
 func add_shooter() -> void:
 	var shooter = ShooterScene.instantiate()
@@ -20,6 +19,7 @@ func has_shooter() -> bool:
 	
 func remove_shooter():
 	current_shooter.queue_free()
+	current_shooter = null
 
 func tower_damage():
 	var damage = 0
