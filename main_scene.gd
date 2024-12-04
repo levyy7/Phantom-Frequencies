@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_next_round_button_toggled(toggled_on: bool) -> void:
-	play_one_round()
+#func _on_next_round_button_toggled(toggled_on: bool) -> void:
+	#play_one_round()
 
 
 func _on_next_round_button_pressed() -> void:

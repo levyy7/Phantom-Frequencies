@@ -1,3 +1,4 @@
+class_name PathTile
 extends Node2D
 
 
@@ -6,7 +7,7 @@ func add_enemy(enemy: Enemy):
 		add_child(enemy)
 
 
-func get_enemy():
+func get_enemy() -> Enemy:
 	if get_child_count() > 0:
 		return get_child(0)
 	else:

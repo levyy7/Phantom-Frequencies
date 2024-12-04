@@ -4,11 +4,6 @@ extends Node2D
 var _path: Path2D
 var selected: Enemy
 
-func advance_enemies():
-	for child in get_children():
-		assert(child is Enemy)
-		child.advance()
-		
 func set_path(new_path: Path2D) -> void:
 	assert(_path == null, "EnemyList.Path is already set")
 	self._path = new_path

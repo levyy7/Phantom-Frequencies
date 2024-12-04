@@ -7,14 +7,9 @@ var targeting: EnemyList
 var current_shooter: Shooter = null
 
 
-func play_one_round():
-	print("Tower slot playing one round")
-	if current_shooter is Shooter:
-		current_shooter.shoot_once()
 	
 func add_shooter() -> void:
 	var shooter = ShooterScene.instantiate()
-	shooter.targeting = self.targeting
 	shooter.position = self.size / 2
 	shooter.visible = true
 	current_shooter = shooter
@@ -41,3 +36,7 @@ func _on_control_gui_input(event: InputEvent) -> void:
 			else:
 				remove_shooter()
 			print("Left mouse button released", event)
+
+func shoot_bullet(target: PathTile):
+	if has_shooter():
+		current_shooter.spawn_bullet(target)

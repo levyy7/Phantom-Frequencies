@@ -1,12 +1,29 @@
 extends Node2D
 
 var grassTiles = []
-var pathTiles  = []
+var pathTiles: Array[PathTile] = []
 
 var nextEnemy = null
 
+enum State {
+	Paused, # Waiting for user to end the current turn and advance to next turn
+	Advancing, # Enemies advancing
+	Shooting, # Bullets shooting at the current enemy
+}
+
+
+var state: State = State.Paused
+
 func _ready() -> void:
 	initialize_tiles()
+
+
+func _process(delta: float):
+	if state == State.Shooting:
+		# Check if all the bullets are done
+		if get_tree().get_nodes_in_group("bullets").size() == 0:
+			state = State.Paused
+
 
 
 func initialize_tiles():
@@ -23,25 +40,46 @@ func ini_turn(nEnemy = null):
 
 
 func end_turn():
-	towers_shoot()
-	enemies_advance()
+	if state == State.Paused:
+		state = State.Advancing
+		enemies_set_advance()
+	else:
+		print("Cannot end turn while in state: ", state)
 
-func towers_shoot():
+
+func towers_set_shoot():
+	assert(state == State.Shooting)
 	for i in range(grassTiles.size()):
-		var currentGT = grassTiles[i]
+		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
-		var totalDamage = currentGT.compute_damage()
-		currentPT.enemies_take_damage(totalDamage)
+		# var totalDamage = currentGT.compute_damage()
+		# currentPT.enemies_take_damage(totalDamage)
+		currentGT.tower_slot_group.shoot_bullets(currentPT)
 	
 
-func enemies_advance():
-	var prevEnemy = nextEnemy
+func _enemy_done_moving():
+	if state == State.Advancing:
+		state = State.Shooting
+		towers_set_shoot()
+	
+
+func enemies_set_advance():
+	assert(state == State.Advancing)
+	var prevEnemy: Enemy = nextEnemy
 	for pt in pathTiles:
 		var currentEnemy = pt.get_enemy()
-		pt.remove_enemies()
-		pt.add_enemy(prevEnemy)
 		
+		if prevEnemy:
+			var prevGlobalPos = prevEnemy.global_position
+			
+			if prevEnemy.get_parent():
+				prevEnemy.get_parent().remove_child(prevEnemy)
+			pt.add_child(prevEnemy)
+			prevEnemy.global_position = prevGlobalPos
+			
+			prevEnemy.set_advance_to(pt)
+			prevEnemy.is_done_moving.connect(_enemy_done_moving, CONNECT_ONE_SHOT)
 		prevEnemy = currentEnemy
 	
 	if prevEnemy != null:

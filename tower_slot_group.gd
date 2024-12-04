@@ -1,6 +1,7 @@
 class_name TowerSlotGroup
 extends Node2D
 
+
 func chord_damage():
 	print("Playing")
 	var total_damage = 0
@@ -14,6 +15,9 @@ func chord_damage():
 func _ready() -> void:
 	pass
 
+func shoot_bullets(target: PathTile):
+	for node: TowerSlot in get_children():
+		node.shoot_bullet(target)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
