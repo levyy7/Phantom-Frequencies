@@ -1,7 +1,7 @@
 class_name TowerSlot
 extends ColorRect
 
-const ShooterScene = preload("res://Shooter.tscn")
+const ShooterScene = preload("res://shooter/Shooter.tscn")
 var targeting: EnemyList
 
 var current_shooter: Shooter = null
@@ -35,7 +35,6 @@ func _on_control_gui_input(event: InputEvent) -> void:
 				add_shooter()
 			else:
 				remove_shooter()
-			print("Left mouse button released", event)
 
 func shoot_bullet(target: PathTile):
 	if has_shooter():

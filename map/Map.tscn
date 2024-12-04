@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://djw8nvap31aj3" path="res://assets/grass.png" id="1_dmqmw"]
 [ext_resource type="Texture2D" uid="uid://bcnoypdtan7km" path="res://assets/paths.png" id="2_2140o"]
-[ext_resource type="Script" path="res://tile_manager.gd" id="3_tshls"]
-[ext_resource type="PackedScene" uid="uid://beakcw304ss1p" path="res://PathTile.tscn" id="4_nbj0q"]
-[ext_resource type="PackedScene" uid="uid://cy45101navcqq" path="res://GrassTile.tscn" id="5_rgk78"]
+[ext_resource type="Script" path="res://map/tile_manager.gd" id="3_tshls"]
+[ext_resource type="PackedScene" uid="uid://beakcw304ss1p" path="res://map/PathTile.tscn" id="4_nbj0q"]
+[ext_resource type="PackedScene" uid="uid://cy45101navcqq" path="res://map/GrassTile.tscn" id="5_rgk78"]
 
 [sub_resource type="GDScript" id="GDScript_b8rf2"]
 script/source = "extends Node2D

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cncrfmerlkfbf"]
 
-[ext_resource type="Script" path="res://tower_slot.gd" id="1_elfc6"]
+[ext_resource type="Script" path="res://towers/tower_slot.gd" id="1_elfc6"]
 
 [node name="ColorRect" type="ColorRect"]
 offset_right = 40.0

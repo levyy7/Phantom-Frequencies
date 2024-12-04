@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy45101navcqq"]
 
-[ext_resource type="Script" path="res://grass_tile.gd" id="1_e52a5"]
-[ext_resource type="PackedScene" uid="uid://df7w0f3hmaa7q" path="res://TowerSlotGroup.tscn" id="2_a7t64"]
+[ext_resource type="Script" path="res://map/grass_tile.gd" id="1_e52a5"]
+[ext_resource type="PackedScene" uid="uid://df7w0f3hmaa7q" path="res://towers/TowerSlotGroup.tscn" id="2_a7t64"]
 
 [node name="GrassTile" type="Node2D"]
 script = ExtResource("1_e52a5")

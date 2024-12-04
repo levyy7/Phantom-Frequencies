@@ -1,7 +1,7 @@
 class_name MainScene
 extends Node2D
 
-var enemy = preload("res://Enemy.tscn")
+var enemy = preload("res://enemy/Enemy.tscn")
 
 var is_paused: bool = true
 

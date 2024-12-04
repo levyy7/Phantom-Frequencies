@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://df7w0f3hmaa7q"]
 
-[ext_resource type="Script" path="res://tower_slot_group.gd" id="1_73tln"]
-[ext_resource type="PackedScene" uid="uid://cncrfmerlkfbf" path="res://TowerSlot.tscn" id="1_qdg76"]
+[ext_resource type="Script" path="res://towers/tower_slot_group.gd" id="1_73tln"]
+[ext_resource type="PackedScene" uid="uid://cncrfmerlkfbf" path="res://towers/TowerSlot.tscn" id="1_qdg76"]
 
 [node name="Node2D" type="Node2D" groups=["pausable"]]
 script = ExtResource("1_73tln")
