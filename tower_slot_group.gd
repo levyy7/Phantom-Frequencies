@@ -1,22 +1,23 @@
 class_name TowerSlotGroup
 extends Node2D
 
-@onready var targeting: EnemyList = %Track/EnemyList:
-	set(v):
-		# Have to propagate the change to all the children
-		targeting = v
-		for child in get_children():
-			child.targeting = v
 
-func play_one_round():
+func chord_damage():
 	print("Playing")
+	var total_damage = 0
+	
 	for node: TowerSlot in get_children():
-		node.play_one_round()
+		total_damage += node.tower_damage()
+	
+	return total_damage
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	assert(targeting != null)
+	pass
 
+func shoot_bullets(target: PathTile):
+	for node: TowerSlot in get_children():
+		node.shoot_bullet(target)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

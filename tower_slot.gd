@@ -6,24 +6,10 @@ var targeting: EnemyList
 
 var current_shooter: Shooter = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func play_one_round():
-	print("Tower slot playing one round")
-	if current_shooter is Shooter:
-		current_shooter.shoot_once()
 	
 func add_shooter() -> void:
 	var shooter = ShooterScene.instantiate()
-	shooter.targeting = self.targeting
 	shooter.position = self.size / 2
 	shooter.visible = true
 	current_shooter = shooter
@@ -34,6 +20,13 @@ func has_shooter() -> bool:
 	
 func remove_shooter():
 	current_shooter.queue_free()
+
+func tower_damage():
+	var damage = 0
+	if has_shooter():
+		damage = current_shooter.damage
+	return damage
+	
 func _on_control_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event = event as InputEventMouseButton
@@ -43,3 +36,7 @@ func _on_control_gui_input(event: InputEvent) -> void:
 			else:
 				remove_shooter()
 			print("Left mouse button released", event)
+
+func shoot_bullet(target: PathTile):
+	if has_shooter():
+		current_shooter.spawn_bullet(target)

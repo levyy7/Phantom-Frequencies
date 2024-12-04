@@ -1,28 +1,21 @@
 class_name MainScene
 extends Node2D
 
-@onready var targeting: EnemyList = $Track/EnemyList
-
-var tower_slots: Array[TowerSlotGroup]
+var enemy = preload("res://Enemy.tscn")
 
 var is_paused: bool = true
 
 func play_one_round():
 	# reset the enemy's bullet
 	print("Playing one round")
-	for tower_slot in tower_slots:
-		tower_slot.play_one_round()
-		
-	$Track.advance_enemies()
+	$Map/TileManager.end_turn()
+	$Map/TileManager.ini_turn(enemy.instantiate())
 	
 
 func _ready() -> void:
-	var tower_slots_unchecked = find_children("*", "TowerSlotGroup", false)
-	
-	for tower_slot in tower_slots_unchecked:
-		assert (tower_slot is TowerSlotGroup)
-		tower_slot.targeting = self.targeting
-		tower_slots.append(tower_slot)
+	var enemyList = [enemy.instantiate(), enemy.instantiate(), null, null]
+	$Map/TileManager.fill_with_enemies(enemyList)
+	$Map/TileManager.ini_turn(enemy.instantiate())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,8 +23,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_next_round_button_toggled(toggled_on: bool) -> void:
-	play_one_round()
+#func _on_next_round_button_toggled(toggled_on: bool) -> void:
+	#play_one_round()
 
 
 func _on_next_round_button_pressed() -> void:

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd24gyg7g27kl"]
+[gd_scene load_steps=3 format=3 uid="uid://cd24gyg7g27kl"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_itl4h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e24rt"]
+size = Vector2(12, 12)
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_itl4h")
@@ -8,4 +11,10 @@ script = ExtResource("1_itl4h")
 [node name="VisibleOnScreen" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-6.25, -6.25, 12.5, 12.5)
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_e24rt")
+
 [connection signal="screen_exited" from="VisibleOnScreen" to="." method="_on_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

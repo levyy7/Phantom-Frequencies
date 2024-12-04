@@ -1,11 +1,28 @@
 class_name Enemy
 extends Node2D
 
-@export var speed: float = 100.0  # Speed in pixels per second
-@export var loop_path: bool = true  # Whether to loop the path or stop at the end
+var hp: int = 100
+@onready var health_bar: ProgressBar = $ProgressBar
 
-var path_follow: PathFollow2D
-var is_moving: bool = true
+# When the enemy is moving from one track square to the next, keeps track of the progress along this path
+# The enemy is "done" moving when the progress is 1.0, then we emit a "is_done_moving" signal which is picked up
+# by the tile manager 
+var _path_progress: float
+var current_path: Curve2D
+signal is_done_moving
+
+
+func set_advance_to(node: Node2D):
+	# Create a Curve2D resource to define the path
+	var curve = Curve2D.new()
+	
+	# Add points to the curve - starting from current position to target position
+	curve.add_point(global_position)  # Start point
+	curve.add_point(node.global_position)  # End point
+	
+	current_path = curve
+
+	_path_progress = 0.0
 
 var color: Color = Color.BLACK:
 	set(new_color):
@@ -14,40 +31,31 @@ var color: Color = Color.BLACK:
 signal enemy_clicked(enemy)
 
 func _ready() -> void:
-	$ColorRect.color = color
-
-func initialize_path_follow(pf: PathFollow2D) -> void:
-	path_follow = pf
-	# Configure the PathFollow2D
-	path_follow.loop = loop_path
-	path_follow.rotates = true  # Make the enemy rotate with the path
-
-func advance() -> void:
-	print("Advancing")
-	# Move along the path
-	path_follow.progress += speed * 0.1
+	health_bar.max_value = hp
+	health_bar.value = hp
+	var random_color = Color(randf(), randf(), randf())
+	$ColorRect.color = random_color
 	
-	# Update our position to match the PathFollow2D
-	global_position = path_follow.global_position
-	global_rotation = path_follow.global_rotation
+
+func take_damage(amount: int) -> void:
+	hp -= amount
+	hp = max(hp, 0)
+	health_bar.value = hp
 	
+	if hp == 0:
+		die()
+
 	
 func _process(delta: float) -> void:
-	print("_process enemy")
-	return
-	if not is_moving:
-		return
+	if current_path != null:
+		_path_progress += delta * 2.5
 		
-	# Move along the path
-	path_follow.progress += speed * delta
-	
-	# Update our position to match the PathFollow2D
-	global_position = path_follow.global_position
-	global_rotation = path_follow.global_rotation
-	
-	# Check if we've reached the end of a non-looping path
-	if not loop_path and path_follow.progress_ratio >= 1.0:
-		is_moving = false
+		var progress_len = _path_progress * current_path.get_baked_length()
+		global_position = current_path.sample_baked(progress_len)
+		if _path_progress >= 1.0:
+			current_path = null
+			emit_signal("is_done_moving")
+			
 
 
 func _on_control_gui_input(event: InputEvent) -> void:
@@ -56,3 +64,6 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
 			enemy_clicked.emit(self)
 			
+
+func die():
+	queue_free()

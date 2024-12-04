@@ -7,28 +7,12 @@ var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
 const BULLET_SPEED: float = 1400.0
 
-var targeting: EnemyList
+var damage = 50
 
-func shoot_once():
-	spawn_bullet()
-	
 func _process(delta: float) -> void:
 	pass
-	#if not Engine.is_editor_hint():  # Only spawn bullets in game mode
-		#if targeting == null:
-			#print("Targeting still null")
-		#spawn_timer += delta
-		#
-		#if spawn_timer >= SPAWN_INTERVAL:
-			#spawn_bullet()
-			#spawn_timer = 0.0
-	
-	
 
-func spawn_bullet() -> void:
-	var target: Enemy = targeting.get_target()
-	
-	
+func spawn_bullet(target: Node2D) -> void:
 	var bullet = bullet_scene.instantiate()
 	
 	var angle = global_position.angle_to_point(target.global_position)
