@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4txb66ecdnnv"]
+[gd_scene load_steps=32 format=3 uid="uid://c4txb66ecdnnv"]
 
 [ext_resource type="Script" path="res://visualizer.gd" id="1_of4xd"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2_cmnwk"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="3_83l6q"]
 [ext_resource type="AudioStream" uid="uid://kwfj2137d2e0" path="res://Note_samples/violin/violin_C4_1_fortissimo_arco-normal.mp3" id="4_8rsm4"]
 [ext_resource type="AudioStream" uid="uid://8xefxf6ma32o" path="res://Note_samples/violin/violin_Cs4_1_fortissimo_arco-normal.mp3" id="5_6g5vi"]
-[ext_resource type="AudioStream" uid="uid://dc7tk1bmmbnj" path="res://Note_samples/violin/violin_D4_1_mezzo-forte_arco-normal.mp3" id="6_hw2oy"]
+[ext_resource type="AudioStream" uid="uid://csrh0c6wycd6x" path="res://Note_samples/violin/violin_D4_1_fortissimo_arco-normal.mp3" id="6_l6f41"]
 [ext_resource type="AudioStream" uid="uid://bh6l63dio8ggy" path="res://Note_samples/violin/violin_Ds4_1_fortissimo_arco-normal.mp3" id="7_xbudl"]
 [ext_resource type="AudioStream" uid="uid://bcpk1t2w0lma3" path="res://Note_samples/violin/violin_E4_1_fortissimo_arco-normal.mp3" id="8_a3kfd"]
 [ext_resource type="AudioStream" uid="uid://jk4c34c7837x" path="res://Note_samples/violin/violin_F4_1_fortissimo_arco-normal.mp3" id="9_xw8a1"]
@@ -15,6 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://d14st84tnqpme" path="res://Note_samples/violin/violin_A4_1_fortissimo_arco-normal.mp3" id="13_b5f88"]
 [ext_resource type="AudioStream" uid="uid://dsstwlttbffke" path="res://Note_samples/violin/violin_As4_1_fortissimo_arco-normal.mp3" id="14_xcasd"]
 [ext_resource type="AudioStream" uid="uid://bx52bfbdbhrax" path="res://Note_samples/violin/violin_B4_1_fortissimo_arco-normal.mp3" id="15_lx01x"]
+[ext_resource type="Script" path="res://wav_reader.gd" id="16_egmam"]
+[ext_resource type="Script" path="res://waveform_plot.gd" id="17_8y2yc"]
+[ext_resource type="Script" path="res://fft_plot.gd" id="18_wdhvf"]
 
 [sub_resource type="Resource" id="Resource_375mo"]
 script = ExtResource("3_83l6q")
@@ -32,7 +35,7 @@ velocity = 5
 
 [sub_resource type="Resource" id="Resource_jd623"]
 script = ExtResource("3_83l6q")
-stream = ExtResource("6_hw2oy")
+stream = ExtResource("6_l6f41")
 tone = "D"
 octave = 4
 velocity = 5
@@ -114,5 +117,27 @@ samples = Array[ExtResource("3_83l6q")]([SubResource("Resource_375mo"), SubResou
 [node name="Recorder" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamWAV_qadje")
 
+[node name="WavReader" type="Node" parent="."]
+script = ExtResource("16_egmam")
+
+[node name="WaveformPlot" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 400.0
+offset_bottom = 300.0
+script = ExtResource("17_8y2yc")
+
+[node name="FFTPlot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_wdhvf")
+
+[connection signal="_wav_data_read" from="." to="." method="_on__wav_data_read"]
 [connection signal="finished" from="Sampler" to="." method="_on_sampler_finished"]
 [connection signal="music_playing" from="Sampler" to="." method="_start_recording_tower_audio"]
+[connection signal="_waveform_drawn" from="WaveformPlot" to="." method="_on_waveform_plot__waveform_drawn"]

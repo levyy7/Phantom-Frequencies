@@ -22,4 +22,4 @@ FFT="*res://addons/godot-fft/Fft.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Godot-FFT/plugin.cfg", "res://addons/SimpleSampler/plugin.cfg", "res://addons/midi/plugin.cfg")
+enabled=PackedStringArray("res://addons/Godot-FFT/plugin.cfg", "res://addons/SimpleSampler/plugin.cfg")
