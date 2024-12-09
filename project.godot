@@ -15,7 +15,13 @@ run/main_scene="res://main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=2400
+window/size/viewport_height=1400
+
 [global_group]
 
 pausable=""
 tower_slot=""
+tower_slot_group=""
