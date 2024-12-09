@@ -15,9 +15,8 @@ func build_harmonograph_points() -> Array[Vector2]:
 		
 		for freq in selected_frequencies:
 			# Add decay factor for more interesting patterns
-			var decay = exp(-0.001 * t)
-			x += decay * sin(t * freq.frequency)
-			y += decay * cos(t * freq.frequency)
+			x += sin(t * freq.frequency)
+			y += cos(t * freq.frequency)
 		
 		points.append(Vector2(x, y))
 	

@@ -1,8 +1,6 @@
 class_name Shooter
 extends Node2D
 
-
-
 const bullet_scene = preload("res://enemy/Bullet.tscn")
 var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
