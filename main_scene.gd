@@ -18,6 +18,7 @@ func _ready() -> void:
 	$Map/TileManager.ini_turn(enemy.instantiate())
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

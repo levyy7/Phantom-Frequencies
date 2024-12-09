@@ -4,6 +4,8 @@ extends ColorRect
 const ShooterScene = preload("res://shooter/Shooter.tscn")
 var targeting: EnemyList
 
+signal shooter_changed(t: TowerSlot)
+
 var current_shooter: Shooter = null
 
 	
@@ -27,14 +29,18 @@ func tower_damage():
 		damage = current_shooter.damage
 	return damage
 	
-func _on_control_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		var mouse_event = event as InputEventMouseButton
+func _on_control_gui_input(mouse_event: InputEvent) -> void:
+	if mouse_event is InputEventMouseButton:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
-			if not has_shooter():
-				add_shooter()
+			if has_shooter():
+				var should_remain = current_shooter.next_frequency()
+
+				if not should_remain:
+					remove_shooter()
+				shooter_changed.emit(self)
 			else:
-				remove_shooter()
+				add_shooter()
+				shooter_changed.emit(self)
 
 func shoot_bullet(target: PathTile):
 	if has_shooter():
