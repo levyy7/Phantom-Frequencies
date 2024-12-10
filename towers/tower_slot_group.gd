@@ -24,7 +24,7 @@ func selected_frequencies():
 	var freqs: Array[Frequency] = []
 	for ts in tower_slot_children():
 		if ts.current_shooter:
-			freqs.append(ts.current_shooter.FREQUENCIES[ts.current_shooter.current_frequency_index])
+			freqs.append(ts.current_shooter.current_frequency())
 
 	return freqs
 	

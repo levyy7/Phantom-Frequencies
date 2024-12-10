@@ -8,16 +8,12 @@ const BULLET_SPEED: float = 1400.0
 
 var damage = 50
 
-static var FREQUENCIES: Array[Frequency] = [
-	# TODO: replace with actual musical frequencies
-	Frequency.new(0.1),
-	Frequency.new(0.2),
-	Frequency.new(0.3),
-	Frequency.new(0.4),
-	Frequency.new(0.5),
-]
-
 var current_frequency_index = 0
+
+static var FREQUENCIES: Array[Frequency] = MusicalFrequencies.FREQUENCIES
+
+func current_frequency() -> Frequency:
+	return FREQUENCIES[current_frequency_index]
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
