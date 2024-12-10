@@ -7,14 +7,14 @@ var cached_homonograph_points: Array[Vector2] = []
 var animation_progress: float = 0.0
 
 func build_harmonograph_points(freqs: Array[Frequency]) -> Array[Vector2]:
-	var NUM_POINTS = 600
+	var NUM_POINTS = 1200
 	var points: Array[Vector2] = []
 	var canvas_size = $GraphDisplay.size
 	var center = Vector2(canvas_size.x/2, canvas_size.y/2)
 
 	
 	for i in range(NUM_POINTS):
-		var t = float(i) / 8000.0
+		var t = float(i) / 5000.0
 		var x = 0.0
 		var y = 0.0
 		
@@ -73,4 +73,10 @@ func _process(delta: float) -> void:
 		$Label.text = frequencies_descriptor(selected_frequencies)
 
 func _draw() -> void:
-	pass
+	# Draw a border around self
+	var canvas_size = size
+	var border_color = Color(0.8, 0.8, 0.8, 0.8)
+	var border_width = 2.0
+
+	# Draw the rectangle border using draw_rect
+	draw_rect(Rect2(Vector2.ZERO, canvas_size), border_color, false, border_width)

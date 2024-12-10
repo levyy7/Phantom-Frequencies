@@ -6,17 +6,17 @@
 [node name="Harmonograph" type="VBoxContainer"]
 offset_left = 1.0
 offset_right = 401.0
-offset_bottom = 396.0
+offset_bottom = 307.0
 script = ExtResource("1_qvdsf")
 
 [node name="GraphDisplay" type="Container" parent="."]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 tooltip_text = "Harmonograph"
 script = ExtResource("2_jsjxh")
 
 [node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Sample Text"
