@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://visualization_pane/harmonograph/harmonograph.gd" id="1_qvdsf"]
 [ext_resource type="Script" path="res://visualization_pane/harmonograph/harmonograph_2.gd" id="2_jsjxh"]
 
-[node name="VBoxContainer" type="VBoxContainer"]
+[node name="Harmonograph" type="VBoxContainer"]
 offset_left = 1.0
 offset_right = 401.0
 offset_bottom = 396.0
 script = ExtResource("1_qvdsf")
 
-[node name="Harmonograph2" type="Container" parent="."]
+[node name="GraphDisplay" type="Container" parent="."]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 tooltip_text = "Harmonograph"
@@ -19,3 +19,6 @@ script = ExtResource("2_jsjxh")
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
+text = "Sample Text"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,15 +1,15 @@
 extends Container
 
 var selected_frequencies: Array[Frequency] = []
-var margin = 50  # Margin from edges
-var scale_factor = 100  # Scale the harmonograph pattern
+var margin = 50
+var scale_factor = 80
 var cached_homonograph_points: Array[Vector2] = []
 var animation_progress: float = 0.0
 
 func build_harmonograph_points(freqs: Array[Frequency]) -> Array[Vector2]:
 	var NUM_POINTS = 600
 	var points: Array[Vector2] = []
-	var canvas_size = $Harmonograph2.size
+	var canvas_size = $GraphDisplay.size
 	var center = Vector2(canvas_size.x/2, canvas_size.y/2)
 
 	
@@ -36,7 +36,7 @@ func _ready() -> void:
 	for ts in tower_slots:
 		ts.hovered_frequency_change.connect(_on_tower_slot_hovered)
 		
-	$Harmonograph2.draw.connect(draw_on_child)
+	$GraphDisplay.draw.connect(draw_on_child)
 
 
 func draw_on_child():
@@ -44,7 +44,10 @@ func draw_on_child():
 	
 	if len(selected_frequencies) > 0:
 		color = selected_frequencies[0].color
-	$Harmonograph2.draw_self(cached_homonograph_points, color)
+	
+	var end_index = int(animation_progress * (len(cached_homonograph_points) - 1))
+	var selected_points = cached_homonograph_points.slice(0, end_index)
+	$GraphDisplay.draw_self(selected_points, color)
 
 func _on_tower_slot_hovered(f: Array[Frequency]) -> void:
 	if f != selected_frequencies:
@@ -53,11 +56,21 @@ func _on_tower_slot_hovered(f: Array[Frequency]) -> void:
 		animation_progress = 0.0
 
 
+func frequencies_descriptor(frequencies: Array[Frequency]) -> String:
+	var descriptor = ""
+	for freq in frequencies:
+		descriptor += str(freq.frequency) + ", "
+	
+	return descriptor
+
 func _process(delta: float) -> void:
-	animation_progress += delta * 0.25
+	animation_progress += delta * 0.3
 
 	if animation_progress > 1.0:
 		animation_progress = 1.0
+		
+	if len(selected_frequencies) > 0:
+		$Label.text = frequencies_descriptor(selected_frequencies)
 
 func _draw() -> void:
 	pass
