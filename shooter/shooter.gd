@@ -32,6 +32,7 @@ func _draw() -> void:
 func spawn_bullet(target: Node2D) -> void:
 	var bullet = bullet_scene.instantiate()
 	
+	bullet.damage = Damage.new(damage, current_frequency())
 	var angle = global_position.angle_to_point(target.global_position)
 	
 	# TODO: actually make sure that the parent rotation is 0, else this doesn't work since angle is in global coordinates
