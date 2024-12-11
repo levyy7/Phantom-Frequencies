@@ -51,11 +51,23 @@ func end_turn():
 
 func towers_set_shoot():
 	assert(state == State.Shooting)
+	
+	var timer = Timer.new()
+	add_child(timer)
+	
+	timer.start(1.0)
+	
 	for i in range(grassTiles.size()):
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
 		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
+		
+		# Wait for the timer's timeout signal (2 seconds)
+		await(timer.timeout)
+	
+	# After the loop finishes, you can safely remove the timer if needed
+	timer.queue_free()
 	
 
 func _enemy_done_moving():
