@@ -1,12 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmnvyryt3yep8"]
 
-[ext_resource type="Script" path="res://visualization_pane/node_2d.gd" id="1_yaj27"]
+[ext_resource type="PackedScene" uid="uid://cd22y4tr74fq6" path="res://visualization_pane/harmonograph/harmonograph.tscn" id="1_8cp32"]
 
 [node name="PanelContainer" type="PanelContainer"]
 offset_top = 4.0
 offset_right = 571.0
 offset_bottom = 975.0
 
-[node name="ABC" type="Container" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-script = ExtResource("1_yaj27")
+
+[node name="Harmonograph2" parent="VBoxContainer" instance=ExtResource("1_8cp32")]
+layout_mode = 2

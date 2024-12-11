@@ -9,7 +9,20 @@ var hp: int = 100
 # by the tile manager 
 var _path_progress: float
 var current_path: Curve2D
+
+var damage_handler: DamageHandler
+
+static var enemy_scene = preload("res://enemy/Enemy.tscn")
+
+
 signal is_done_moving
+signal enemy_clicked(enemy: Enemy)
+
+static func create_enemy(dmg: DamageHandler) -> Enemy:
+	var enemy: Enemy = enemy_scene.instantiate()
+	enemy.damage_handler = dmg
+	
+	return enemy
 
 
 func set_advance_to(node: Node2D):
@@ -28,21 +41,20 @@ var color: Color = Color.BLACK:
 	set(new_color):
 		$ColorRect.color = new_color
 
-signal enemy_clicked(enemy)
 
 func _ready() -> void:
 	health_bar.max_value = hp
 	health_bar.value = hp
 	var random_color = Color(randf(), randf(), randf())
 	$ColorRect.color = random_color
+
+	#damage_handler = HighFrequencyEnemy.new()
 	
 
-func take_damage(amount: int) -> void:
-	hp -= amount
-	hp = max(hp, 0)
+func take_damage(_amount: Damage) -> void:
+	hp = damage_handler.take_damage(hp, _amount)
 	health_bar.value = hp
-	
-	if hp == 0:
+	if hp <= 0:
 		die()
 
 	
@@ -54,7 +66,7 @@ func _process(delta: float) -> void:
 		global_position = current_path.sample_baked(progress_len)
 		if _path_progress >= 1.0:
 			current_path = null
-			emit_signal("is_done_moving")
+			is_done_moving.emit()
 			
 
 

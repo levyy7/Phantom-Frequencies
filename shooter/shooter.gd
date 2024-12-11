@@ -8,16 +8,12 @@ const BULLET_SPEED: float = 1400.0
 
 var damage = 50
 
-static var FREQUENCIES: Array[Frequency] = [
-	# TODO: replace with actual musical frequencies
-	Frequency.new(0.1),
-	Frequency.new(0.2),
-	Frequency.new(0.3),
-	Frequency.new(0.4),
-	Frequency.new(0.5),
-]
-
 var current_frequency_index = 0
+
+static var FREQUENCIES: Array[Frequency] = MusicalFrequencies.FREQUENCIES
+
+func current_frequency() -> Frequency:
+	return FREQUENCIES[current_frequency_index]
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,6 +32,7 @@ func _draw() -> void:
 func spawn_bullet(target: Node2D) -> void:
 	var bullet = bullet_scene.instantiate()
 	
+	bullet.damage = Damage.new(damage, current_frequency())
 	var angle = global_position.angle_to_point(target.global_position)
 	
 	# TODO: actually make sure that the parent rotation is 0, else this doesn't work since angle is in global coordinates

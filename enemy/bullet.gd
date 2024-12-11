@@ -4,7 +4,7 @@ extends Node2D
 @export var length: float = 12.5
 var width: float = 12.5
 
-var damage = 40
+var damage: Damage
 
 var velocity: Vector2
 
@@ -17,6 +17,8 @@ func _ready():
 	if has_meta("velocity"):
 		velocity = get_meta("velocity")
 		remove_meta("velocity")  # Clean up meta data
+
+	assert(damage != null, "Bullet must have a damage value set")
 
 func _process(delta: float) -> void:
 	position += velocity * delta

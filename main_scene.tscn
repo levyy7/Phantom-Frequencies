@@ -14,23 +14,13 @@ offset_right = 2284.0
 offset_bottom = 1377.0
 border_width = 4.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI frame"]
-layout_mode = 0
-offset_left = 205.0
-offset_top = 92.0
-offset_right = 969.0
-offset_bottom = 199.0
-theme_override_font_sizes/normal_font_size = 56
-text = "Random UI elements"
-tab_size = 5
-
 [node name="NextRoundButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
 offset_left = 47.0
 offset_top = 19.0
-offset_right = 205.0
-offset_bottom = 67.0
+offset_right = 267.0
+offset_bottom = 87.0
 text = "Next Round"
 
 [node name="Map" parent="." instance=ExtResource("2_tp6uu")]
@@ -38,10 +28,10 @@ position = Vector2(148, 0)
 scale = Vector2(0.9, 0.9)
 
 [node name="VBoxContainer" parent="." instance=ExtResource("3_yt8cq")]
-offset_left = 1242.0
-offset_top = -8.0
-offset_right = 1967.0
-offset_bottom = 1140.0
+offset_left = 1665.0
+offset_top = 6.0
+offset_right = 2390.0
+offset_bottom = 1154.0
 
 [connection signal="pressed" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_pressed"]
 [connection signal="toggled" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_toggled"]
