@@ -1,23 +1,27 @@
 class_name MainScene
 extends Node2D
 
-var enemy = preload("res://enemy/Enemy.tscn")
-var hfEnemy = preload("res://enemy/high_frequency_enemy.gd")
-
 var is_paused: bool = true
 
 func play_one_round():
 	# reset the enemy's bullet
 	print("Playing one round")
 	$Map/TileManager.end_turn()
-	$Map/TileManager.ini_turn(enemy.instantiate())
+
+	var newEnemy = Enemy.create_enemy(HighFrequencyEnemy.new())
+
+	$Map/TileManager.ini_turn(newEnemy)
 	
 
 func _ready() -> void:
 	# TODO: make better default enemies
-	var enemyList = [enemy.instantiate(), enemy.instantiate(), null, null]
+	var enemy1 = Enemy.create_enemy(HighFrequencyEnemy.new())
+	var enemy2 = Enemy.create_enemy(HighFrequencyEnemy.new())
+
+	var newEnemy = Enemy.create_enemy(HighFrequencyEnemy.new())
+	var enemyList = [enemy1, enemy2, null, null]
 	$Map/TileManager.fill_with_enemies(enemyList)
-	$Map/TileManager.ini_turn(enemy.instantiate())
+	$Map/TileManager.ini_turn(newEnemy)
 
 
 

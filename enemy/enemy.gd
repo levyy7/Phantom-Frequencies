@@ -12,9 +12,17 @@ var current_path: Curve2D
 
 var damage_handler: DamageHandler
 
+static var enemy_scene = preload("res://enemy/Enemy.tscn")
+
 
 signal is_done_moving
 signal enemy_clicked(enemy: Enemy)
+
+static func create_enemy(dmg: DamageHandler) -> Enemy:
+	var enemy: Enemy = enemy_scene.instantiate()
+	enemy.damage_handler = dmg
+	
+	return enemy
 
 
 func set_advance_to(node: Node2D):
@@ -40,7 +48,7 @@ func _ready() -> void:
 	var random_color = Color(randf(), randf(), randf())
 	$ColorRect.color = random_color
 
-	damage_handler = HighFrequencyEnemy.new()
+	#damage_handler = HighFrequencyEnemy.new()
 	
 
 func take_damage(_amount: Damage) -> void:
