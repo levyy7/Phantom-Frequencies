@@ -5,6 +5,8 @@ var pathTiles: Array[PathTile] = []
 
 var nextEnemy = null
 
+var soundOn = true
+
 enum State {
 	Paused, # Waiting for user to end the current turn and advance to next turn
 	Advancing, # Enemies advancing
@@ -53,7 +55,7 @@ func towers_set_shoot():
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
-		currentGT.tower_slot_group.shoot_bullets(currentPT)
+		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
 	
 
 func _enemy_done_moving():

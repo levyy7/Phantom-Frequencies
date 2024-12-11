@@ -42,6 +42,8 @@ func _on_control_gui_input(mouse_event: InputEvent) -> void:
 				add_shooter()
 				shooter_changed.emit(self)
 
-func shoot_bullet(target: PathTile):
+func shoot_bullet(target: PathTile, soundOn: bool):
 	if has_shooter():
 		current_shooter.spawn_bullet(target)
+		if soundOn:
+			current_shooter.play_current_note()

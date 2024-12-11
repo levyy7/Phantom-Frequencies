@@ -38,9 +38,9 @@ func _ready() -> void:
 			child.shooter_changed.connect(_on_hovered.unbind(1))
 			
 
-func shoot_bullets(target: PathTile):
+func shoot_bullets(target: PathTile, soundOn: bool):
 	for node: TowerSlot in tower_slot_children():
-		node.shoot_bullet(target)
+		node.shoot_bullet(target, soundOn)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
