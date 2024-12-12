@@ -41,6 +41,13 @@ func _ready() -> void:
 func shoot_bullets(target: PathTile, soundOn: bool):
 	for node: TowerSlot in tower_slot_children():
 		node.shoot_bullet(target, soundOn)
+		
+func any_tower_active() -> bool:
+	for node: TowerSlot in tower_slot_children():
+		if node.current_shooter != null:
+			return true
+	
+	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

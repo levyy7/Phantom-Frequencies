@@ -52,6 +52,8 @@ func end_turn():
 func towers_set_shoot():
 	assert(state == State.Shooting)
 	
+	# We use a timer to delay the time between each shot, so that
+	# the music played doesn`t overlap, creating a melody.
 	var timer = Timer.new()
 	add_child(timer)
 	
@@ -60,6 +62,10 @@ func towers_set_shoot():
 	for i in range(grassTiles.size()):
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
+		
+		# If there are no active towers in group, no waiting
+		if not currentGT.tower_slot_group.any_tower_active():
+			continue
 		
 		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
 		

@@ -19,11 +19,12 @@ func current_frequency() -> Frequency:
 	return FREQUENCIES[current_frequency_index]
 
 func play_current_note() -> void:
+	note_player.stream = NOTES[current_frequency_index]
 	note_player.play()
 	
 
 func _ready() -> void:
-	note_player.stream = NOTES[current_frequency_index]
+	assert(FREQUENCIES.size() == NOTES.size())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +63,6 @@ func next_frequency() -> bool:
 	# Otherwise, returns True to signal that the shooter should remain
 	if current_frequency_index < FREQUENCIES.size() - 1:
 		current_frequency_index += 1
-		note_player.stream = NOTES[current_frequency_index]
 		return true
 	else:
 		return false
