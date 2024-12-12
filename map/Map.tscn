@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4jcp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8l4tv"]
 texture = ExtResource("1_dmqmw")
 margins = Vector2i(1, 1)
 0:0/size_in_atlas = Vector2i(5, 5)
@@ -34,7 +34,7 @@ margins = Vector2i(1, 1)
 20:0/size_in_atlas = Vector2i(5, 5)
 20:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dk5bj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufu6o"]
 texture = ExtResource("2_2140o")
 0:0/size_in_atlas = Vector2i(5, 5)
 0:0/0 = 0
@@ -81,8 +81,8 @@ texture = ExtResource("2_2140o")
 
 [sub_resource type="TileSet" id="TileSet_sqa2w"]
 tile_size = Vector2i(80, 80)
-sources/0 = SubResource("TileSetAtlasSource_p4jcp")
-sources/1 = SubResource("TileSetAtlasSource_dk5bj")
+sources/0 = SubResource("TileSetAtlasSource_8l4tv")
+sources/1 = SubResource("TileSetAtlasSource_ufu6o")
 
 [node name="Map" type="Node2D"]
 script = SubResource("GDScript_b8rf2")

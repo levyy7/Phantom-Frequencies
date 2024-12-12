@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=4 uid="uid://bwewojuo0ysex"]
+
+[ext_resource type="Texture2D" uid="uid://djw8nvap31aj3" path="res://assets/grass.png" id="1_gcear"]
+[ext_resource type="Texture2D" uid="uid://bcnoypdtan7km" path="res://assets/paths.png" id="2_ntwf7"]
+[ext_resource type="Script" path="res://map/tile_manager.gd" id="3_byurt"]
+[ext_resource type="PackedScene" uid="uid://beakcw304ss1p" path="res://map/PathTile.tscn" id="4_tlhjl"]
+[ext_resource type="PackedScene" uid="uid://cy45101navcqq" path="res://map/GrassTile.tscn" id="5_oq7ny"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6abxd"]
+texture = ExtResource("1_gcear")
+margins = Vector2i(1, 1)
+0:0/size_in_atlas = Vector2i(5, 5)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(5, 5)
+5:0/0 = 0
+10:0/size_in_atlas = Vector2i(5, 5)
+10:0/0 = 0
+15:0/size_in_atlas = Vector2i(5, 5)
+15:0/0 = 0
+20:0/size_in_atlas = Vector2i(5, 5)
+20:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2om6j"]
+texture = ExtResource("2_ntwf7")
+0:0/size_in_atlas = Vector2i(5, 5)
+0:0/0 = 0
+5:0/size_in_atlas = Vector2i(5, 5)
+5:0/0 = 0
+10:0/size_in_atlas = Vector2i(5, 5)
+10:0/0 = 0
+15:0/size_in_atlas = Vector2i(5, 5)
+15:0/0 = 0
+15:5/size_in_atlas = Vector2i(5, 5)
+15:5/0 = 0
+15:10/size_in_atlas = Vector2i(5, 5)
+15:10/0 = 0
+10:5/size_in_atlas = Vector2i(5, 5)
+10:5/0 = 0
+5:5/size_in_atlas = Vector2i(5, 5)
+5:5/0 = 0
+0:5/size_in_atlas = Vector2i(5, 5)
+0:5/0 = 0
+0:10/size_in_atlas = Vector2i(5, 5)
+0:10/0 = 0
+5:10/size_in_atlas = Vector2i(5, 5)
+5:10/0 = 0
+10:10/size_in_atlas = Vector2i(5, 5)
+10:10/0 = 0
+20:0/size_in_atlas = Vector2i(5, 5)
+20:0/0 = 0
+25:0/size_in_atlas = Vector2i(5, 5)
+25:0/0 = 0
+30:0/size_in_atlas = Vector2i(5, 5)
+30:0/0 = 0
+20:5/size_in_atlas = Vector2i(5, 5)
+20:5/0 = 0
+25:5/size_in_atlas = Vector2i(5, 5)
+25:5/0 = 0
+20:10/size_in_atlas = Vector2i(5, 5)
+20:10/0 = 0
+25:10/size_in_atlas = Vector2i(5, 5)
+25:10/0 = 0
+30:5/size_in_atlas = Vector2i(5, 5)
+30:5/0 = 0
+30:10/size_in_atlas = Vector2i(5, 5)
+30:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pk5qr"]
+tile_size = Vector2i(80, 80)
+sources/0 = SubResource("TileSetAtlasSource_6abxd")
+sources/1 = SubResource("TileSetAtlasSource_2om6j")
+
+[node name="Map8" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAEAAQAUAAAAAAABAAEAAQAZAAAAAAACAAEAAQAZAAAAAAADAAEAAQAZAAAAAAAEAAEAAQAZAAAAAAAFAAEAAQAZAAAAAAAGAAEAAQAZAAAAAAAHAAEAAQAeAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_pk5qr")
+
+[node name="TileManager" type="Node2D" parent="."]
+script = ExtResource("3_byurt")
+
+[node name="PathTile0" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(119, 359)
+
+[node name="PathTile1" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(360, 360)
+
+[node name="PathTile2" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(599, 360)
+
+[node name="PathTile3" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(840, 363)
+
+[node name="PathTile4" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(1084, 359)
+
+[node name="PathTile5" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(1317, 361)
+
+[node name="PathTile6" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(1561, 361)
+
+[node name="PathTile7" parent="TileManager" instance=ExtResource("4_tlhjl")]
+position = Vector2(1800, 361)
+
+[node name="GrassTile0" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(119, 122)
+
+[node name="GrassTile1" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(355, 120)
+
+[node name="GrassTile2" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(598, 121)
+
+[node name="GrassTile3" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(837, 120)
+
+[node name="GrassTile4" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1078, 117)
+
+[node name="GrassTile5" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1317, 119)
+
+[node name="GrassTile6" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1558, 120)
+
+[node name="GrassTile7" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1797, 117)

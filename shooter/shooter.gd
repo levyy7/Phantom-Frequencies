@@ -12,10 +12,21 @@ var current_frequency_index = 0
 
 static var FREQUENCIES: Array[Frequency] = MusicalFrequencies.FREQUENCIES
 
+@onready var note_player = $NotePlayer
+static var NOTES: Array[AudioStream] = SoundManager.NOTES
+
 func current_frequency() -> Frequency:
 	return FREQUENCIES[current_frequency_index]
 
+func play_current_note() -> void:
+	note_player.stream = NOTES[current_frequency_index]
+	note_player.play()
 	
+
+func _ready() -> void:
+	assert(FREQUENCIES.size() == NOTES.size())
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw()  # Ensure the circle is always drawn

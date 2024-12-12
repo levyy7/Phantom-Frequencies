@@ -5,6 +5,8 @@ var pathTiles: Array[PathTile] = []
 
 var nextEnemy = null
 
+var soundOn = true
+
 enum State {
 	Paused, # Waiting for user to end the current turn and advance to next turn
 	Advancing, # Enemies advancing
@@ -49,11 +51,29 @@ func end_turn():
 
 func towers_set_shoot():
 	assert(state == State.Shooting)
+	
+	# We use a timer to delay the time between each shot, so that
+	# the music played doesn`t overlap, creating a melody.
+	var timer = Timer.new()
+	add_child(timer)
+	
+	timer.start(1.0)
+	
 	for i in range(grassTiles.size()):
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
-		currentGT.tower_slot_group.shoot_bullets(currentPT)
+		# If there are no active towers in group, no waiting
+		if not currentGT.tower_slot_group.any_tower_active():
+			continue
+		
+		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
+		
+		# Wait for the timer's timeout signal (2 seconds)
+		await(timer.timeout)
+	
+	# After the loop finishes, you can safely remove the timer if needed
+	timer.queue_free()
 	
 
 func _enemy_done_moving():
