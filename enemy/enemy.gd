@@ -22,7 +22,7 @@ signal enemy_clicked(enemy: Enemy)
 static func create_enemy(dmg: DamageHandler) -> Enemy:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.damage_handler = dmg
-	
+	enemy.color = enemy.damage_handler.color
 	return enemy
 
 
@@ -40,14 +40,14 @@ func set_advance_to(node: Node2D):
 
 var color: Color = Color.BLACK:
 	set(new_color):
+		color=new_color
 		$ColorRect.color = new_color
 
 
 func _ready() -> void:
 	health_bar.max_value = hp
 	health_bar.value = hp
-	var random_color = Color(randf(), randf(), randf())
-	$ColorRect.color = random_color
+	#$ColorRect.color = color
 
 
 func take_damage(_amount: Damage) -> void:
