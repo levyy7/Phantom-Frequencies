@@ -6,8 +6,25 @@ var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
 const BULLET_SPEED: float = 1400.0
 
-var damage = 50
+const NOTE_TO_INDEX = {
+	"A":  0,
+	"B♭": 1,
+	"B":  2,
+	"C":  3,
+	"C♯": 4,
+	"D":  5,
+	"E♭": 6,
+	"E":  7,
+	"F":  8,
+	"F♯": 9,
+	"G":  10,
+	"G♯": 11,
+	"A5": 12
+}
 
+
+var damage = 50
+var current_name = "A"
 var current_frequency_index = 0
 
 static var FREQUENCIES: Array[Frequency] = MusicalFrequencies.FREQUENCIES
@@ -56,6 +73,12 @@ func spawn_bullet(target: Node2D) -> void:
 	rotation = angle
 	
 	add_child(bullet)
+
+
+func update_frequency(note_name: String) -> void:
+	current_frequency_index = NOTE_TO_INDEX[note_name]
+	current_name = note_name
+
 
 func next_frequency() -> bool:
 	# Sets the current frequency to the next frequency in the list
