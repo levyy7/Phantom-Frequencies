@@ -67,7 +67,7 @@ func towers_set_shoot():
 		if not currentGT.tower_slot_group.any_tower_active():
 			continue
 		
-		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
+		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn, timer)
 		
 		# Wait for the timer's timeout signal (2 seconds)
 		await(timer.timeout)

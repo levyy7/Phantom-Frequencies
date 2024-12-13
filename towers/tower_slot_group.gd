@@ -1,6 +1,10 @@
 class_name TowerSlotGroup
 extends Node2D
 
+var glowing: bool = false:
+	set(glow):
+		glowing = glow
+		$GlowRect.visible = glowing
 signal hovered_frequency_change(f: Array[Frequency])
 
 func tower_slot_children() -> Array[TowerSlot]:
@@ -38,10 +42,19 @@ func _ready() -> void:
 			child.shooter_changed.connect(_on_hovered.unbind(1))
 			
 
-func shoot_bullets(target: PathTile, soundOn: bool):
+func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
+	# Enable the glowing effect
+	assert(glowing == false, "Must not have been glowing when we begin shooting")
+	glowing = true
+
 	for node: TowerSlot in tower_slot_children():
 		node.shoot_bullet(target, soundOn)
 		
+	timer.timeout.connect(disable_glow)
+
+func disable_glow():
+	glowing = false	
+
 func any_tower_active() -> bool:
 	for node: TowerSlot in tower_slot_children():
 		if node.current_shooter != null:
