@@ -8,6 +8,7 @@
 script = ExtResource("1_73tln")
 
 [node name="GlowRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -22.0
 offset_top = -26.0
 offset_right = 60.0
