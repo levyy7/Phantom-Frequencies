@@ -1,0 +1,283 @@
+[gd_scene load_steps=5 format=3 uid="uid://b67t084jvaek4"]
+
+[ext_resource type="Script" path="res://ui/tower_ui.gd" id="1_l8krk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lieur"]
+bg_color = Color(0, 0.705882, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5ulo"]
+bg_color = Color(0.772549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6wcx"]
+bg_color = Color(0.252028, 0.252028, 0.252028, 1)
+
+[node name="TowerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1800.0
+offset_bottom = -1000.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l8krk")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.083
+anchor_right = 0.444
+anchor_bottom = 0.917
+offset_left = -0.16
+offset_top = 0.079998
+offset_right = 0.159988
+offset_bottom = -0.0800171
+
+[node name="Information Panel" type="Panel" parent="PanelContainer/Panel/PanelContainer"]
+layout_mode = 2
+
+[node name="Tower Name" type="Label" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.071
+anchor_top = 0.025
+anchor_right = 0.929
+anchor_bottom = 0.15
+offset_left = 0.0599995
+offset_right = -0.0599976
+text = "Empty Slot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tower Image" type="ColorRect" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214
+anchor_top = 0.225
+anchor_right = 0.786
+anchor_bottom = 0.625
+offset_left = 0.0399971
+offset_right = -0.0400009
+
+[node name="Frequency" type="Label" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.179
+anchor_top = 0.65
+anchor_right = 0.464
+anchor_bottom = 0.725
+offset_left = -0.0600014
+offset_right = 0.0400009
+theme_override_font_sizes/font_size = 9
+text = "<frequency>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator1" type="Line2D" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+position = Vector2(115.56, 229.72)
+points = PackedVector2Array(0, 6, 0, -8)
+width = 1.0
+default_color = Color(0.235732, 0.235732, 0.235732, 1)
+
+[node name="Octave" type="Label" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.571
+anchor_top = 0.65
+anchor_right = 0.857
+anchor_bottom = 0.725
+offset_left = 0.0599976
+offset_right = 0.019989
+theme_override_font_sizes/font_size = 9
+text = "<octave>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator2" type="Line2D" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+position = Vector2(227.56, 464.72)
+points = PackedVector2Array(-203.56, -189.72, -21.56, -190.72)
+width = 1.0
+default_color = Color(0.235732, 0.235732, 0.235732, 1)
+
+[node name="Play Button" type="Button" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+offset_left = 13.56
+offset_top = 290.72
+offset_right = 73.56
+offset_bottom = 318.72
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_lieur")
+text = "PLAY"
+
+[node name="Delete Button" type="Button" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
+offset_left = 153.56
+offset_top = 289.72
+offset_right = 213.56
+offset_bottom = 317.72
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_w5ulo")
+text = "DELETE"
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/Panel"]
+layout_direction = 1
+layout_mode = 0
+offset_left = 290.0
+offset_top = 245.0
+offset_right = 570.0
+offset_bottom = 365.0
+
+[node name="Tower Change Panel" type="Panel" parent="PanelContainer/Panel/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+layout_direction = 1
+layout_mode = 0
+offset_left = 90.0
+offset_top = 7.0
+offset_right = 190.0
+offset_bottom = 30.0
+text = "Note Selector"
+
+[node name="Button1" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "A"
+
+[node name="Button2" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 85.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "B♭"
+
+[node name="Button3" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 105.0
+offset_top = 40.0
+offset_right = 130.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "B"
+
+[node name="Button4" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 150.0
+offset_top = 40.0
+offset_right = 175.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "C"
+
+[node name="Button5" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 195.0
+offset_top = 40.0
+offset_right = 220.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "C♯"
+
+[node name="Button6" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 240.0
+offset_top = 40.0
+offset_right = 265.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "D"
+
+[node name="Button7" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 15.0
+offset_top = 80.0
+offset_right = 40.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "E♭"
+
+[node name="Button8" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 60.0
+offset_top = 80.0
+offset_right = 85.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "E"
+
+[node name="Button9" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 105.0
+offset_top = 80.0
+offset_right = 130.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "F"
+
+[node name="Button10" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 150.0
+offset_top = 80.0
+offset_right = 175.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "F♯"
+
+[node name="Button11" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 195.0
+offset_top = 80.0
+offset_right = 220.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "G"
+
+[node name="Button12" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel"]
+offset_left = 240.0
+offset_top = 80.0
+offset_right = 265.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
+toggle_mode = true
+text = "G♯"
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/Panel"]
+layout_direction = 1
+layout_mode = 0
+offset_left = 290.0
+offset_top = 40.0
+offset_right = 570.0
+offset_bottom = 225.0
+
+[node name="Visualization Panel" type="Panel" parent="PanelContainer/Panel/PanelContainer3"]
+layout_mode = 2

@@ -9,10 +9,11 @@ signal shooter_changed(t: TowerSlot)
 var current_shooter: Shooter = null
 
 	
-func add_shooter() -> void:
+func add_shooter(note: String) -> void:
 	var shooter = ShooterScene.instantiate()
 	shooter.position = self.size / 2
 	shooter.visible = true
+	shooter.update_frequency(note)
 	current_shooter = shooter
 	add_child(shooter)
 
@@ -39,7 +40,7 @@ func _on_control_gui_input(mouse_event: InputEvent) -> void:
 					remove_shooter()
 				shooter_changed.emit(self)
 			else:
-				add_shooter()
+				add_shooter("A")
 				shooter_changed.emit(self)
 
 func shoot_bullet(target: PathTile, soundOn: bool):

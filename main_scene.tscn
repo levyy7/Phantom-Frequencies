@@ -8,10 +8,10 @@
 script = ExtResource("1_b5ekj")
 
 [node name="UI frame" type="ReferenceRect" parent="."]
-offset_left = 84.0
-offset_top = 981.0
-offset_right = 2284.0
-offset_bottom = 1377.0
+offset_left = 50.0
+offset_top = 702.0
+offset_right = 2344.0
+offset_bottom = 1339.0
 border_width = 4.0
 
 [node name="NextRoundButton" type="Button" parent="UI frame"]
@@ -23,11 +23,12 @@ offset_right = 267.0
 offset_bottom = 87.0
 text = "Next Round"
 
-[node name="VBoxContainer" parent="." instance=ExtResource("3_yt8cq")]
-offset_left = 1561.0
-offset_top = 695.0
-offset_right = 2286.0
-offset_bottom = 1296.0
+[node name="VBoxContainer" parent="UI frame" instance=ExtResource("3_yt8cq")]
+layout_mode = 0
+offset_left = 1716.0
+offset_top = 127.0
+offset_right = 2211.0
+offset_bottom = 553.0
 
 [node name="Map" parent="." instance=ExtResource("3_4x4u7")]
 position = Vector2(45, 62)
