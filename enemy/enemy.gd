@@ -81,6 +81,9 @@ func _on_ghost_done_animation():
 	queue_free()
 	
 func die():
+	if self.dead:
+		return
+		
 	self.dead = true
 	var ghost := Ghost.new_with_color($ColorRect.color)
 	assert(ghost != null)
