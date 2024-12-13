@@ -54,12 +54,18 @@ func towers_set_shoot():
 	
 	# We use a timer to delay the time between each shot, so that
 	# the music played doesn`t overlap, creating a melody.
-	var timer = Timer.new()
-	add_child(timer)
+	var shotTimer = Timer.new()
+	var glowTimer = Timer.new()
+
+	glowTimer.one_shot = true
+
+	add_child(glowTimer)
+	add_child(shotTimer)
 	
-	timer.start(1.0)
+	shotTimer.start(1.0)
 	
 	for i in range(grassTiles.size()):
+		glowTimer.start(0.75)
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
@@ -67,13 +73,13 @@ func towers_set_shoot():
 		if not currentGT.tower_slot_group.any_tower_active():
 			continue
 		
-		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn, timer)
+		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn, glowTimer)
 		
 		# Wait for the timer's timeout signal (2 seconds)
-		await(timer.timeout)
+		await(shotTimer.timeout)
 	
 	# After the loop finishes, you can safely remove the timer if needed
-	timer.queue_free()
+	shotTimer.queue_free()
 	
 
 func _enemy_done_moving():

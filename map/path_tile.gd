@@ -9,7 +9,10 @@ func add_enemy(enemy: Enemy):
 
 func get_enemy() -> Enemy:
 	if get_child_count() > 0:
-		return get_child(0)
+		var possible_enemy := get_child(0) as Enemy
+		if possible_enemy.dead:
+			return null
+		return possible_enemy
 	else:
 		return null
 

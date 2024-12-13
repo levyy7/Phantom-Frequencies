@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3etpk6milk7"]
+
+[ext_resource type="Script" path="res://enemy/ghost.gd" id="1_ghost"]
+[ext_resource type="PackedScene" uid="uid://b7s087fc0d56k" path="res://enemy/GhostShape.tscn" id="2_shape"]
+
+[node name="Ghost" type="Node2D"]
+script = ExtResource("1_ghost")
+
+[node name="GhostShape" parent="." instance=ExtResource("2_shape")]
