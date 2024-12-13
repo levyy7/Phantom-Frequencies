@@ -5,12 +5,27 @@ var is_paused: bool = true
 
 func play_one_round():
 	# reset the enemy's bullet
+	var next_round_button := $"UI frame/NextRoundButton" as Button
+	var tile_manager := $Map/TileManager as TileManager
 	print("Playing one round")
-	$Map/TileManager.end_turn()
+	
+	# TODO: change the button logic to be inside a script in button
+	next_round_button.disabled = true
+	next_round_button.text = "Round in progress..."
+	
+	
+	tile_manager.end_turn()
 
 	var newEnemy = Enemy.create_enemy(HighFrequencyEnemy.new())
 
-	$Map/TileManager.ini_turn(newEnemy)
+	tile_manager.ini_turn(newEnemy)
+	
+	await tile_manager.turn_finished
+	print("Turn finished")
+	
+	next_round_button.disabled = false
+	next_round_button.text = "Next Round"
+	
 	
 
 func _ready() -> void:
@@ -26,12 +41,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
-
-
-#func _on_next_round_button_toggled(toggled_on: bool) -> void:
-	#play_one_round()
 
 
 func _on_next_round_button_pressed() -> void:

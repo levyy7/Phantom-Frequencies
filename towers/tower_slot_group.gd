@@ -49,7 +49,7 @@ func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
 
 	for node: TowerSlot in tower_slot_children():
 		node.shoot_bullet(target, soundOn)
-		
+
 	timer.timeout.connect(disable_glow)
 
 func disable_glow():

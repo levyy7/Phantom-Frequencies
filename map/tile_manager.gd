@@ -1,3 +1,4 @@
+class_name TileManager
 extends Node2D
 
 var grassTiles: Array[GrassTile] = []
@@ -6,6 +7,8 @@ var pathTiles: Array[PathTile] = []
 var nextEnemy = null
 
 var soundOn = true
+
+signal turn_finished
 
 enum State {
 	Paused, # Waiting for user to end the current turn and advance to next turn
@@ -20,11 +23,8 @@ func _ready() -> void:
 	initialize_tiles()
 
 
-func _process(delta: float):
-	if state == State.Shooting:
-		# Check if all the bullets are done
-		if get_tree().get_nodes_in_group("bullets").size() == 0:
-			state = State.Paused
+func _process(_delta: float):
+	pass
 
 
 
@@ -80,6 +80,10 @@ func towers_set_shoot():
 	
 	# After the loop finishes, you can safely remove the timer if needed
 	shotTimer.queue_free()
+	
+	state = State.Paused
+	turn_finished.emit()
+	
 	
 
 func _enemy_done_moving():
