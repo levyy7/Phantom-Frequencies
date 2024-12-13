@@ -7,6 +7,14 @@
 [node name="Node2D" type="Node2D" groups=["pausable", "tower_slot_group"]]
 script = ExtResource("1_73tln")
 
+[node name="GlowRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -21.0
+offset_top = -25.0
+offset_right = 58.0
+offset_bottom = 191.0
+color = Color(0.750856, 0.499085, 0.268345, 1)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -17.0
 offset_top = -21.0
