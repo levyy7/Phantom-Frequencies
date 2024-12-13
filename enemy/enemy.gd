@@ -1,6 +1,7 @@
 class_name Enemy
 extends Node2D
 
+var dead: bool = false
 var hp: int = 100
 @onready var health_bar: ProgressBar = $ProgressBar
 
@@ -48,8 +49,6 @@ func _ready() -> void:
 	var random_color = Color(randf(), randf(), randf())
 	$ColorRect.color = random_color
 
-	#damage_handler = HighFrequencyEnemy.new()
-	
 
 func take_damage(_amount: Damage) -> void:
 	hp = damage_handler.take_damage(hp, _amount)
@@ -77,5 +76,20 @@ func _on_control_gui_input(event: InputEvent) -> void:
 			enemy_clicked.emit(self)
 			
 
-func die():
+func _on_ghost_done_animation():
+	assert(self.dead)
 	queue_free()
+	
+func die():
+	self.dead = true
+	var ghost := Ghost.new_with_color($ColorRect.color)
+	assert(ghost != null)
+	
+	add_child(ghost)
+	
+	$ColorRect.visible = false
+	$ProgressBar.visible = false
+	
+	ghost.position = self.position
+	ghost.start_animation()
+	ghost.done_animation.connect(_on_ghost_done_animation)
