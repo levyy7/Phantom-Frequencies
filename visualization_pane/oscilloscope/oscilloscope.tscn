@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://de3dt3n7eyrgr"]
+
+[ext_resource type="Script" path="res://visualization_pane/oscilloscope/oscilloscope.gd" id="1_b2uo0"]
+[ext_resource type="Script" path="res://visualization_pane/oscilloscope/graph_display.gd" id="2_71wtg"]
+
+[node name="Oscilloscope" type="VBoxContainer"]
+offset_left = 1.0
+offset_right = 401.0
+offset_bottom = 307.0
+script = ExtResource("1_b2uo0")
+
+[node name="GraphDisplay" type="Container" parent="."]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+tooltip_text = "Harmonograph"
+script = ExtResource("2_71wtg")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Sample Text (Oscilloscope)"
+horizontal_alignment = 1
+vertical_alignment = 1

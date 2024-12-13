@@ -5,6 +5,5 @@ var damage: int
 var freq: Frequency
 
 func _init(d: int, f: Frequency):
-    damage = d
-    freq = f
-
+	damage = d
+	freq = f
