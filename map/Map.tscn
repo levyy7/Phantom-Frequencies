@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://dqpg1ii5rtkmy"]
+[gd_scene load_steps=11 format=4 uid="uid://dqpg1ii5rtkmy"]
 
 [ext_resource type="Texture2D" uid="uid://djw8nvap31aj3" path="res://assets/grass.png" id="1_dmqmw"]
 [ext_resource type="Texture2D" uid="uid://bcnoypdtan7km" path="res://assets/paths.png" id="2_2140o"]
 [ext_resource type="Script" path="res://map/tile_manager.gd" id="3_tshls"]
 [ext_resource type="PackedScene" uid="uid://beakcw304ss1p" path="res://map/PathTile.tscn" id="4_nbj0q"]
 [ext_resource type="PackedScene" uid="uid://cy45101navcqq" path="res://map/GrassTile.tscn" id="5_rgk78"]
+[ext_resource type="Script" path="res://map/move_manager.gd" id="6_0p2ks"]
 
 [sub_resource type="GDScript" id="GDScript_b8rf2"]
 script/source = "extends Node2D
@@ -118,3 +119,6 @@ position = Vector2(598, 121)
 
 [node name="GrassTile3" parent="TileManager" instance=ExtResource("5_rgk78")]
 position = Vector2(837, 120)
+
+[node name="MoveManager (TODO)" type="Node" parent="."]
+script = ExtResource("6_0p2ks")

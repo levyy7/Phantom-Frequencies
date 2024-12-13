@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmnvyryt3yep8"]
+[gd_scene load_steps=3 format=3 uid="uid://bmnvyryt3yep8"]
 
 [ext_resource type="PackedScene" uid="uid://cd22y4tr74fq6" path="res://visualization_pane/harmonograph/harmonograph.tscn" id="1_8cp32"]
+[ext_resource type="PackedScene" uid="uid://de3dt3n7eyrgr" path="res://visualization_pane/oscilloscope/oscilloscope.tscn" id="2_xy5qg"]
 
 [node name="PanelContainer" type="PanelContainer"]
 offset_top = 4.0
@@ -11,4 +12,7 @@ offset_bottom = 975.0
 layout_mode = 2
 
 [node name="Harmonograph2" parent="VBoxContainer" instance=ExtResource("1_8cp32")]
+layout_mode = 2
+
+[node name="Oscilloscope" parent="VBoxContainer" instance=ExtResource("2_xy5qg")]
 layout_mode = 2

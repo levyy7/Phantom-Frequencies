@@ -37,6 +37,7 @@ func _ready() -> void:
 		ts.hovered_frequency_change.connect(_on_tower_slot_hovered)
 		
 	$GraphDisplay.draw.connect(draw_on_child)
+	$Label.text = ""
 
 
 func draw_on_child():
@@ -59,9 +60,17 @@ func _on_tower_slot_hovered(f: Array[Frequency]) -> void:
 func frequencies_descriptor(frequencies: Array[Frequency]) -> String:
 	var descriptor = ""
 	for freq in frequencies:
-		descriptor += str(freq.frequency) + ", "
-	
-	return descriptor
+		descriptor += str(roundi(freq.frequency)) + ", "
+		
+	var ratio_descriptor = ""
+	if frequencies.size() > 1:
+		for freq in frequencies:
+			# TODO (Karen): 
+			# 1. lookup the proper ratio and express it as a fraction
+			# 2. show the user if the chord is "bad" or "good" based on this ratio, show it on the game with colors etc.
+			ratio_descriptor += "%.2f" % (freq.frequency / frequencies[0].frequency) + ", "
+
+	return descriptor + "\n" + ratio_descriptor
 
 func _process(delta: float) -> void:
 	animation_progress += delta * 0.3

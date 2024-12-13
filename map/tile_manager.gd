@@ -1,6 +1,6 @@
 extends Node2D
 
-var grassTiles = []
+var grassTiles: Array[GrassTile] = []
 var pathTiles: Array[PathTile] = []
 
 var nextEnemy = null
