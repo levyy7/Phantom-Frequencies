@@ -30,6 +30,9 @@ func play_one_round():
 
 func _ready() -> void:
 	# TODO: make better default enemies
+	
+	setup_ui_connections()
+	
 	var enemy1 = Enemy.create_enemy(HighFrequencyEnemy.new())
 	var enemy2 = Enemy.create_enemy(HighFrequencyEnemy.new())
 
@@ -38,6 +41,14 @@ func _ready() -> void:
 	$Map/TileManager.fill_with_enemies(enemyList)
 	$Map/TileManager.ini_turn(newEnemy)
 
+
+func setup_ui_connections() -> void:
+	var slots = get_tree().get_nodes_in_group("tower_slot")
+	
+	print("Enter setup UI")
+	for slot in slots:
+		print("Cycle slot")
+		slot.shooter_changed.connect($"UI frame/TowerUI".slot_selected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

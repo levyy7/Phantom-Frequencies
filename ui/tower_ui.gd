@@ -2,12 +2,11 @@ class_name TowerUI
 extends Control
 
 
-var currentSlot = null
-var currentTower = null
+var currentSlot: TowerSlot = null
+var currentTower: Shooter = null
 var changeButtons = []
 
-@onready var infoPanel = $"PanelContainer/Panel/PanelContainer3/Visualization Panel"
-
+@onready var infoPanel = $"PanelContainer/Panel/PanelContainer/Information Panel"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,10 +22,18 @@ func _ready() -> void:
 
 
 func slot_selected(slot: TowerSlot) -> void:
+	print("Signal recieved")
+	if currentSlot != null:
+		currentSlot.get_node("Outline").visible = false
 	currentSlot = slot
+	currentSlot.get_node("Outline").visible = true
+	
+	currentTower = null
 	
 	if slot.has_shooter():
 		load_tower_info(slot.current_shooter)
+	else:
+		load_default_info()
 
 
 func load_tower_info(tower: Shooter) -> void:
@@ -41,7 +48,12 @@ func load_tower_info(tower: Shooter) -> void:
 
 
 func load_default_info() -> void:
-	pass
+	infoPanel.get_node("Tower Name").text = "Empty Slot"
+	infoPanel.get_node("Frequency").text  = "<frequency>"
+	infoPanel.get_node("Octave").text     = "<octave>"
+	
+	for button in changeButtons:
+		button.button_pressed = false
 
 
 func _on_change_button_pressed(pressed_button):
@@ -57,17 +69,18 @@ func _on_change_button_pressed(pressed_button):
 		else:
 			currentSlot.add_shooter(pressed_button.text)
 			currentTower = currentSlot.current_shooter
+			assert(currentTower != null)
 		
 		load_tower_info(currentTower)
 
 
-func _on_play_button_pressed(pressed_button):
+func _on_play_button_pressed():
 	assert(currentTower != null)
 	
 	currentTower.play_current_note()
 
 
-func _on_delete_button_pressed(pressed_button):
+func _on_delete_button_pressed():
 	assert(currentTower != null)
 	
 	currentSlot.remove_shooter()
