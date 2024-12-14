@@ -33,15 +33,8 @@ func tower_damage():
 func _on_control_gui_input(mouse_event: InputEvent) -> void:
 	if mouse_event is InputEventMouseButton:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
-			if has_shooter():
-				var should_remain = current_shooter.next_frequency()
-
-				if not should_remain:
-					remove_shooter()
-				shooter_changed.emit(self)
-			else:
-				add_shooter("A")
-				shooter_changed.emit(self)
+			print("Click recieved")
+			shooter_changed.emit(self)
 
 func shoot_bullet(target: PathTile, soundOn: bool):
 	if has_shooter():

@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://towers/tower_slot.gd" id="1_elfc6"]
 
-[node name="ColorRect" type="ColorRect"]
+[node name="ColorRect" type="ColorRect" groups=["pausable", "tower_slot"]]
+z_index = 5
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(1, 1, 0.737255, 1)
@@ -16,5 +17,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Outline" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 36.0
+scale = Vector2(1.2, 1.2)
+color = Color(0.701961, 1, 0, 1)
 
 [connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
