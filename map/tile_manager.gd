@@ -67,7 +67,9 @@ func towers_set_shoot():
 		if not currentGT.tower_slot_group.any_tower_active():
 			continue
 		
+		# only for animation
 		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn)
+		currentGT.tower_slot_group.affectEnemies(currentPT)
 		
 		# Wait for the timer's timeout signal (2 seconds)
 		await(timer.timeout)

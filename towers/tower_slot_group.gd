@@ -38,6 +38,15 @@ func _ready() -> void:
 			child.shooter_changed.connect(_on_hovered.unbind(1))
 			
 
+func affectEnemies(target: PathTile):
+	var frequencies=[]
+	for node: TowerSlot in tower_slot_children():
+		if(node.has_shooter()):
+			frequencies.append(node.current_shooter.current_frequency()) #shoot_bullet(target)
+	var enemy = target.get_enemy()
+	if (enemy):
+		enemy.become_affected(frequencies)
+		
 func shoot_bullets(target: PathTile, soundOn: bool):
 	for node: TowerSlot in tower_slot_children():
 		node.shoot_bullet(target, soundOn)
