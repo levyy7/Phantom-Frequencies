@@ -32,7 +32,6 @@ func play_one_round():
 	
 	
 	tile_manager.end_turn()
-	var level = levels[0]
 	popNextGhost()
 	
 	await tile_manager.turn_finished

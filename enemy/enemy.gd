@@ -76,7 +76,7 @@ func become_affected(frequencies):
 	if preferences[0].fulfilled(frequencies):
 		preferences.pop_front()
 	prefText = prefToText(preferences)
-	if len(preferences)<1:
+	if len(preferences) == 0:
 		die()
 	
 func _process(delta: float) -> void:

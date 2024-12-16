@@ -4,16 +4,16 @@ var description:String
 var tiles:int
 var inital_preferences
 var upcoming_preferences
-func fromTextToPreferenceList(text):
-	var preferences = []
+func fromTextToPreferenceList(text: String) -> Array[Preference]:
+	var preferences: Array[Preference] = []
 	for pref in text.split("->"):
 		if pref == "Hi":
 			preferences.append(HighFrequencyPreference.new())
-		if pref == "Lo":
+		elif pref == "Lo":
 			preferences.append(LowFrequencyPreference.new())
-		if pref == "Oc":
+		elif pref == "Oc":
 			preferences.append(OctavePreference.new())
-		if pref in ["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"]:
+		elif pref in ["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"]:
 			var notePref= NotePreference.new()
 			notePref.init(pref)
 			preferences.append(notePref)
