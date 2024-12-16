@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	queue_redraw()
 	
-func draw_self(points: Array[Vector2], color: Color) -> void:
+func draw_self(points: Array[Vector2], color: Color, num_freq: int) -> void:
 	var grid_color = Color(0.2, 0.2, 0.2, 0.3)
 	var grid_spacing = 50
 	
@@ -45,8 +45,8 @@ func draw_self(points: Array[Vector2], color: Color) -> void:
 		current_color.a = 0.8 - progress * 0.6  # Fade out towards the end
 		
 		draw_line(
-			points[i],
-			points[i + 1],
+			(points[i] - center)/num_freq + center,
+			(points[i + 1] - center)/num_freq + center,
 			current_color,
-			6.0  # Line width
+			6.0/num_freq  # Line width
 		)

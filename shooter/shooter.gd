@@ -6,8 +6,25 @@ var spawn_timer: float = 0.0
 const SPAWN_INTERVAL: float = 0.5
 const BULLET_SPEED: float = 1400.0
 
-var damage = 50
+const NOTE_TO_INDEX = {
+	"A":  0,
+	"B♭": 1,
+	"B":  2,
+	"C":  3,
+	"C♯": 4,
+	"D":  5,
+	"E♭": 6,
+	"E":  7,
+	"F":  8,
+	"F♯": 9,
+	"G":  10,
+	"G♯": 11,
+	"A5": 12
+}
 
+
+var damage = 50
+var current_name = "A"
 var current_frequency_index = 0
 
 static var FREQUENCIES: Array[Frequency] = MusicalFrequencies.FREQUENCIES
@@ -37,7 +54,14 @@ func _draw() -> void:
 	# Draw a circle at the spawner's position
 	var radius = 20  # Adjust size as needed
 	draw_circle(Vector2.ZERO, radius, freq.color)
-	draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
+	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
+	
+	
+	var font = ThemeDB.fallback_font
+	# Draw the note on top of the circle
+	if font:
+		var text_size = font.get_string_size(current_name)
+		draw_string(font, Vector2(-text_size.x, text_size.y/2)/2, current_name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
 
 
 func spawn_bullet(target: Node2D) -> void:
@@ -50,12 +74,18 @@ func spawn_bullet(target: Node2D) -> void:
 	# angle only equals local rotation if parent rotation is 0
 	bullet.global_rotation = angle
 	
-	var velocity = Vector2(1, 0) * BULLET_SPEED
+	var velocity = Vector2(0, 1) * BULLET_SPEED
 	bullet.set_meta("velocity", velocity)
 	
-	rotation = angle
+	#rotation = angle
 	
 	add_child(bullet)
+
+
+func update_frequency(note_name: String) -> void:
+	current_frequency_index = NOTE_TO_INDEX[note_name]
+	current_name = note_name
+
 
 func next_frequency() -> bool:
 	# Sets the current frequency to the next frequency in the list

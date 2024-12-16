@@ -6,6 +6,7 @@ var glowing: bool = false:
 		glowing = glow
 		$GlowRect.visible = glowing
 signal hovered_frequency_change(f: Array[Frequency])
+signal tower_slot_group_selected(tower_slot_group: TowerSlotGroup)
 
 func tower_slot_children() -> Array[TowerSlot]:
 	var tower_slots: Array[TowerSlot] = []
@@ -14,7 +15,13 @@ func tower_slot_children() -> Array[TowerSlot]:
 			tower_slots.append(node)
 	return tower_slots
 	
-	
+
+func _on_control_gui_input(mouse_event: InputEvent) -> void:
+	if mouse_event is InputEventMouseButton:
+		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
+			print("Click recieved")
+			tower_slot_group_selected.emit(self)
+
 func _on_hovered():
 	hovered_frequency_change.emit(selected_frequencies())
 
