@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://1oraa6ewk255"]
+[gd_scene load_steps=7 format=3 uid="uid://1oraa6ewk255"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4yhrk"]
 
@@ -12,6 +12,11 @@ bg_color = Color(0.919284, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n6ua"]
 bg_color = Color(0, 0.517647, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d1ty1"]
+font_size = 12
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 position = Vector2(0, 1)
@@ -51,5 +56,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6n6ua")
 step = 1.0
 value = 50.0
 show_percentage = false
+
+[node name="PrefText" type="Label" parent="."]
+offset_left = -18.1159
+offset_top = -9.05797
+offset_right = 18.8841
+offset_bottom = 7.94203
+text = "Hi->Lo"
+label_settings = SubResource("LabelSettings_d1ty1")
+horizontal_alignment = 1
 
 [connection signal="gui_input" from="ColorRect/Control" to="." method="_on_control_gui_input"]

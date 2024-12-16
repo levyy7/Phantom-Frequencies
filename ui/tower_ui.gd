@@ -90,6 +90,7 @@ func _on_change_button_pressed(pressed_button):
 
 
 func _on_play_button_pressed():
+	# TODO: show an error instead of crashing here
 	assert(currentTower != null)
 	
 	currentTower.play_current_note()
