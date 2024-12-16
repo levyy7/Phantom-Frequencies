@@ -66,6 +66,7 @@ anchor_right = 0.786
 anchor_bottom = 0.625
 offset_left = 0.0399971
 offset_right = -0.0400009
+color = Color(0.18359, 0.18359, 0.18359, 1)
 
 [node name="Frequency" type="Label" parent="PanelContainer/Panel/PanelContainer/Information Panel"]
 layout_mode = 1
