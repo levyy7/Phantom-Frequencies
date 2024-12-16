@@ -70,6 +70,8 @@ func take_damage(_amount: Damage) -> void:
 	#if hp <= 0:
 	#	die()
 
+func _on_hovered():
+	print(prefText)
 
 func become_affected(frequencies):
 	if preferences[0].fulfilled(frequencies):

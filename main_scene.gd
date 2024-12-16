@@ -3,9 +3,10 @@ extends Node2D
 
 var is_paused: bool = true
 var upcomingGhosts = []
-var level0 = Level.create_level("level0","introduces pitches",8,["Lo","Lo","Hi"],["Lo->Hi","Hi->Hi","Lo->Lo"])
+var level0 = Level.create_level("level0","introduces pitches",8,["Hi","Lo","Lo"],["Hi","Lo->Hi->Hi","Lo->Lo->Hi","Lo->Hi->Hi","Lo->Lo->Hi"])
+var levelTest = Level.create_level("levelT","",8,["A","A#","E"],["Hi","Oc->Hi->Hi","Lo->Lo->Hi","Lo->Hi->Hi","Lo->Lo->Hi"])
 
-var levels = [level0]
+var levels = [level0,levelTest]
 func init_level(level):
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
@@ -29,7 +30,7 @@ func play_one_round():
 
 func _ready() -> void:
 	# TODO: make better default enemies
-	init_level(levels[0])
+	init_level(levels[1])
 
 
 
