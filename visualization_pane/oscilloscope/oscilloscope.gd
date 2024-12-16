@@ -49,7 +49,7 @@ func draw_on_child():
 	
 	var end_index = int(animation_progress * (len(cached_oscilloscope_points) - 1))
 	var selected_points = cached_oscilloscope_points.slice(0, end_index)
-	$GraphDisplay.draw_self(selected_points, color)
+	$GraphDisplay.draw_self(selected_points, color, selected_frequencies.size())
 
 func _on_tower_slot_hovered(f: Array[Frequency]) -> void:
 	if f != selected_frequencies:
