@@ -74,10 +74,10 @@ func spawn_bullet(target: Node2D) -> void:
 	# angle only equals local rotation if parent rotation is 0
 	bullet.global_rotation = angle
 	
-	var velocity = Vector2(1, 0) * BULLET_SPEED
+	var velocity = Vector2(0, 1) * BULLET_SPEED
 	bullet.set_meta("velocity", velocity)
 	
-	rotation = angle
+	#rotation = angle
 	
 	add_child(bullet)
 

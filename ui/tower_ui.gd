@@ -41,10 +41,25 @@ func load_tower_info(tower: Shooter) -> void:
 	var index = tower.current_frequency_index
 	
 	infoPanel.get_node("Tower Name").text = tower.current_name
+	#draw_tower(tower.current_name, tower.FREQUENCIES[index])
 	infoPanel.get_node("Frequency").text  = str(tower.FREQUENCIES[index].frequency) + " Hz"
 	infoPanel.get_node("Octave").text     = "4th Octave"
 	
 	changeButtons[index].button_pressed = true
+
+
+func draw_tower(name: String, freq: Frequency) -> void:
+	# Draw a circle at the spawner's position
+	var radius = 20  # Adjust size as needed
+	draw_circle(Vector2.ZERO, radius, freq.color)
+	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
+	
+	
+	var font = ThemeDB.fallback_font
+	# Draw the note on top of the circle
+	if font:
+		var text_size = font.get_string_size(name)
+		draw_string(font, Vector2(-text_size.x, text_size.y/2)/2, name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
 
 
 func load_default_info() -> void:
