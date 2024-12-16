@@ -12,6 +12,7 @@ var _path_progress: float
 var current_path: Curve2D
 
 var damage_handler: DamageHandler
+var preferences = []
 
 static var enemy_scene = preload("res://enemy/Enemy.tscn")
 
@@ -19,10 +20,16 @@ static var enemy_scene = preload("res://enemy/Enemy.tscn")
 signal is_done_moving
 signal enemy_clicked(enemy: Enemy)
 
-static func create_enemy(dmg: DamageHandler) -> Enemy:
+static func prefToText(preferences):
+	var texts=[]
+	for pref in preferences:
+		texts.append(pref.text)
+	return "".join(texts)
+static func create_enemy(preferences) -> Enemy:
 	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.damage_handler = dmg
-	enemy.color = enemy.damage_handler.color
+	enemy.preferences = preferences
+	enemy.prefText = prefToText(preferences)
+	enemy.color = enemy.preferences[0].color # should be better 
 	return enemy
 
 
@@ -38,6 +45,11 @@ func set_advance_to(node: Node2D):
 
 	_path_progress = 0.0
 
+var prefText: String = "NoText":
+	set(new_text):
+		prefText=new_text
+		$PrefText.text=new_text
+
 var color: Color = Color.BLACK:
 	set(new_color):
 		color=new_color
@@ -51,11 +63,19 @@ func _ready() -> void:
 
 
 func take_damage(_amount: Damage) -> void:
-	hp = damage_handler.take_damage(hp, _amount)
-	health_bar.value = hp
-	if hp <= 0:
-		die()
+	pass
+	#hp = damage_handler.take_damage(hp, _amount)
+	#health_bar.value = hp
+	#if hp <= 0:
+	#	die()
 
+
+func become_affected(frequencies):
+	if preferences[0].fulfilled(frequencies):
+		preferences.pop_front()
+	prefText = prefToText(preferences)
+	if len(preferences)<1:
+		die()
 	
 func _process(delta: float) -> void:
 	if current_path != null:

@@ -72,8 +72,10 @@ func towers_set_shoot():
 		# If there are no active towers in group, no waiting
 		if not currentGT.tower_slot_group.any_tower_active():
 			continue
-		
+
 		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn, glowTimer)
+		currentGT.tower_slot_group.affectEnemies(currentPT)
+
 		
 		# Wait for the timer's timeout signal (2 seconds)
 		await(shotTimer.timeout)

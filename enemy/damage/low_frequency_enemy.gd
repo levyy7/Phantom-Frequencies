@@ -1,10 +1,11 @@
-class_name LowFrequencyEnemy extends DamageHandler
+class_name LowFrequencyPreference extends Preference
 
-var cutoff = 660.0 # below 7/12 pass (perfect fifth)
+var cutoff = 660.0 # 7/12 and bove pass (perfect fifth)
 var color = Color.ROSY_BROWN
-func take_damage(hp: int, amount: Damage) -> int:
-	if(amount.freq.frequency<cutoff):
-		hp -= amount.damage
-		hp = max(hp, 0)
-	
-	return hp
+var text = "Lo"
+func fulfilled(frequencies) -> bool:
+	var highfreqfound = false
+	for freq in frequencies:
+		if(freq.frequency<cutoff):
+			highfreqfound = true
+	return highfreqfound
