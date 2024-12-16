@@ -11,6 +11,17 @@ func fromTextToPreferenceList(text):
 			preferences.append(HighFrequencyPreference.new())
 		if pref == "Lo":
 			preferences.append(LowFrequencyPreference.new())
+		if pref == "Oc":
+			preferences.append(OctavePreference.new())
+		if pref in ["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"]:
+			var notePref= NotePreference.new()
+			notePref.init(pref)
+			preferences.append(notePref)
+		elif pref[0] == "I":
+			var interval = int(pref.right(-1))
+			var intPref= IntervalPreference.new()
+			intPref.init(interval)
+			preferences.append(intPref)
 	return preferences
 
 func getInitialGhosts():
