@@ -81,6 +81,7 @@ offset_right = 94.0
 offset_bottom = 93.0
 
 [node name="DescriptionText" type="Label" parent="DescriptionPanel"]
+layout_mode = 0
 offset_right = 183.0
 offset_bottom = 64.0
 label_settings = SubResource("LabelSettings_q3u10")
