@@ -27,7 +27,7 @@ static func prefToText(preferences):
 	return "".join(texts)
 
 static func prefToDesc(preferences):
-	var texts=["This ghost wants to hear the following in order:\n"]
+	var texts=["I want to hear these in order:\n"]
 	for pref in preferences:
 		texts.append("-"+pref.description+"\n")
 	return "".join(texts)

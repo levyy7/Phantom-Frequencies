@@ -15,7 +15,7 @@ func fulfilled(frequencies) -> bool:
 
 
 func init(intervalSize):
-	description="A interval of "+str(interval)+" semitones"
+	description="A interval of "+str(intervalSize)+" semitones"
 	interval=intervalSize
 	text="I"+str(interval)
 	
