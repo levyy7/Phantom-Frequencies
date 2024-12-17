@@ -25,10 +25,18 @@ static func prefToText(preferences):
 	for pref in preferences:
 		texts.append(pref.text)
 	return "".join(texts)
+
+static func prefToDesc(preferences):
+	var texts=["I want to hear these in order:\n"]
+	for pref in preferences:
+		texts.append("-"+pref.description+"\n")
+	return "".join(texts)
+	
 static func create_enemy(preferences) -> Enemy:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.preferences = preferences
 	enemy.prefText = prefToText(preferences)
+	enemy.descriptionText = prefToDesc(preferences)
 	enemy.color = enemy.preferences[0].color # should be better 
 	return enemy
 
@@ -50,6 +58,11 @@ var prefText: String = "NoText":
 		prefText=new_text
 		$PrefText.text=new_text
 
+var descriptionText: String = "NoText":
+	set(new_text):
+		descriptionText=new_text
+		$DescriptionPanel/DescriptionText.text=descriptionText
+
 var color: Color = Color.BLACK:
 	set(new_color):
 		color=new_color
@@ -59,6 +72,8 @@ var color: Color = Color.BLACK:
 func _ready() -> void:
 	health_bar.max_value = hp
 	health_bar.value = hp
+	$ColorRect.hovered_enemy.connect(_on_hovered)
+	$ColorRect.unhovered_enemy.connect(_on_unhovered)
 	#$ColorRect.color = color
 
 
@@ -69,13 +84,48 @@ func take_damage(_amount: Damage) -> void:
 	#if hp <= 0:
 	#	die()
 
+
 func _on_hovered():
+	$DescriptionPanel.visible=true
+	position_tooltip()
 	print(prefText)
+
+func _on_unhovered():
+	$DescriptionPanel.visible=false
+	print("un"+prefText)
+
+func position_tooltip():
+	var panel = $DescriptionPanel
+	var viewport_rect = get_viewport_rect()
+	var panel_size = panel.size
+	
+	# Calculate the center position relative to the node
+	var desired_position = Vector2(
+		-panel_size.x / 2,  # Center horizontally
+		25  # 25 pixels below the node 
+	)
+	
+	# Convert to global coordinates for screen bounds checking
+	var global_panel_pos = to_global(desired_position)
+	var final_position = desired_position
+	
+	# Check if the panel goes off the left side of the screen
+	if global_panel_pos.x < 25:
+		final_position.x = to_local(Vector2(25, 0)).x
+	
+	# Check if the panel goes off the right side of the screen
+	var global_right_edge = to_global(desired_position + Vector2(panel_size)).x
+	if global_right_edge > viewport_rect.size.x - 25.0:
+		final_position.x = to_local(Vector2(viewport_rect.size.x - 25, 0)).x - panel_size.x
+	
+	# Apply the final position
+	panel.position = final_position
 
 func become_affected(frequencies):
 	if preferences[0].fulfilled(frequencies):
 		preferences.pop_front()
 	prefText = prefToText(preferences)
+	descriptionText = prefToDesc(preferences)
 	if len(preferences) == 0:
 		die()
 	

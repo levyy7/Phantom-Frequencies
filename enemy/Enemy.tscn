@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://1oraa6ewk255"]
+[gd_scene load_steps=9 format=3 uid="uid://1oraa6ewk255"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4yhrk"]
+[ext_resource type="Script" path="res://enemy/enemy_color_rect.gd" id="2_tgkh4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2e2h"]
 radius = 12.6653
@@ -18,6 +19,11 @@ font_size = 12
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_q3u10"]
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 position = Vector2(0, 1)
 scale = Vector2(2.76, 2.76)
@@ -31,6 +37,7 @@ offset_bottom = 12.0
 rotation = -0.74351
 pivot_offset = Vector2(12, 12)
 color = Color(0.992157, 0, 0, 1)
+script = ExtResource("2_tgkh4")
 
 [node name="Control" type="Control" parent="ColorRect"]
 layout_mode = 3
@@ -65,5 +72,24 @@ offset_bottom = 7.94203
 text = "Hi->Lo"
 label_settings = SubResource("LabelSettings_d1ty1")
 horizontal_alignment = 1
+
+[node name="DescriptionPanel" type="Panel" parent="."]
+offset_left = -61.2319
+offset_top = 25.3623
+offset_right = 62.7681
+offset_bottom = 99.3623
+size_flags_vertical = 2
+size_flags_stretch_ratio = 2.51
+
+[node name="DescriptionText" type="Label" parent="DescriptionPanel"]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 125.0
+offset_bottom = 88.0
+text = "
+adadada"
+label_settings = SubResource("LabelSettings_q3u10")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="gui_input" from="ColorRect/Control" to="." method="_on_control_gui_input"]
