@@ -74,18 +74,17 @@ label_settings = SubResource("LabelSettings_d1ty1")
 horizontal_alignment = 1
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-visible = false
-offset_left = -53.0
-offset_top = 24.0
-offset_right = 56.0
-offset_bottom = 98.0
+offset_left = -61.2319
+offset_top = 25.3623
+offset_right = 62.7681
+offset_bottom = 99.3623
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
 [node name="DescriptionText" type="Label" parent="DescriptionPanel"]
 offset_left = -1.0
 offset_top = 1.0
-offset_right = 110.0
+offset_right = 125.0
 offset_bottom = 88.0
 text = "
 adadada"
