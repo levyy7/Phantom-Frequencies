@@ -43,8 +43,8 @@ func ini_turn(nEnemy = null):
 
 func end_turn():
 	if state == State.Paused:
-		state = State.Advancing
-		enemies_set_advance()
+		state = State.Shooting
+		towers_set_shoot()
 	else:
 		print("Cannot end turn while in state: ", state)
 
@@ -81,15 +81,13 @@ func towers_set_shoot():
 	# After the loop finishes, you can safely remove the timer if needed
 	shotTimer.queue_free()
 	
-	state = State.Paused
-	turn_finished.emit()
+	state = State.Advancing
 	
+	enemies_set_advance()
 	
 
 func _enemy_done_moving():
-	if state == State.Advancing:
-		state = State.Shooting
-		towers_set_shoot()
+	turn_finished.emit()
 	
 
 func enemies_set_advance():
@@ -112,6 +110,10 @@ func enemies_set_advance():
 	
 	if prevEnemy != null:
 		enemy_reached(prevEnemy)
+	
+	turn_finished.emit()
+	state = State.Paused
+	
 
 func fill_with_enemies(enemyList):
 	for i in range(min(pathTiles.size(), enemyList.size())):
