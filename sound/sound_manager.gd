@@ -30,13 +30,44 @@ const VIOLIN_OCTAVE4 = {
 	"A4": VIOLIN_A4
 }
 
+
+const PIANO_A3  = preload("res://audio/piano/A3.mp3")
+const PIANO_As3 = preload("res://audio/piano/As3.mp3")
+const PIANO_B3  = preload("res://audio/piano/B3.mp3")
+const PIANO_C4  = preload("res://audio/piano/C4.mp3")
+const PIANO_Cs4 = preload("res://audio/piano/Cs4.mp3")
+const PIANO_D4  = preload("res://audio/piano/D4.mp3")
+const PIANO_Ds4 = preload("res://audio/piano/Ds4.mp3")
+const PIANO_E4  = preload("res://audio/piano/E4.mp3")
+const PIANO_F4  = preload("res://audio/piano/F4.mp3")
+const PIANO_Fs4 = preload("res://audio/piano/Fs4.mp3")
+const PIANO_G4  = preload("res://audio/piano/G4.mp3")
+const PIANO_Gs4 = preload("res://audio/piano/Gs4.mp3")
+const PIANO_A4  = preload("res://audio/piano/A4.mp3")
+
+const PIANO_OCTAVE4 = {
+	"A":  PIANO_A3,
+	"Bb": PIANO_As3,
+	"B":  PIANO_B3,
+	"C":  PIANO_C4,
+	"C#": PIANO_Cs4,
+	"D":  PIANO_D4,
+	"Eb": PIANO_Ds4,
+	"E":  PIANO_E4,
+	"F":  PIANO_F4,
+	"F#": PIANO_Fs4,
+	"G":  PIANO_G4,
+	"G#": PIANO_Gs4,
+	"A4": PIANO_A4
+}
+
 static var NOTES: Array[AudioStream] = _generate_notes()
 
 
 static func _generate_notes():
 	var notes: Array[AudioStream] = []
 	
-	for note in VIOLIN_OCTAVE4.values():
+	for note in PIANO_OCTAVE4.values():
 		notes.append(note)
 	
 	return notes
