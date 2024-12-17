@@ -87,10 +87,39 @@ func take_damage(_amount: Damage) -> void:
 
 func _on_hovered():
 	$DescriptionPanel.visible=true
+	position_tooltip()
 	print(prefText)
+
 func _on_unhovered():
 	$DescriptionPanel.visible=false
 	print("un"+prefText)
+
+func position_tooltip():
+	var panel = $DescriptionPanel
+	var viewport_rect = get_viewport_rect()
+	var panel_size = panel.size
+	
+	# Calculate the center position relative to the node
+	var desired_position = Vector2(
+		-panel_size.x / 2,  # Center horizontally
+		25  # 25 pixels below the node 
+	)
+	
+	# Convert to global coordinates for screen bounds checking
+	var global_panel_pos = to_global(desired_position)
+	var final_position = desired_position
+	
+	# Check if the panel goes off the left side of the screen
+	if global_panel_pos.x < 25:
+		final_position.x = to_local(Vector2(25, 0)).x
+	
+	# Check if the panel goes off the right side of the screen
+	var global_right_edge = to_global(desired_position + Vector2(panel_size)).x
+	if global_right_edge > viewport_rect.size.x - 25.0:
+		final_position.x = to_local(Vector2(viewport_rect.size.x - 25, 0)).x - panel_size.x
+	
+	# Apply the final position
+	panel.position = final_position
 
 func become_affected(frequencies):
 	if preferences[0].fulfilled(frequencies):
