@@ -3,6 +3,7 @@ class_name LowFrequencyPreference extends Preference
 var cutoff = 660.0 # 7/12 and bove pass (perfect fifth)
 var color = Color.ROSY_BROWN
 var text = "Lo"
+var description="A low frequency (<660hz)"
 func fulfilled(frequencies) -> bool:
 	var highfreqfound = false
 	for freq in frequencies:

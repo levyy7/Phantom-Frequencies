@@ -25,10 +25,18 @@ static func prefToText(preferences):
 	for pref in preferences:
 		texts.append(pref.text)
 	return "".join(texts)
+
+static func prefToDesc(preferences):
+	var texts=["This ghost wants to hear the following in order:\n"]
+	for pref in preferences:
+		texts.append("-"+pref.description+"\n")
+	return "".join(texts)
+	
 static func create_enemy(preferences) -> Enemy:
 	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.preferences = preferences
 	enemy.prefText = prefToText(preferences)
+	enemy.descriptionText = prefToDesc(preferences)
 	enemy.color = enemy.preferences[0].color # should be better 
 	return enemy
 
@@ -50,6 +58,11 @@ var prefText: String = "NoText":
 		prefText=new_text
 		$PrefText.text=new_text
 
+var descriptionText: String = "NoText":
+	set(new_text):
+		descriptionText=new_text
+		$DescriptionPanel/DescriptionText.text=descriptionText
+
 var color: Color = Color.BLACK:
 	set(new_color):
 		color=new_color
@@ -59,6 +72,8 @@ var color: Color = Color.BLACK:
 func _ready() -> void:
 	health_bar.max_value = hp
 	health_bar.value = hp
+	$ColorRect.hovered_enemy.connect(_on_hovered)
+	$ColorRect.unhovered_enemy.connect(_on_unhovered)
 	#$ColorRect.color = color
 
 
@@ -69,13 +84,19 @@ func take_damage(_amount: Damage) -> void:
 	#if hp <= 0:
 	#	die()
 
+
 func _on_hovered():
+	$DescriptionPanel.visible=true
 	print(prefText)
+func _on_unhovered():
+	$DescriptionPanel.visible=false
+	print("un"+prefText)
 
 func become_affected(frequencies):
 	if preferences[0].fulfilled(frequencies):
 		preferences.pop_front()
 	prefText = prefToText(preferences)
+	descriptionText = prefToDesc(preferences)
 	if len(preferences) == 0:
 		die()
 	
