@@ -11,7 +11,12 @@ func build_harmonograph_points(freqs: Array[Frequency]) -> Array[Vector2]:
 	var points: Array[Vector2] = []
 	var canvas_size = $GraphDisplay.size
 	var center = Vector2(canvas_size.x/2, canvas_size.y/2)
-
+	var min_freq = 1000000
+	if len(freqs) > 0:
+		for freq in freqs:
+			if freq.frequency < min_freq:
+				min_freq = freq.frequency
+	
 	
 	for i in range(NUM_POINTS):
 		var t = float(i) / 5000.0
@@ -19,8 +24,8 @@ func build_harmonograph_points(freqs: Array[Frequency]) -> Array[Vector2]:
 		var y = 0.0
 		
 		for freq in freqs:
-			x += sin(t * freq.frequency)
-			y += cos(t * freq.frequency)
+			x += sin(t * 440.0*freq.frequency/min_freq)
+			y += cos(t * 440.0*freq.frequency/min_freq)
 		
 		var screen_point = Vector2(
 			center.x + x * scale_factor,
@@ -63,12 +68,16 @@ func frequencies_descriptor(frequencies: Array[Frequency]) -> String:
 		descriptor += str(roundi(freq.frequency)) + ", "
 		
 	var ratio_descriptor = ""
+	var min_freq = frequencies[0].frequency
+	for freq in frequencies:
+		if freq.frequency < min_freq:
+			min_freq = freq.frequency
 	if frequencies.size() > 1:
 		for freq in frequencies:
 			# TODO (Karen): 
 			# 1. lookup the proper ratio and express it as a fraction
 			# 2. show the user if the chord is "bad" or "good" based on this ratio, show it on the game with colors etc.
-			ratio_descriptor += "%.2f" % (freq.frequency / frequencies[0].frequency) + ", "
+			ratio_descriptor += "%.2f" % (freq.frequency / min_freq) + ", "
 
 	return descriptor + "\n" + ratio_descriptor
 

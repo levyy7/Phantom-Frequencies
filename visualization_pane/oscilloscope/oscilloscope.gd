@@ -64,12 +64,18 @@ func frequencies_descriptor(frequencies: Array[Frequency]) -> String:
 		descriptor += str(roundi(freq.frequency)) + ", "
 		
 	var ratio_descriptor = ""
+	var min_freq = frequencies[0].frequency
+	for freq in frequencies:
+		if freq.frequency < min_freq:
+			min_freq = freq.frequency
+	
 	if frequencies.size() > 1:
 		for freq in frequencies:
 			# TODO (Karen): 
 			# 1. lookup the proper ratio and express it as a fraction
 			# 2. show the user if the chord is "bad" or "good" based on this ratio, show it on the game with colors etc.
-			ratio_descriptor += "%.2f" % (freq.frequency / frequencies[0].frequency) + ", "
+			
+			ratio_descriptor += "%.2f" % (freq.frequency / min_freq) + ", "
 
 	return descriptor + "\n" + ratio_descriptor
 
