@@ -4,8 +4,6 @@ extends Node2D
 var is_paused: bool = true
 var upcomingGhosts = []
 
-var levels = [level0,levelTest2]
-
 var moves_remaining = 2
 
 func init_level(level):
