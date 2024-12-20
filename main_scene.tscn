@@ -15,6 +15,15 @@ offset_right = 2344.0
 offset_bottom = 1339.0
 border_width = 4.0
 
+[node name="BackButton" type="Button" parent="UI frame"]
+process_mode = 3
+layout_mode = 0
+offset_left = 35.0
+offset_top = 533.0
+offset_right = 255.0
+offset_bottom = 601.0
+text = "Back to Level Select"
+
 [node name="NextRoundButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
@@ -47,5 +56,7 @@ scale = Vector2(1.5, 1.5)
 position = Vector2(45, 62)
 scale = Vector2(1.2, 1.2)
 
+[connection signal="pressed" from="UI frame/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="UI frame/BackButton" to="." method="_on_back_button_toggled"]
 [connection signal="pressed" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_pressed"]
 [connection signal="toggled" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_toggled"]

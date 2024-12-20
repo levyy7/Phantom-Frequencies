@@ -119,6 +119,13 @@ func fill_with_enemies(enemyList):
 	for i in range(min(pathTiles.size(), enemyList.size())):
 		pathTiles[i].add_enemy(enemyList[i])
 
+func enemyCount():
+	var count = 0
+	for tile in pathTiles:
+		if tile.get_enemy():
+			count+=1
+	return count
 func enemy_reached(enemy):
 	print("Enemy has reached base")
+	Global.lives-=1
 	enemy.queue_free()
