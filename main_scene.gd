@@ -3,16 +3,11 @@ extends Node2D
 
 var is_paused: bool = true
 var upcomingGhosts = []
-var level0 = Level.create_level("level0","introduces pitches",8,["Hi","Lo","Lo"],["Hi","Lo->Hi->Hi","Lo->Lo->Hi","Lo->Hi->Hi","Lo->Lo->Hi"])
-var levelTest = Level.create_level("levelT","",8,["A","A#","E"],["Hi","Oc->Hi->Hi","Lo->Lo->Hi","Lo->Hi->Hi","Lo->Lo->Hi"])
-var levelTest2 = Level.create_level("levelT","",8,["Lo"],["Hi","Lo->Hi","Hi->Lo->Lo","A","A->E","A->C","A->C->E","I3","I7","I3->C->Hi"])
 
-
-var levels = [level0,levelTest2]
 func init_level(level):
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
-	
+	Global.lives = 3
 	$Map/TileManager.fill_with_enemies(initalGhosts)
 	popNextGhost()
 
@@ -35,6 +30,7 @@ func play_one_round():
 	
 	tile_manager.end_turn()
 	popNextGhost()
+	checkWinLoseCriteria()
 	
 	await tile_manager.turn_finished
 	print("Turn finished")
@@ -42,15 +38,28 @@ func play_one_round():
 	next_round_button.disabled = false
 	next_round_button.text = "Next Round"
 	
+func checkWinLoseCriteria():
+	var enemyCount = $Map/TileManager.enemyCount()
+	print(enemyCount)
+	if(Global.lives<1):
+		print("lose")
+		Global.win = false
+		get_tree().change_scene_to_file("res://ui/game_over.tscn")
+	if(len(upcomingGhosts)==0 and enemyCount==0):
+		Global.win = true
+		get_tree().change_scene_to_file("res://ui/game_over.tscn")
+		print("win")
 
 func _ready() -> void:
 	# TODO: make better default enemies
 	setup_ui_connections()
-	init_level(levels[1])
+	if(Global.currentLevel):
+		init_level(Global.currentLevel)
+	else:
+		get_tree().change_scene_to_file("res://level/level_select.tscn")
 
 func setup_ui_connections() -> void:
 	var slots = get_tree().get_nodes_in_group("tower_slot")
-	
 	print("Enter setup UI")
 	for slot in slots:
 		print("Cycle slot")
@@ -64,3 +73,6 @@ func _process(_delta: float) -> void:
 
 func _on_next_round_button_pressed() -> void:
 	play_one_round()
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://level/level_select.tscn")

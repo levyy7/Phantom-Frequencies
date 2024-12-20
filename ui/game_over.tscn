@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgd1lhm8bk8gn"]
+
+[ext_resource type="Script" path="res://ui/game_over.gd" id="1_1yss2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i6xvs"]
+font_size = 200
+
+[sub_resource type="Theme" id="Theme_5vro2"]
+default_font_size = 100
+
+[node name="Game_over" type="CanvasLayer"]
+script = ExtResource("1_1yss2")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 2388.0
+offset_bottom = 1400.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You win!"
+label_settings = SubResource("LabelSettings_i6xvs")
+horizontal_alignment = 1
+
+[node name="Container" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+theme = SubResource("Theme_5vro2")
+text = "Restart"
+
+[node name="Container" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="LevelSelectButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+theme = SubResource("Theme_5vro2")
+text = "Level Select"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
