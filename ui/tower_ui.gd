@@ -7,7 +7,7 @@ var currentTower: Shooter = null
 var changeButtons = []
 
 @onready var infoPanel = $"PanelContainer/Panel/PanelContainer/Information Panel"
-
+@onready var mainScene = get_tree().get_root().get_node("MainScene")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,6 +71,7 @@ func load_default_info() -> void:
 		button.button_pressed = false
 
 
+# returns if out of moves
 func _on_change_button_pressed(pressed_button):
 	# Reset all buttons except the one pressed
 	for button in changeButtons:
@@ -82,6 +83,10 @@ func _on_change_button_pressed(pressed_button):
 		if currentTower != null:
 			currentTower.update_frequency(pressed_button.text)
 		else:
+			if(mainScene.moves_remaining == 0):
+				print("out of moves for this round")
+				return
+			mainScene.moves_remaining -= 1
 			currentSlot.add_shooter(pressed_button.text)
 			currentTower = currentSlot.current_shooter
 			assert(currentTower != null)
