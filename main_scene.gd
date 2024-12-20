@@ -4,6 +4,10 @@ extends Node2D
 var is_paused: bool = true
 var upcomingGhosts = []
 
+var levels = [level0,levelTest2]
+
+var moves_remaining = 2
+
 func init_level(level):
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
@@ -17,11 +21,12 @@ func popNextGhost():
 		$Map/TileManager.ini_turn(next_ghost)
 	else:
 		$Map/TileManager.ini_turn(null)
+
 func play_one_round():
 	# reset the enemy's bullet
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager
-	print("Playing one round")
+	print("Playing one round", "moves remaining ", moves_remaining)
 	
 	# TODO: change the button logic to be inside a script in button
 	next_round_button.disabled = true
@@ -37,6 +42,8 @@ func play_one_round():
 	
 	next_round_button.disabled = false
 	next_round_button.text = "Next Round"
+	
+	moves_remaining = 2
 	
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()

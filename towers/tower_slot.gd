@@ -8,7 +8,7 @@ signal shooter_changed(t: TowerSlot)
 
 var current_shooter: Shooter = null
 
-	
+
 func add_shooter(note: String) -> void:
 	var shooter = ShooterScene.instantiate()
 	shooter.position = self.size / 2
