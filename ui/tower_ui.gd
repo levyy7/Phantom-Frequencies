@@ -6,6 +6,8 @@ var currentSlot: TowerSlot = null
 var currentTower: Shooter = null
 var changeButtons = []
 
+var _glow_manager: GlowManager
+
 @onready var infoPanel = $"PanelContainer/Panel/PanelContainer/Information Panel"
 @onready var mainScene = get_tree().get_root().get_node("MainScene")
 
@@ -20,16 +22,21 @@ func _ready() -> void:
 	for button in changeButtons:
 		button.pressed.connect(_on_change_button_pressed.bind(button))
 
+	var colorRect = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/ColorRect"
+	_glow_manager = GlowManager.new(colorRect)
+	add_child(_glow_manager)  # Important: add as child to ensure proper cleanup
+	
 
 func slot_selected(slot: TowerSlot) -> void:
-	print("Signal recieved")
+	_glow_manager.start_glow()
+
 	if currentSlot != null:
 		currentSlot.get_node("Outline").visible = false
 	currentSlot = slot
 	currentSlot.get_node("Outline").visible = true
-	
+
 	currentTower = null
-	
+
 	if slot.has_shooter():
 		load_tower_info(slot.current_shooter)
 	else:
@@ -42,15 +49,15 @@ func load_tower_info(tower: Shooter) -> void:
 	
 	infoPanel.get_node("Tower Name").text = tower.current_name
 	#draw_tower(tower.current_name, tower.FREQUENCIES[index])
-	infoPanel.get_node("Frequency").text  = str(tower.FREQUENCIES[index].frequency) + " Hz"
-	infoPanel.get_node("Octave").text     = "4th Octave"
+	infoPanel.get_node("Frequency").text = str(tower.FREQUENCIES[index].frequency) + " Hz"
+	infoPanel.get_node("Octave").text = "4th Octave"
 	
 	changeButtons[index].button_pressed = true
 
 
 func draw_tower(name: String, freq: Frequency) -> void:
 	# Draw a circle at the spawner's position
-	var radius = 20  # Adjust size as needed
+	var radius = 20 # Adjust size as needed
 	draw_circle(Vector2.ZERO, radius, freq.color)
 	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
 	
@@ -59,13 +66,13 @@ func draw_tower(name: String, freq: Frequency) -> void:
 	# Draw the note on top of the circle
 	if font:
 		var text_size = font.get_string_size(name)
-		draw_string(font, Vector2(-text_size.x, text_size.y/2)/2, name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
+		draw_string(font, Vector2(-text_size.x, text_size.y / 2) / 2, name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
 
 
 func load_default_info() -> void:
 	infoPanel.get_node("Tower Name").text = "Empty Slot"
-	infoPanel.get_node("Frequency").text  = "<frequency>"
-	infoPanel.get_node("Octave").text     = "<octave>"
+	infoPanel.get_node("Frequency").text = "<frequency>"
+	infoPanel.get_node("Octave").text = "<octave>"
 	
 	for button in changeButtons:
 		button.button_pressed = false
@@ -73,6 +80,7 @@ func load_default_info() -> void:
 
 # returns if out of moves
 func _on_change_button_pressed(pressed_button):
+	_glow_manager.stop_glow()
 	# Reset all buttons except the one pressed
 	for button in changeButtons:
 		if button != pressed_button:
@@ -83,7 +91,7 @@ func _on_change_button_pressed(pressed_button):
 		if currentTower != null:
 			currentTower.update_frequency(pressed_button.text)
 		else:
-			if(mainScene.moves_remaining == 0):
+			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")
 				return
 			mainScene.moves_remaining -= 1
