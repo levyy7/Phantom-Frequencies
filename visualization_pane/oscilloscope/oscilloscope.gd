@@ -1,32 +1,51 @@
 extends Container
 
 var selected_frequencies: Array[Frequency] = []
-var margin = 50
+var margin = 20
 var scale_factor = 80
 var cached_oscilloscope_points: Array[Vector2] = []
 var animation_progress: float = 0.0
 
+func gcd(a: int, b: int) -> int:
+	return a if b == 0.0 else gcd(b, a % b)
+	
 func build_oscilloscope_points(freqs: Array[Frequency]) -> Array[Vector2]:
-	var NUM_POINTS = 200
+	var NUM_POINTS = 400
 	var points: Array[Vector2] = []
 	var canvas_size = $GraphDisplay.size
 	var center = Vector2(canvas_size.x/2, canvas_size.y/2)
-
+	
+	var totalTime = 2*PI*1/440
+	var periods = []
+	for freq in freqs:
+		periods.append(1.0/freq.frequency)
+	if(len(periods)==1):
+		totalTime = 2*PI*periods[0]
+	if(len(periods)>=2): 
+		var T1 = round(440.0*(32*5*3)*periods[0])
+		var T2 = round(440.0*(32*5*3)*periods[1])
+		var lcm_12 = T1*T2/gcd(T1,T2)
+		totalTime = 2*PI*lcm_12/(440.0*(32*5*3))
+		if(len(periods)==3):
+			var T3 = round(440.0*(32*5*3)*periods[2])
+			var lcm_123 = T3*lcm_12/gcd(lcm_12,T3)
+			totalTime = 2*PI*lcm_123/(440.0*(32*5*3))
+		
 	
 	for i in range(NUM_POINTS):
-		var t = float(i) / 1200.0
+		var t = float(i) / NUM_POINTS * totalTime
 		var y = 0.0
 		
 		for freq in freqs:
 			y += cos(t * freq.frequency)
 		
 		var screen_point = Vector2(
-			t * 100 * scale_factor,
+			t /totalTime *canvas_size.x,
 			center.y + y * scale_factor
 		)
 		
-		if screen_point.x >= canvas_size.x:
-			break
+		#if screen_point.x >= canvas_size.x:
+		#	break
 		points.append(screen_point)
 	
 	return points
