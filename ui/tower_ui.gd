@@ -8,12 +8,15 @@ var changeButtons = []
 
 var _glow_manager: GlowManager
 
+var octave_offset: int = 0
 @onready var infoPanel = $"PanelContainer/Panel/PanelContainer/Information Panel"
 @onready var mainScene = get_tree().get_root().get_node("MainScene")
+@onready var TowerChangePanel: TowerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var towerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel"
+	var towerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
 	
 	for i in range(1, 13):
 		changeButtons.append(towerChangePanel.get_node("Button%d" % i))
@@ -85,17 +88,18 @@ func _on_change_button_pressed(pressed_button):
 	for button in changeButtons:
 		if button != pressed_button:
 			button.button_pressed = false
-	
-	
+
 	if currentSlot != null:
+		var note: Note = TowerChangePanel.toNote(pressed_button)
+
 		if currentTower != null:
-			currentTower.update_frequency(pressed_button.text)
+			currentTower.update_frequency(note)
 		else:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")
 				return
 			mainScene.moves_remaining -= 1
-			currentSlot.add_shooter(pressed_button.text)
+			currentSlot.add_shooter(note)
 			currentTower = currentSlot.current_shooter
 			assert(currentTower != null)
 		

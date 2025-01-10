@@ -82,9 +82,9 @@ func spawn_bullet(target: Node2D) -> void:
 	add_child(bullet)
 
 
-func update_frequency(note_name: String) -> void:
-	current_frequency_index = NOTE_TO_INDEX[note_name]
-	current_name = note_name
+func update_frequency(note: Note) -> void:
+	current_frequency_index = NOTE_TO_INDEX[note.name]
+	current_name = note.name
 
 
 func next_frequency() -> bool:
