@@ -53,8 +53,17 @@ grow_vertical = 1
 scale = Vector2(1.5, 1.5)
 
 [node name="Map" parent="." instance=ExtResource("3_4x4u7")]
-position = Vector2(45, 62)
+position = Vector2(101, 62)
 scale = Vector2(1.2, 1.2)
+
+[node name="EnemyPreview" type="Container" parent="."]
+process_mode = 3
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = -1
+offset_left = 41.0
+offset_top = 345.0
+offset_right = 141.0
+offset_bottom = 445.0
 
 [connection signal="pressed" from="UI frame/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="UI frame/BackButton" to="." method="_on_back_button_toggled"]
