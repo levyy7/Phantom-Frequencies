@@ -21,6 +21,12 @@ func popNextGhost():
 		$Map/TileManager.ini_turn(null)
 
 func play_one_round():
+
+	var nextGhostPreview = null
+
+	if (upcomingGhosts.size() > 0):
+		nextGhostPreview = upcomingGhosts[0]
+	print(upcomingGhosts)
 	# reset the enemy's bullet
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager
