@@ -82,6 +82,7 @@ func _on_change_button_pressed(pressed_button):
 	if currentSlot != null:
 		if currentTower != null:
 			currentTower.update_frequency(pressed_button.text)
+			
 		else:
 			if(mainScene.moves_remaining == 0):
 				print("out of moves for this round")
@@ -90,8 +91,8 @@ func _on_change_button_pressed(pressed_button):
 			currentSlot.add_shooter(pressed_button.text)
 			currentTower = currentSlot.current_shooter
 			assert(currentTower != null)
-		
 		load_tower_info(currentTower)
+		currentTower.find_parent("TowerSlots")._on_hovered()
 
 
 func _on_play_button_pressed():

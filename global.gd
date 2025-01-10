@@ -9,3 +9,4 @@ var levels = [level0,levelTest,levelTest2]
 var currentLevel = null
 var lives = 3
 var win = false
+var hovered_tower_group = null

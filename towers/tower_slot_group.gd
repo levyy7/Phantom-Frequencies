@@ -28,8 +28,9 @@ func _on_hovered():
 func _on_unhovered():
 	# Necessary to specify the type of empty or else Godot won't work...
 	# https://github.com/godotengine/godot/issues/53847
-	var empty: Array[Frequency] = []
-	hovered_frequency_change.emit(empty)
+	#var empty: Array[Frequency] = []
+	#hovered_frequency_change.emit(empty)
+	pass
 	
 func selected_frequencies():
 	var freqs: Array[Frequency] = []
