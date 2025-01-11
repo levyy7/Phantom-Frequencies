@@ -2,11 +2,12 @@ class_name OctavePreference extends Preference
 
 var color = Color.GREEN_YELLOW
 var text: String
-var description = "Two notes one octave apart"
+var description: String
 var dist: int
 func _init(dist_val: int) -> void:
 	dist = dist_val
 	text = str(dist) + "Oc"
+	description = "Two notes " + str(dist) + " octaves apart"
 
 func fulfilled(frequencies) -> bool:
 	if len(frequencies) == 2:
