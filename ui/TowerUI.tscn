@@ -220,7 +220,7 @@ offset_bottom = 42.0
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_q6wcx")
 toggle_mode = true
-text = "B♭"
+text = "A♯"
 
 [node name="Button3" type="Button" parent="PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"]
 layout_mode = 0

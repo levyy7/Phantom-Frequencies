@@ -2,7 +2,7 @@ class_name TowerChangePanel
 extends Panel
 
 const MIN_OCTAVE := -1
-const MAX_OCTAVE := 2
+const MAX_OCTAVE := 1
 const DEFAULT_OCTAVE := 0
 
 var current_octave := DEFAULT_OCTAVE

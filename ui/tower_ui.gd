@@ -27,7 +27,7 @@ func _ready() -> void:
 
 	var colorRect = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/ColorRect"
 	_glow_manager = GlowManager.new(colorRect)
-	add_child(_glow_manager)  # Important: add as child to ensure proper cleanup
+	add_child(_glow_manager) # Important: add as child to ensure proper cleanup
 	
 
 func slot_selected(slot: TowerSlot) -> void:
@@ -45,15 +45,16 @@ func slot_selected(slot: TowerSlot) -> void:
 	else:
 		load_default_info()
 
-
+#TODO: doesnt show octave of current slot when clicked
 func load_tower_info(tower: Shooter) -> void:
 	currentTower = tower
-	var index = tower.current_frequency_index
+	var index = tower.current_frequency_index % 12
+	var octave = int(floor(tower.current_frequency_index / 12)) - 1
 	
 	infoPanel.get_node("Tower Name").text = tower.current_name
 	#draw_tower(tower.current_name, tower.FREQUENCIES[index])
 	infoPanel.get_node("Frequency").text = str(tower.FREQUENCIES[index].frequency) + " Hz"
-	infoPanel.get_node("Octave").text = "4th Octave"
+	infoPanel.get_node("Octave").text = str(octave + 4) + "th Octave"
 	
 	changeButtons[index].button_pressed = true
 
