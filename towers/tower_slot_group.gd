@@ -58,17 +58,17 @@ func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
 
 	timer.timeout.connect(disable_glow)
 
-func affectEnemies(target: PathTile):
-	var frequencies=[]
+func affectEnemies(target: PathTile): # TODO PATHWAY PREF
+	var frequencies = []
 	for node: TowerSlot in tower_slot_children():
-		if(node.has_shooter()):
-			frequencies.append(node.current_shooter.current_frequency()) #shoot_bullet(target)
+		if (node.has_shooter()):
+			frequencies.append(node.current_shooter.current_frequency()) # shoot_bullet(target)
 	var enemy = target.get_enemy()
 	if (enemy):
-		enemy.become_affected(frequencies)
+		enemy.become_affected(frequencies) # TODO PATHWAY PREF if frequncies fulfill target pref then proceed, else highlight red and do nothing
 
 func disable_glow():
-	glowing = false	
+	glowing = false
 
 func any_tower_active() -> bool:
 	for node: TowerSlot in tower_slot_children():
