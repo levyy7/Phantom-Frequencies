@@ -21,8 +21,12 @@ func _input(event: InputEvent) -> void:
 			color = hover_color
 			is_hovering = true
 			hovered.emit()
+			if(Global.hovered_tower_group):
+				if(Global.hovered_tower_group != self):
+					Global.hovered_tower_group.color = default_color
+			Global.hovered_tower_group = self
 		else:
-			color = default_color
+			#color = default_color
 			if is_hovering:
 				is_hovering = false
 				unhovered.emit()

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cncrfmerlkfbf" path="res://towers/TowerSlot.tscn" id="1_qdg76"]
 [ext_resource type="Script" path="res://towers/tower_slot_group_color_rect.gd" id="2_1svp2"]
 
-[node name="Node2D" type="Node2D" groups=["pausable", "tower_slot_group"]]
+[node name="TowerSlotGroup" type="Node2D" groups=["pausable", "tower_slot_group"]]
 script = ExtResource("1_73tln")
 
 [node name="GlowRect" type="ColorRect" parent="."]

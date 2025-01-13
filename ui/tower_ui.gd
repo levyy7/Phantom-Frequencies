@@ -103,8 +103,8 @@ func _on_change_button_pressed(pressed_button):
 			currentSlot.add_shooter(note)
 			currentTower = currentSlot.current_shooter
 			assert(currentTower != null)
-		
 		load_tower_info(currentTower)
+		currentTower.find_parent("TowerSlots")._on_hovered()
 
 
 func _on_play_button_pressed():

@@ -35,6 +35,7 @@ func _on_control_gui_input(mouse_event: InputEvent) -> void:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
 			print("Click recieved")
 			shooter_changed.emit(self)
+			find_parent("*")._on_hovered()
 
 func shoot_bullet(target: PathTile, soundOn: bool):
 	if has_shooter():
