@@ -8,3 +8,24 @@ script = ExtResource("1_e52a5")
 
 [node name="TowerSlots" parent="." instance=ExtResource("2_a7t64")]
 position = Vector2(-19, -82)
+
+[node name="DescriptionPanel" type="Panel" parent="."]
+offset_left = -61.2319
+offset_top = 25.3623
+offset_right = 62.7681
+offset_bottom = 99.3623
+size_flags_vertical = 2
+size_flags_stretch_ratio = 2.51
+
+[node name="DescriptionText" type="RichTextLabel" parent="DescriptionPanel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 630.0
+offset_bottom = 382.0
+scale = Vector2(0.18, 0.18)
+theme_override_font_sizes/normal_font_size = 40
+text = "
+adadada"
+scroll_active = false
+autowrap_mode = 2
