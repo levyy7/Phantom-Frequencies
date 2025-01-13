@@ -44,7 +44,9 @@ func parsePathwayPreference(text: String) -> PathwayPreference:
 	elif text == "min":
 		return null
 	elif text.contains(","): # this is a list of note names
-		return ChordPreference.new(text.split(","))
+		var temp = text.split(",")
+		var N = len(temp) - 1
+		return ChordPreference.new(temp.slice(0, N), int(temp[N]))
 	else:
 		return null
 
