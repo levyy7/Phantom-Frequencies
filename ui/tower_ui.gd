@@ -18,7 +18,7 @@ var octave_offset: int = 0
 func _ready() -> void:
 	var towerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
 	
-	for i in range(1, 13):
+	for i in range(1, 13): 
 		changeButtons.append(towerChangePanel.get_node("Button%d" % i))
 
 	# Connect each button's "pressed" signal
@@ -109,14 +109,12 @@ func _on_change_button_pressed(pressed_button):
 
 func _on_play_button_pressed():
 	# TODO: show an error instead of crashing here
-	assert(currentTower != null)
-	
-	currentTower.play_current_note()
+	if(currentTower != null):
+		currentTower.play_current_note()
 
 
 func _on_delete_button_pressed():
-	assert(currentTower != null)
-	
-	currentSlot.remove_shooter()
-	currentTower = null
-	load_default_info()
+	if(currentTower != null):
+		currentSlot.remove_shooter()
+		currentTower = null
+		load_default_info()

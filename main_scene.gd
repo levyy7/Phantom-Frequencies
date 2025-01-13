@@ -4,7 +4,10 @@ extends Node2D
 var is_paused: bool = true
 var upcomingGhosts = []
 
-var moves_remaining = 2
+var moves_remaining: int = 2:
+	set(new_moves_remaining):
+		moves_remaining=new_moves_remaining
+		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining) 
 
 func init_level(level):
 	var initalGhosts = level.getInitialGhosts()
