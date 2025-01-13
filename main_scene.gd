@@ -14,7 +14,7 @@ func init_level(level):
 	upcomingGhosts = level.getUpcomingGhosts()
 	Global.lives = 3
 	$Map/TileManager.fill_with_enemies(initalGhosts)
-	$"UI frame/TowerUI".createButtons(level.tiles)
+	$"UI frame/TowerUI".createButtons(level.notes)
 	popNextGhost()
 
 func popNextGhost():

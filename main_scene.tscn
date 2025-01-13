@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5xwbhovlmtqx"]
+[gd_scene load_steps=10 format=3 uid="uid://c5xwbhovlmtqx"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_b5ekj"]
 [ext_resource type="FontFile" uid="uid://oqvx1mhe8hka" path="res://Jersey15-Regular.ttf" id="2_cdbx5"]
@@ -10,6 +10,7 @@
 [sub_resource type="Theme" id="Theme_ei74i"]
 default_font = ExtResource("2_cdbx5")
 default_font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_p5aby"]
 font_size = 25
 

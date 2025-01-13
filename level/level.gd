@@ -1,7 +1,7 @@
 class_name Level
 var name: String
 var description: String
-var tiles: Array[String]
+var notes: Array[String]
 var inital_preferences
 var upcoming_preferences
 static var note_names = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
@@ -49,12 +49,12 @@ func getUpcomingGhosts():
 		ghosts.append(newEnemy)
 	return ghosts
 	
-static func create_level(name: String, description: String, tiles: Array[String],
+static func create_level(name: String, description: String, notes: Array[String],
 						inital_preferences: Array[String], upcoming_preferences: Array[String]) -> Level:
 	var level: Level = Level.new()
 	level.name = name
 	level.description = description
-	level.tiles = tiles
+	level.notes = notes
 	level.inital_preferences = inital_preferences
 	level.upcoming_preferences = upcoming_preferences
 	return level
