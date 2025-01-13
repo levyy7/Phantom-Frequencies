@@ -17,16 +17,18 @@ func popNextGhost():
 	var next_ghost = upcomingGhosts.pop_front()
 	if (next_ghost):
 		$Map/TileManager.ini_turn(next_ghost)
+		$EnemyPreview.add_child(next_ghost)
+		for child in $EnemyPreview.get_children():
+			$EnemyPreview.remove_child(child)
+	
+		# Add the new child
+		$EnemyPreview.add_child(next_ghost)
 	else:
 		$Map/TileManager.ini_turn(null)
+	
+	
 
 func play_one_round():
-
-	var nextGhostPreview = null
-
-	if (upcomingGhosts.size() > 0):
-		nextGhostPreview = upcomingGhosts[0]
-	print(upcomingGhosts)
 	# reset the enemy's bullet
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager

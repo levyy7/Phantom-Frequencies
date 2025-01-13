@@ -9,7 +9,7 @@ signal shooter_changed(t: TowerSlot)
 var current_shooter: Shooter = null
 
 
-func add_shooter(note: String) -> void:
+func add_shooter(note: Note) -> void:
 	var shooter = ShooterScene.instantiate()
 	shooter.position = self.size / 2
 	shooter.visible = true

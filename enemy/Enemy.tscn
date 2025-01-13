@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1oraa6ewk255"]
+[gd_scene load_steps=7 format=3 uid="uid://1oraa6ewk255"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4yhrk"]
 [ext_resource type="Script" path="res://enemy/enemy_color_rect.gd" id="2_tgkh4"]
@@ -13,16 +13,6 @@ bg_color = Color(0.919284, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n6ua"]
 bg_color = Color(0, 0.517647, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_d1ty1"]
-font_size = 12
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q3u10"]
-font_size = 8
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 position = Vector2(0, 1)
@@ -64,14 +54,19 @@ step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="PrefText" type="Label" parent="."]
-offset_left = -18.1159
+[node name="PrefText" type="RichTextLabel" parent="."]
+offset_left = -9.05797
 offset_top = -9.05797
-offset_right = 18.8841
-offset_bottom = 7.94203
-text = "Hi->Lo"
-label_settings = SubResource("LabelSettings_d1ty1")
-horizontal_alignment = 1
+offset_right = 99.942
+offset_bottom = 59.942
+scale = Vector2(0.2, 0.2)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "HiLo"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
 
 [node name="DescriptionPanel" type="Panel" parent="."]
 visible = false
@@ -82,16 +77,17 @@ offset_bottom = 99.3623
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
-[node name="DescriptionText" type="Label" parent="DescriptionPanel"]
+[node name="DescriptionText" type="RichTextLabel" parent="DescriptionPanel"]
 layout_mode = 0
-offset_left = -1.0
+offset_left = 6.0
 offset_top = 1.0
-offset_right = 125.0
-offset_bottom = 88.0
+offset_right = 630.0
+offset_bottom = 382.0
+scale = Vector2(0.18, 0.18)
+theme_override_font_sizes/normal_font_size = 40
 text = "
 adadada"
-label_settings = SubResource("LabelSettings_q3u10")
-horizontal_alignment = 1
+scroll_active = false
 autowrap_mode = 2
 
 [connection signal="gui_input" from="ColorRect/Control" to="." method="_on_control_gui_input"]

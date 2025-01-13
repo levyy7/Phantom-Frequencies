@@ -7,19 +7,18 @@ const SPAWN_INTERVAL: float = 0.5
 const BULLET_SPEED: float = 1400.0
 
 const NOTE_TO_INDEX = {
-	"A":  0,
-	"B♭": 1,
-	"B":  2,
-	"C":  3,
+	"A": 0,
+	"A♯": 1,
+	"B": 2,
+	"C": 3,
 	"C♯": 4,
-	"D":  5,
+	"D": 5,
 	"E♭": 6,
-	"E":  7,
-	"F":  8,
+	"E": 7,
+	"F": 8,
 	"F♯": 9,
-	"G":  10,
+	"G": 10,
 	"G♯": 11,
-	"A5": 12
 }
 
 
@@ -46,13 +45,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	queue_redraw()  # Ensure the circle is always drawn
+	queue_redraw() # Ensure the circle is always drawn
 
 func _draw() -> void:
 	var freq = FREQUENCIES[current_frequency_index]
 
 	# Draw a circle at the spawner's position
-	var radius = 20  # Adjust size as needed
+	var radius = 20 # Adjust size as needed
 	draw_circle(Vector2.ZERO, radius, freq.color)
 	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
 	
@@ -61,7 +60,7 @@ func _draw() -> void:
 	# Draw the note on top of the circle
 	if font:
 		var text_size = font.get_string_size(current_name)
-		draw_string(font, Vector2(-text_size.x, text_size.y/2)/2, current_name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
+		draw_string(font, Vector2(-text_size.x, text_size.y / 2) / 2, current_name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
 
 
 func spawn_bullet(target: Node2D) -> void:
@@ -82,9 +81,9 @@ func spawn_bullet(target: Node2D) -> void:
 	add_child(bullet)
 
 
-func update_frequency(note_name: String) -> void:
-	current_frequency_index = NOTE_TO_INDEX[note_name]
-	current_name = note_name
+func update_frequency(note: Note) -> void:
+	current_frequency_index = NOTE_TO_INDEX[note.name] + (note.octave + 1) * 12
+	current_name = note.name
 
 
 func next_frequency() -> bool:
