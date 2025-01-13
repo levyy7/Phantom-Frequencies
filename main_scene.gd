@@ -10,6 +10,9 @@ var moves_remaining: int = 2:
 		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining) 
 
 func init_level(level):
+	print("initializing level")
+	$Map/TileManager.setPathwayPreferences(level.getPathwayPreference())
+
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
 	Global.lives = 3
@@ -31,7 +34,6 @@ func popNextGhost():
 		$Map/TileManager.ini_turn(null)
 	
 	
-
 func play_one_round():
 	# reset the enemy's bullet
 	var next_round_button := $"UI frame/NextRoundButton" as Button
@@ -58,11 +60,11 @@ func play_one_round():
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()
 	print(enemyCount)
-	if(Global.lives<1):
+	if (Global.lives < 1):
 		print("lose")
 		Global.win = false
 		get_tree().change_scene_to_file("res://ui/game_over.tscn")
-	if(len(upcomingGhosts)==0 and enemyCount==0):
+	if (len(upcomingGhosts) == 0 and enemyCount == 0):
 		Global.win = true
 		get_tree().change_scene_to_file("res://ui/game_over.tscn")
 		print("win")
@@ -70,7 +72,7 @@ func checkWinLoseCriteria():
 func _ready() -> void:
 	# TODO: make better default enemies
 	setup_ui_connections()
-	if(Global.currentLevel):
+	if (Global.currentLevel):
 		init_level(Global.currentLevel)
 	else:
 		get_tree().change_scene_to_file("res://level/level_select.tscn")
