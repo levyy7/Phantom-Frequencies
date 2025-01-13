@@ -10,10 +10,11 @@ script = ExtResource("1_e52a5")
 position = Vector2(-19, -82)
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-offset_left = -61.2319
-offset_top = 25.3623
-offset_right = 62.7681
-offset_bottom = 99.3623
+visible = false
+offset_left = 53.0
+offset_top = 69.0
+offset_right = 177.0
+offset_bottom = 143.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
@@ -21,11 +22,10 @@ size_flags_stretch_ratio = 2.51
 layout_mode = 0
 offset_left = 6.0
 offset_top = 1.0
-offset_right = 630.0
-offset_bottom = 382.0
-scale = Vector2(0.18, 0.18)
-theme_override_font_sizes/normal_font_size = 40
-text = "
-adadada"
+offset_right = 576.0
+offset_bottom = 351.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 50
+text = "adadada"
 scroll_active = false
 autowrap_mode = 2

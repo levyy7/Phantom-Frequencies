@@ -29,6 +29,8 @@ func _input(event: InputEvent) -> void:
 			if(Global.hovered_tower_group):
 				if(Global.hovered_tower_group != self):
 					Global.hovered_tower_group.color = default_color
+					
+			print("Setting", self)
 			Global.hovered_tower_group = self
 		else:
 			#color = default_color

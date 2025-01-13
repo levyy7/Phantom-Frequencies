@@ -8,6 +8,12 @@ var glowing: bool = false:
 signal hovered_frequency_change(f: Array[Frequency])
 signal tower_slot_group_selected(tower_slot_group: TowerSlotGroup)
 
+var hovered: Signal
+var unhovered: Signal
+
+func get_rect():
+	return $ColorRect.get_rect()
+	
 func tower_slot_children() -> Array[TowerSlot]:
 	var tower_slots: Array[TowerSlot] = []
 	for node in get_children():
@@ -42,6 +48,9 @@ func selected_frequencies():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hovered = $ColorRect.hovered
+	unhovered = $ColorRect.unhovered
+	
 	$ColorRect.hovered.connect(_on_hovered)
 	$ColorRect.unhovered.connect(_on_unhovered)
 	
