@@ -164,6 +164,7 @@ func die():
 	
 	$ColorRect.visible = false
 	$ProgressBar.visible = false
+	$Sprite2D.visible = false
 	
 	ghost.position = self.position
 	ghost.start_animation()

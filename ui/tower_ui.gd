@@ -14,11 +14,32 @@ var octave_offset: int = 0
 @onready var TowerChangePanel: TowerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel"
 
 
+func createButtons(notes):
+	var buttonlist = notes
+	var NoteButtonsContainer = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
+	print(buttonlist)
+	var i = 0
+	for note in notes:
+		var button = Button.new()
+		button.text = note
+		button.name = "Button" + str(i)
+		button.set_position(Vector2(14 + 45 * (i % 6), 17 + 40 * (i / 6)))
+		button.set_size(Vector2(25, 25))
+		changeButtons.append(button)
+		button.pressed.connect(_on_change_button_pressed.bind(button))
+		NoteButtonsContainer.add_child(button)
+		i += 1
+	#	button.connect("pressed", Callable(self, "_on_button_pressed").bind(level))
+	#	add_child(button)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var towerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
-	
+	changeButtons = []
+
 	for i in range(1, 13):
+		#Button
+		#towerChangePanel.add_child()
 		changeButtons.append(towerChangePanel.get_node("Button%d" % i))
 
 	# Connect each button's "pressed" signal
@@ -109,14 +130,12 @@ func _on_change_button_pressed(pressed_button):
 
 func _on_play_button_pressed():
 	# TODO: show an error instead of crashing here
-	assert(currentTower != null)
-	
-	currentTower.play_current_note()
+	if (currentTower != null):
+		currentTower.play_current_note()
 
 
 func _on_delete_button_pressed():
-	assert(currentTower != null)
-	
-	currentSlot.remove_shooter()
-	currentTower = null
-	load_default_info()
+	if (currentTower != null):
+		currentSlot.remove_shooter()
+		currentTower = null
+		load_default_info()

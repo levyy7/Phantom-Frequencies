@@ -1,14 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5xwbhovlmtqx"]
+[gd_scene load_steps=10 format=3 uid="uid://c5xwbhovlmtqx"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_b5ekj"]
 [ext_resource type="FontFile" uid="uid://oqvx1mhe8hka" path="res://Jersey15-Regular.ttf" id="2_cdbx5"]
 [ext_resource type="PackedScene" uid="uid://cft7qi5lqej8p" path="res://map/Map8.tscn" id="3_4x4u7"]
 [ext_resource type="PackedScene" uid="uid://b67t084jvaek4" path="res://ui/TowerUI.tscn" id="3_u5air"]
 [ext_resource type="PackedScene" uid="uid://bmnvyryt3yep8" path="res://visualization_pane/v_box_container.tscn" id="3_yt8cq"]
+[ext_resource type="Script" path="res://action_overlay.gd" id="4_mmscd"]
 
 [sub_resource type="Theme" id="Theme_ei74i"]
 default_font = ExtResource("2_cdbx5")
 default_font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5aby"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgbs5"]
+font_size = 25
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_b5ekj")
@@ -20,6 +27,15 @@ offset_right = 2344.0
 offset_bottom = 1339.0
 theme = SubResource("Theme_ei74i")
 border_width = 4.0
+
+[node name="Actions_text" type="Label" parent="UI frame"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 107.0
+offset_right = 242.0
+offset_bottom = 130.0
+text = "Remaining placements: 2"
+label_settings = SubResource("LabelSettings_p5aby")
 
 [node name="BackButton" type="Button" parent="UI frame"]
 process_mode = 3
@@ -58,6 +74,27 @@ offset_bottom = 20.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1.5, 1.5)
+
+[node name="Action_overlay" type="Panel" parent="UI frame"]
+layout_mode = 2
+offset_left = 1812.0
+offset_top = 389.0
+offset_right = 2307.0
+offset_bottom = 961.0
+scale = Vector2(0.845292, 0.376436)
+script = ExtResource("4_mmscd")
+
+[node name="Label" type="Label" parent="UI frame/Action_overlay"]
+layout_mode = 0
+offset_left = -147.878
+offset_top = 273.619
+offset_right = 633.122
+offset_bottom = 346.619
+scale = Vector2(1.02221, 2.79343)
+text = "You cannot place more notes this turn 
+(0 placements remaining)."
+label_settings = SubResource("LabelSettings_jgbs5")
+horizontal_alignment = 1
 
 [node name="Map" parent="." instance=ExtResource("3_4x4u7")]
 position = Vector2(101, 62)
