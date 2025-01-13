@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5xwbhovlmtqx"]
+[gd_scene load_steps=7 format=3 uid="uid://c5xwbhovlmtqx"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_b5ekj"]
+[ext_resource type="FontFile" uid="uid://oqvx1mhe8hka" path="res://Jersey15-Regular.ttf" id="2_cdbx5"]
 [ext_resource type="PackedScene" uid="uid://cft7qi5lqej8p" path="res://map/Map8.tscn" id="3_4x4u7"]
 [ext_resource type="PackedScene" uid="uid://b67t084jvaek4" path="res://ui/TowerUI.tscn" id="3_u5air"]
 [ext_resource type="PackedScene" uid="uid://bmnvyryt3yep8" path="res://visualization_pane/v_box_container.tscn" id="3_yt8cq"]
+
+[sub_resource type="Theme" id="Theme_ei74i"]
+default_font = ExtResource("2_cdbx5")
+default_font_size = 24
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_b5ekj")
@@ -13,6 +18,7 @@ offset_left = 50.0
 offset_top = 702.0
 offset_right = 2344.0
 offset_bottom = 1339.0
+theme = SubResource("Theme_ei74i")
 border_width = 4.0
 
 [node name="BackButton" type="Button" parent="UI frame"]
@@ -22,6 +28,7 @@ offset_left = 35.0
 offset_top = 533.0
 offset_right = 255.0
 offset_bottom = 601.0
+theme_override_fonts/font = ExtResource("2_cdbx5")
 text = "Back to Level Select"
 
 [node name="NextRoundButton" type="Button" parent="UI frame"]
@@ -59,7 +66,6 @@ scale = Vector2(1.2, 1.2)
 [node name="EnemyPreview" type="Container" parent="."]
 process_mode = 3
 custom_minimum_size = Vector2(100, 100)
-anchors_preset = -1
 offset_left = 41.0
 offset_top = 345.0
 offset_right = 141.0
