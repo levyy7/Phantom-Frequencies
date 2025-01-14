@@ -31,20 +31,23 @@ border_width = 4.0
 [node name="Actions_text" type="Label" parent="UI frame"]
 layout_mode = 0
 offset_left = 57.0
-offset_top = 107.0
-offset_right = 242.0
-offset_bottom = 130.0
+offset_top = 125.0
+offset_right = 302.0
+offset_bottom = 166.0
+scale = Vector2(1.4, 1.4)
+theme_override_font_sizes/font_size = 20
 text = "Remaining placements: 2"
 label_settings = SubResource("LabelSettings_p5aby")
 
 [node name="BackButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
-offset_left = 35.0
+offset_left = 54.0
 offset_top = 533.0
-offset_right = 255.0
+offset_right = 393.0
 offset_bottom = 601.0
 theme_override_fonts/font = ExtResource("2_cdbx5")
+theme_override_font_sizes/font_size = 40
 text = "Back to Level Select"
 
 [node name="NextRoundButton" type="Button" parent="UI frame"]
@@ -54,14 +57,15 @@ offset_left = 47.0
 offset_top = 19.0
 offset_right = 267.0
 offset_bottom = 87.0
+theme_override_font_sizes/font_size = 40
 text = "Next Round"
 
 [node name="VBoxContainer" parent="UI frame" instance=ExtResource("3_yt8cq")]
 layout_mode = 0
-offset_left = 747.0
-offset_top = 87.0
-offset_right = 1242.0
-offset_bottom = 513.0
+offset_left = 799.0
+offset_top = 28.0
+offset_right = 1294.0
+offset_bottom = 600.0
 
 [node name="TowerUI" parent="UI frame" instance=ExtResource("3_u5air")]
 anchors_preset = 0

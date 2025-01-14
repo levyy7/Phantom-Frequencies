@@ -12,6 +12,11 @@ func _ready() -> void:
 	# Set initial color
 	color = default_color
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:  # Called when the node is being destroyed
+		if Global.hovered_tower_group == self:
+			Global.hovered_tower_group = null
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		var mouse_pos = get_global_mouse_position()
@@ -30,4 +35,3 @@ func _input(event: InputEvent) -> void:
 			if is_hovering:
 				is_hovering = false
 				unhovered.emit()
-			

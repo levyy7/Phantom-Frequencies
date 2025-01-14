@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1oraa6ewk255"]
+[gd_scene load_steps=8 format=3 uid="uid://1oraa6ewk255"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_4yhrk"]
 [ext_resource type="Script" path="res://enemy/enemy_color_rect.gd" id="2_tgkh4"]
@@ -14,17 +14,6 @@ bg_color = Color(0.919284, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n6ua"]
 bg_color = Color(0, 0.517647, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_d1ty1"]
-font_size = 12
-font_color = Color(0, 0, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q3u10"]
-font_size = 8
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 position = Vector2(0, 1)
