@@ -10,11 +10,10 @@ script = ExtResource("1_e52a5")
 position = Vector2(-19, -82)
 
 [node name="ShortLabel" type="Panel" parent="."]
-visible = false
 offset_left = -33.0
-offset_top = -137.0
+offset_top = -132.0
 offset_right = 33.0
-offset_bottom = -108.0
+offset_bottom = -103.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
@@ -32,7 +31,6 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-visible = false
 offset_left = 53.0
 offset_top = 69.0
 offset_right = 177.0

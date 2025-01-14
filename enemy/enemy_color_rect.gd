@@ -1,7 +1,5 @@
-extends ColorRect
+extends Control
 
-#var default_color := Color(0.2, 0.2, 0.2, 1.0)  # Similar to Godot's default grey
-#var hover_color := Color(0.6, 0.4, 0.8, 1.0)    # Light purple
 
 signal hovered_enemy()
 signal unhovered_enemy()
@@ -9,6 +7,7 @@ signal unhovered_enemy()
 var is_hovering = false
 
 func _ready() -> void:
+	#$Control.gui
 	pass
 	# Set initial color
 	#color = default_color

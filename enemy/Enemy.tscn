@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b45hv48qu4smn" path="res://assets/ghost.png" id="3_12o6j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2e2h"]
-radius = 12.6653
+radius = 19.9308
 
 [sub_resource type="Theme" id="Theme_abrr0"]
 
@@ -20,31 +20,24 @@ position = Vector2(0, 1)
 scale = Vector2(2.76, 2.76)
 script = ExtResource("1_4yhrk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -12.0
-offset_top = -13.0
-offset_right = 14.0
-offset_bottom = 12.0
-rotation = -0.74351
-pivot_offset = Vector2(12, 12)
-color = Color(0.992157, 0, 0, 1)
-script = ExtResource("2_tgkh4")
-
-[node name="Control" type="Control" parent="ColorRect"]
+[node name="MouseHitbox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 26.0
-offset_bottom = 25.0
+offset_left = -18.5217
+offset_top = -19.1739
+offset_right = 17.4783
+offset_bottom = 17.8261
+script = ExtResource("2_tgkh4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.724638, -0.724638)
 scale = Vector2(0.970379, 0.972308)
 texture = ExtResource("3_12o6j")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="BulletHitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.797102, -1.34058)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHitbox"]
+position = Vector2(1.08696, -0.362319)
 shape = SubResource("CircleShape2D_p2e2h")
 
 [node name="ProgressBar" type="ProgressBar" parent="." groups=["enemies"]]
@@ -62,13 +55,14 @@ value = 50.0
 show_percentage = false
 
 [node name="PrefText" type="RichTextLabel" parent="."]
-offset_left = -9.05797
-offset_top = -9.05797
-offset_right = 99.942
-offset_bottom = 59.942
+offset_left = -9.78261
+offset_top = -8.33333
+offset_right = 99.2174
+offset_bottom = 60.6666
 scale = Vector2(0.2, 0.2)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
 text = "HiLo"
 fit_content = true
 scroll_active = false
@@ -97,4 +91,4 @@ adadada"
 scroll_active = false
 autowrap_mode = 2
 
-[connection signal="gui_input" from="ColorRect/Control" to="." method="_on_control_gui_input"]
+[connection signal="gui_input" from="MouseHitbox" to="." method="_on_control_gui_input"]
