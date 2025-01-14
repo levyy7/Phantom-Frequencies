@@ -24,7 +24,7 @@ static func prefToText(preferences):
 	var texts=[]
 	for pref in preferences:
 		texts.append(pref.text)
-	return "".join(texts)
+	return "[center]" + "".join(texts) + "[/center]"
 
 static func prefToDesc(preferences):
 	var texts=["I want to hear these in order:\n"]
@@ -66,14 +66,13 @@ var descriptionText: String = "NoText":
 var color: Color = Color.BLACK:
 	set(new_color):
 		color=new_color
-		$ColorRect.color = new_color
 
 
 func _ready() -> void:
 	health_bar.max_value = hp
 	health_bar.value = hp
-	$ColorRect.hovered_enemy.connect(_on_hovered)
-	$ColorRect.unhovered_enemy.connect(_on_unhovered)
+	$MouseHitbox.hovered_enemy.connect(_on_hovered)
+	$MouseHitbox.unhovered_enemy.connect(_on_unhovered)
 	#$ColorRect.color = color
 
 
@@ -88,11 +87,9 @@ func take_damage(_amount: Damage) -> void:
 func _on_hovered():
 	$DescriptionPanel.visible=true
 	position_tooltip()
-	print(prefText)
 
 func _on_unhovered():
 	$DescriptionPanel.visible=false
-	print("un"+prefText)
 
 func position_tooltip():
 	var panel = $DescriptionPanel
@@ -157,12 +154,11 @@ func die():
 		return
 		
 	self.dead = true
-	var ghost := Ghost.new_with_color($ColorRect.color)
+	var ghost := Ghost.new_with_color(Color.WHITE)
 	assert(ghost != null)
 	
 	add_child(ghost)
 	
-	$ColorRect.visible = false
 	$ProgressBar.visible = false
 	$Sprite2D.visible = false
 	

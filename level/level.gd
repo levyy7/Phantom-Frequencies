@@ -5,7 +5,7 @@ var notes: Array[String]
 var tiles: Array[String]
 var inital_preferences
 var upcoming_preferences
-static var note_names = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
+static var note_names: Array[String] = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
 func fromTextToPreferenceList(text: String) -> Array[Preference]:
 	var preferences: Array[Preference] = []

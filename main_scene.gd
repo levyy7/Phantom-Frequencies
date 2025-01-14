@@ -7,9 +7,9 @@ var upcomingGhosts = []
 var moves_remaining: int = 2:
 	set(new_moves_remaining):
 		moves_remaining=new_moves_remaining
-		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining) 
+		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining)
 
-func init_level(level):
+func init_level(level: Level):
 	print("initializing level")
 	$Map/TileManager.setPathwayPreferences(level.getPathwayPreference())
 
@@ -17,9 +17,18 @@ func init_level(level):
 	upcomingGhosts = level.getUpcomingGhosts()
 	Global.lives = 3
 	$Map/TileManager.fill_with_enemies(initalGhosts)
-	$"UI frame/TowerUI".createButtons(level.notes)
+	$"UI frame/TowerUI".initializeNoteButtons(level.note_names, level.notes)
 	popNextGhost()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event = event as InputEventMouseButton
+		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
+			# Click was not handled by any other control
+			print("Unhandled click detected at: ", mouse_event.position)
+			$"UI frame/TowerUI".slot_unselected()
+
+			
 func popNextGhost():
 	var next_ghost = upcomingGhosts.pop_front()
 	if (next_ghost):
@@ -37,6 +46,7 @@ func popNextGhost():
 	
 func play_one_round():
 	# reset the enemy's bullet
+	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining)
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager
 	print("Playing one round", "moves remaining ", moves_remaining)
@@ -60,7 +70,7 @@ func play_one_round():
 	
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()
-	print(enemyCount)
+	print("Enemy Count", enemyCount)
 	if (Global.lives < 1):
 		print("lose")
 		Global.win = false
@@ -82,7 +92,7 @@ func setup_ui_connections() -> void:
 	var slots = get_tree().get_nodes_in_group("tower_slot")
 	print("Enter setup UI")
 	for slot in slots:
-		slot.shooter_changed.connect($"UI frame/TowerUI".slot_selected)
+		slot.shooter_selected.connect($"UI frame/TowerUI".slot_selected)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

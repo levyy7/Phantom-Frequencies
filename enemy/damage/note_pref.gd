@@ -20,7 +20,6 @@ func initWithTxt(note, txt):
 	text = txt
 	freq = noteFreqs[notes.find(note, 0)]
 	description = "A single " + text + " note"
-	print(text, freq)
 	
 func init(note):
 	initWithTxt(note, note)

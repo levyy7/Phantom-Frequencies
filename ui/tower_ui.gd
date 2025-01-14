@@ -2,64 +2,50 @@ class_name TowerUI
 extends Control
 
 
-var currentSlot: TowerSlot = null
-var currentTower: Shooter = null
-var changeButtons = []
+var _currentSlot: TowerSlot = null:
+	set(new_slot):
+		print("Setting new slot")
+		_currentSlot = new_slot
+		$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining)
 
-var _glow_manager: GlowManager
+var _currentTower: Shooter = null
+var _changeButtons = []
 
 var octave_offset: int = 0
-@onready var infoPanel = $"PanelContainer/Panel/PanelContainer/Information Panel"
+@onready var infoPanel = $"PanelContainer/Information Panel"
 @onready var mainScene = get_tree().get_root().get_node("MainScene")
-@onready var TowerChangePanel: TowerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel"
+@onready var towerChangePanel: TowerChangePanel = $"NoteSelectorPanel"
 
 
-func createButtons(notes):
-	var buttonlist = notes
-	var NoteButtonsContainer = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
-	print(buttonlist)
-	var i = 0
-	for note in notes:
-		var button = Button.new()
-		button.text = note
-		button.name = "Button" + str(i)
-		button.set_position(Vector2(14 + 45 * (i % 6), 17 + 40 * (i / 6)))
-		button.set_size(Vector2(25, 25))
-		changeButtons.append(button)
+func initializeNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> void:
+	var buttons = towerChangePanel.createButtons(notes, enabled_notes)
+	_changeButtons = buttons
+
+	for button in buttons:
 		button.pressed.connect(_on_change_button_pressed.bind(button))
-		NoteButtonsContainer.add_child(button)
-		i += 1
-	#	button.connect("pressed", Callable(self, "_on_button_pressed").bind(level))
-	#	add_child(button)
 	
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var towerChangePanel = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/NoteButtonsContainer"
-	changeButtons = []
+	pass
 
-	for i in range(1, 13):
-		#Button
-		#towerChangePanel.add_child()
-		changeButtons.append(towerChangePanel.get_node("Button%d" % i))
 
-	# Connect each button's "pressed" signal
-	for button in changeButtons:
-		button.pressed.connect(_on_change_button_pressed.bind(button))
+func slot_unselected() -> void:
+	if _currentSlot != null:
+		_currentSlot.get_node("Outline").visible = false
+	_currentSlot = null
+	_currentTower = null
+	load_default_info()
+	towerChangePanel.stop_glows()
 
-	var colorRect = $"PanelContainer/Panel/PanelContainer2/Tower Change Panel/ColorRect"
-	_glow_manager = GlowManager.new(colorRect)
-	add_child(_glow_manager) # Important: add as child to ensure proper cleanup
-	
 
 func slot_selected(slot: TowerSlot) -> void:
-	_glow_manager.start_glow()
+	towerChangePanel.start_glows()
 
-	if currentSlot != null:
-		currentSlot.get_node("Outline").visible = false
-	currentSlot = slot
-	currentSlot.get_node("Outline").visible = true
+	if _currentSlot != null:
+		_currentSlot.get_node("Outline").visible = false
+	_currentSlot = slot
+	_currentSlot.get_node("Outline").visible = true
 
-	currentTower = null
+	_currentTower = null
 
 	if slot.has_shooter():
 		load_tower_info(slot.current_shooter)
@@ -68,74 +54,59 @@ func slot_selected(slot: TowerSlot) -> void:
 
 #TODO: doesnt show octave of current slot when clicked
 func load_tower_info(tower: Shooter) -> void:
-	currentTower = tower
+	_currentTower = tower
 	var index = tower.current_frequency_index % 12
 	var octave = int(floor(tower.current_frequency_index / 12)) - 1
 	
 	infoPanel.get_node("Tower Name").text = tower.current_name
-	#draw_tower(tower.current_name, tower.FREQUENCIES[index])
 	infoPanel.get_node("Frequency").text = str(tower.current_frequency().frequency) + " Hz"
 	infoPanel.get_node("Octave").text = str(octave + 4) + "th Octave"
 	
-	changeButtons[index].button_pressed = true
-
-
-func draw_tower(name: String, freq: Frequency) -> void:
-	# Draw a circle at the spawner's position
-	var radius = 20 # Adjust size as needed
-	draw_circle(Vector2.ZERO, radius, freq.color)
-	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
-	
-	
-	var font = ThemeDB.fallback_font
-	# Draw the note on top of the circle
-	if font:
-		var text_size = font.get_string_size(name)
-		draw_string(font, Vector2(-text_size.x, text_size.y / 2) / 2, name, HORIZONTAL_ALIGNMENT_CENTER, -1, 20, Color.BLACK)
-
 
 func load_default_info() -> void:
 	infoPanel.get_node("Tower Name").text = "Empty Slot"
 	infoPanel.get_node("Frequency").text = "<frequency>"
 	infoPanel.get_node("Octave").text = "<octave>"
 	
-	for button in changeButtons:
+	for button in _changeButtons:
 		button.button_pressed = false
 
 
 # returns if out of moves
 func _on_change_button_pressed(pressed_button):
-	_glow_manager.stop_glow()
+	towerChangePanel.stop_glows()
 	# Reset all buttons except the one pressed
-	for button in changeButtons:
+	for button in _changeButtons:
 		if button != pressed_button:
 			button.button_pressed = false
 
-	if currentSlot != null:
-		var note: Note = TowerChangePanel.toNote(pressed_button)
+	if _currentSlot != null:
+		var note: Note = towerChangePanel.toNote(pressed_button)
 
-		if currentTower != null:
-			currentSlot.update_frequency(note)
+		if _currentTower != null:
+			_currentSlot.update_frequency(note)
 		else:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")
 				return
 			mainScene.moves_remaining -= 1
-			currentSlot.add_shooter(note)
-			currentTower = currentSlot.current_shooter
-			assert(currentTower != null)
-		load_tower_info(currentTower)
-		currentTower.find_parent("TowerSlots")._on_hovered()
-
+			$Action_overlay.moves_remaining_updated(mainScene.moves_remaining)
+			_currentSlot.add_shooter(note)
+			_currentTower = _currentSlot.current_shooter
+			assert(_currentTower != null)
+		load_tower_info(_currentTower)
+		_currentTower.find_parent("TowerSlots")._on_hovered()
+	else:
+		print("No slot selected!")
 
 func _on_play_button_pressed():
 	# TODO: show an error instead of crashing here
-	if (currentTower != null):
-		currentTower.play_current_note()
+	if (_currentTower != null):
+		_currentTower.play_current_note()
 
 
 func _on_delete_button_pressed():
-	if (currentTower != null):
-		currentSlot.remove_shooter()
-		currentTower = null
+	if (_currentTower != null):
+		_currentSlot.remove_shooter()
+		_currentTower = null
 		load_default_info()

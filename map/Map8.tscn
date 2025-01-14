@@ -73,7 +73,7 @@ sources/1 = SubResource("TileSetAtlasSource_2om6j")
 [node name="Map8" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(3.12, 3.12)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAAEAAQAUAAAAAAABAAEAAQAZAAAAAAACAAEAAQAZAAAAAAADAAEAAQAZAAAAAAAEAAEAAQAZAAAAAAAFAAEAAQAZAAAAAAAGAAEAAQAZAAAAAAAHAAEAAQAeAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_pk5qr")
 
@@ -81,49 +81,49 @@ tile_set = SubResource("TileSet_pk5qr")
 script = ExtResource("3_byurt")
 
 [node name="PathTile0" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(119, 359)
+position = Vector2(119, 370)
 
 [node name="PathTile1" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(360, 360)
+position = Vector2(373, 370)
 
 [node name="PathTile2" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(599, 360)
+position = Vector2(622, 370)
 
 [node name="PathTile3" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(840, 363)
+position = Vector2(873, 370)
 
 [node name="PathTile4" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(1084, 359)
+position = Vector2(1121, 370)
 
 [node name="PathTile5" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(1317, 361)
+position = Vector2(1369, 370)
 
 [node name="PathTile6" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(1561, 361)
+position = Vector2(1620, 370)
 
 [node name="PathTile7" parent="TileManager" instance=ExtResource("4_tlhjl")]
-position = Vector2(1800, 361)
+position = Vector2(1871, 370)
 
 [node name="GrassTile0" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(119, 122)
+position = Vector2(119, 120)
 
 [node name="GrassTile1" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(355, 120)
+position = Vector2(373, 120)
 
 [node name="GrassTile2" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(598, 121)
+position = Vector2(621, 120)
 
 [node name="GrassTile3" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(837, 120)
+position = Vector2(872, 120)
 
 [node name="GrassTile4" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1078, 117)
+position = Vector2(1121, 120)
 
 [node name="GrassTile5" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1317, 119)
+position = Vector2(1369, 120)
 
 [node name="GrassTile6" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1558, 120)
+position = Vector2(1616, 120)
 
 [node name="GrassTile7" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1797, 117)
+position = Vector2(1866, 120)

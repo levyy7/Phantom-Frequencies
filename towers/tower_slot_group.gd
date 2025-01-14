@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	for child in get_children():
 		if child is TowerSlot:
-			child.shooter_changed.connect(_on_hovered.unbind(1))
+			child.shooter_selected.connect(_on_hovered.unbind(1))
 			child.frequency_updated.connect(_on_shooter_frequency_updated.bind(child))
 			
 
