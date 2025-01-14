@@ -23,7 +23,8 @@ func popNextGhost():
 		$Map/TileManager.ini_turn(next_ghost)
 		$EnemyPreview.add_child(next_ghost)
 		for child in $EnemyPreview.get_children():
-			$EnemyPreview.remove_child(child)
+			if child is Enemy:
+				$EnemyPreview.remove_child(child)
 	
 		# Add the new child
 		$EnemyPreview.add_child(next_ghost)

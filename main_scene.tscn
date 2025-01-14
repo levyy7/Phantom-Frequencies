@@ -104,13 +104,17 @@ horizontal_alignment = 1
 position = Vector2(101, 62)
 scale = Vector2(1.2, 1.2)
 
-[node name="EnemyPreview" type="Container" parent="."]
+[node name="EnemyPreview" type="Node2D" parent="."]
 process_mode = 3
-custom_minimum_size = Vector2(100, 100)
-offset_left = 41.0
-offset_top = 345.0
-offset_right = 141.0
-offset_bottom = 445.0
+position = Vector2(553, 838)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EnemyPreview"]
+offset_left = -83.0
+offset_top = -123.0
+offset_right = 185.0
+offset_bottom = -81.0
+theme_override_font_sizes/normal_font_size = 23
+text = "Upcoming Enemy:"
 
 [connection signal="pressed" from="UI frame/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="UI frame/BackButton" to="." method="_on_back_button_toggled"]
