@@ -98,7 +98,6 @@ static func create_advanced_level(name: String, description: String, notes: Arra
 	level.tiles = []
 	for p in pathway_preferences:
 		level.tiles.append(p)
-		level.tiles.append(p)
 	level.inital_preferences = inital_preferences
 	level.upcoming_preferences = upcoming_preferences
 	return level
