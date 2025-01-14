@@ -27,7 +27,6 @@ func _process(_delta: float):
 	pass
 
 
-
 func initialize_tiles():
 	# Loop through children to populate tiles
 	for child in get_children():
@@ -35,6 +34,7 @@ func initialize_tiles():
 			grassTiles.append(child)
 		elif child.name.begins_with("PathTile"):
 			pathTiles.append(child)
+	print("initializing tiles")
 			
 
 func ini_turn(nEnemy = null):
@@ -62,10 +62,10 @@ func towers_set_shoot():
 	add_child(glowTimer)
 	add_child(shotTimer)
 	
-	shotTimer.start(1.0)
+	shotTimer.start(0.6)
 	
 	for i in range(grassTiles.size()):
-		glowTimer.start(0.75)
+		glowTimer.start(0.5)
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		
@@ -73,10 +73,11 @@ func towers_set_shoot():
 		if not currentGT.tower_slot_group.any_tower_active():
 			continue
 		currentGT.tower_slot_group.shoot_bullets(currentPT, soundOn, glowTimer)
-		currentGT.tower_slot_group.affectEnemies(currentPT)
+		if currentGT.pathwayPreferenceFulfilled():
+			currentGT.tower_slot_group.affectEnemies(currentPT)
 
 		# Wait for the timer's timeout signal (2 seconds)
-		await(shotTimer.timeout)
+		await (shotTimer.timeout)
 	
 	# After the loop finishes, you can safely remove the timer if needed
 	shotTimer.queue_free()
@@ -113,19 +114,22 @@ func enemies_set_advance():
 	
 	turn_finished.emit()
 	state = State.Paused
-	
 
 func fill_with_enemies(enemyList):
 	for i in range(min(pathTiles.size(), enemyList.size())):
 		pathTiles[i].add_enemy(enemyList[i])
 
+func setPathwayPreferences(preferences: Dictionary):
+	for i in preferences.keys():
+		grassTiles[i].setPref(preferences[i])
+
 func enemyCount():
 	var count = 0
 	for tile in pathTiles:
 		if tile.get_enemy():
-			count+=1
+			count += 1
 	return count
 func enemy_reached(enemy):
 	print("Enemy has reached base")
-	Global.lives-=1
+	Global.lives -= 1
 	enemy.queue_free()

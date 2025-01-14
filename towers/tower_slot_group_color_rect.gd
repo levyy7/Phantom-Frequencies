@@ -1,7 +1,7 @@
 extends ColorRect
 
-var default_color := Color(0.2, 0.2, 0.2, 1.0)  # Similar to Godot's default grey
-var hover_color := Color(0.6, 0.4, 0.8, 1.0)    # Light purple
+var default_color := Color(0.2, 0.2, 0.2, 1.0) # Similar to Godot's default grey
+var hover_color := Color(0.6, 0.4, 0.8, 1.0) # Light purple
 
 signal hovered()
 signal unhovered()
@@ -13,7 +13,7 @@ func _ready() -> void:
 	color = default_color
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:  # Called when the node is being destroyed
+	if what == NOTIFICATION_PREDELETE: # Called when the node is being destroyed
 		if Global.hovered_tower_group == self:
 			Global.hovered_tower_group = null
 
@@ -26,9 +26,10 @@ func _input(event: InputEvent) -> void:
 			color = hover_color
 			is_hovering = true
 			hovered.emit()
-			if(Global.hovered_tower_group):
-				if(Global.hovered_tower_group != self):
+			if (Global.hovered_tower_group):
+				if (Global.hovered_tower_group != self):
 					Global.hovered_tower_group.color = default_color
+					
 			Global.hovered_tower_group = self
 		else:
 			#color = default_color

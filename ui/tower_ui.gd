@@ -74,7 +74,7 @@ func load_tower_info(tower: Shooter) -> void:
 	
 	infoPanel.get_node("Tower Name").text = tower.current_name
 	#draw_tower(tower.current_name, tower.FREQUENCIES[index])
-	infoPanel.get_node("Frequency").text = str(tower.FREQUENCIES[index].frequency) + " Hz"
+	infoPanel.get_node("Frequency").text = str(tower.current_frequency().frequency) + " Hz"
 	infoPanel.get_node("Octave").text = str(octave + 4) + "th Octave"
 	
 	changeButtons[index].button_pressed = true
@@ -115,7 +115,7 @@ func _on_change_button_pressed(pressed_button):
 		var note: Note = TowerChangePanel.toNote(pressed_button)
 
 		if currentTower != null:
-			currentTower.update_frequency(note)
+			currentSlot.update_frequency(note)
 		else:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")

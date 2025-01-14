@@ -6,3 +6,4 @@
 script = ExtResource("1_45t8h")
 
 [node name="NotePlayer" type="AudioStreamPlayer2D" parent="."]
+attenuation = 1e-05

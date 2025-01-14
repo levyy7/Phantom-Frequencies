@@ -7,7 +7,14 @@ var glowing: bool = false:
 		$GlowRect.visible = glowing
 signal hovered_frequency_change(f: Array[Frequency])
 signal tower_slot_group_selected(tower_slot_group: TowerSlotGroup)
+signal shooter_frequency_updated(child: TowerSlot)
 
+var hovered: Signal
+var unhovered: Signal
+
+func get_rect():
+	return $ColorRect.get_rect()
+	
 func tower_slot_children() -> Array[TowerSlot]:
 	var tower_slots: Array[TowerSlot] = []
 	for node in get_children():
@@ -39,15 +46,22 @@ func selected_frequencies():
 			freqs.append(ts.current_shooter.current_frequency())
 
 	return freqs
+
+func _on_shooter_frequency_updated(child: TowerSlot):
+	shooter_frequency_updated.emit(child)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	hovered = $ColorRect.hovered
+	unhovered = $ColorRect.unhovered
+	
 	$ColorRect.hovered.connect(_on_hovered)
 	$ColorRect.unhovered.connect(_on_unhovered)
 	
 	for child in get_children():
 		if child is TowerSlot:
 			child.shooter_changed.connect(_on_hovered.unbind(1))
+			child.frequency_updated.connect(_on_shooter_frequency_updated.bind(child))
 			
 
 func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
@@ -59,11 +73,23 @@ func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
 
 	timer.timeout.connect(disable_glow)
 
-func affectEnemies(target: PathTile): # TODO PATHWAY PREF
+
+func getGroupFrequencies():
 	var frequencies = []
 	for node: TowerSlot in tower_slot_children():
 		if (node.has_shooter()):
 			frequencies.append(node.current_shooter.current_frequency()) # shoot_bullet(target)
+	return frequencies
+
+func getGroupNoteNames():
+	var names = []
+	for node: TowerSlot in tower_slot_children():
+		if (node.has_shooter()):
+			names.append(node.current_shooter.current_name) # shoot_bullet(target)
+	return names
+
+func affectEnemies(target: PathTile): # TODO PATHWAY PREF
+	var frequencies = getGroupFrequencies()
 	var enemy = target.get_enemy()
 	if (enemy):
 		enemy.become_affected(frequencies) # TODO PATHWAY PREF if frequncies fulfill target pref then proceed, else highlight red and do nothing
