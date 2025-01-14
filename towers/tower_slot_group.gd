@@ -7,6 +7,7 @@ var glowing: bool = false:
 		$GlowRect.visible = glowing
 signal hovered_frequency_change(f: Array[Frequency])
 signal tower_slot_group_selected(tower_slot_group: TowerSlotGroup)
+signal shooter_frequency_updated(child: TowerSlot)
 
 var hovered: Signal
 var unhovered: Signal
@@ -45,6 +46,9 @@ func selected_frequencies():
 			freqs.append(ts.current_shooter.current_frequency())
 
 	return freqs
+
+func _on_shooter_frequency_updated(child: TowerSlot):
+	shooter_frequency_updated.emit(child)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,6 +61,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is TowerSlot:
 			child.shooter_changed.connect(_on_hovered.unbind(1))
+			child.frequency_updated.connect(_on_shooter_frequency_updated.bind(child))
 			
 
 func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):

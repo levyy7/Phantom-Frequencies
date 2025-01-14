@@ -6,6 +6,8 @@ var targeting: EnemyList
 
 signal shooter_changed(t: TowerSlot)
 
+signal frequency_updated()
+
 var current_shooter: Shooter = null
 
 
@@ -16,6 +18,13 @@ func add_shooter(note: Note) -> void:
 	shooter.update_frequency(note)
 	current_shooter = shooter
 	add_child(shooter)
+	frequency_updated.emit()
+
+
+func update_frequency(note: Note) -> void:
+	current_shooter.update_frequency(note)
+	frequency_updated.emit()
+
 
 func has_shooter() -> bool:
 	return current_shooter is Shooter
@@ -33,7 +42,6 @@ func tower_damage():
 func _on_control_gui_input(mouse_event: InputEvent) -> void:
 	if mouse_event is InputEventMouseButton:
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.is_released():
-			print("Click recieved")
 			shooter_changed.emit(self)
 			find_parent("*")._on_hovered()
 

@@ -19,6 +19,22 @@ func _ready():
 	$TowerSlots.hovered.connect(_on_hovered)
 	$TowerSlots.unhovered.connect(_on_unhovered)
 	
+	$TowerSlots.shooter_frequency_updated.connect(_recheck_chord_satisfied)
+
+func _recheck_chord_satisfied(_child: TowerSlot):
+	var rich_text: RichTextLabel = $"ShortLabel/DescriptionText"
+	var original_text = rich_text.text
+	if pathwayPreferenceFulfilled():
+		rich_text.clear()
+		rich_text.push_color(Color.GREEN)
+		rich_text.add_text(original_text)
+		rich_text.pop()
+	else:
+		rich_text.clear()
+		rich_text.push_color(Color.WHITE)
+		rich_text.add_text(original_text)
+		rich_text.pop()
+		
 			
 func _on_hovered():
 	if pref:
@@ -31,6 +47,7 @@ func _on_unhovered():
 	
 
 func pathwayPreferenceFulfilled() -> bool:
+	print("preference", pref, tower_slot_group.getGroupNoteNames())
 	if pref == null:
 		return true
 	elif pref is IntervalQualityPreference:

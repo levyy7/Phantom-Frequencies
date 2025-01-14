@@ -81,7 +81,6 @@ func setup_ui_connections() -> void:
 	var slots = get_tree().get_nodes_in_group("tower_slot")
 	print("Enter setup UI")
 	for slot in slots:
-		print("Cycle slot")
 		slot.shooter_changed.connect($"UI frame/TowerUI".slot_selected)
 
 

@@ -115,7 +115,7 @@ func _on_change_button_pressed(pressed_button):
 		var note: Note = TowerChangePanel.toNote(pressed_button)
 
 		if currentTower != null:
-			currentTower.update_frequency(note)
+			currentSlot.update_frequency(note)
 		else:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")
