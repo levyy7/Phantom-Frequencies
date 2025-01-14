@@ -15,6 +15,7 @@ func build_oscilloscope_points(freqs: Array[Frequency]) -> Array[Vector2]:
 	var canvas_size = $GraphDisplay.size
 	var center = Vector2(canvas_size.x/2, canvas_size.y/2)
 	
+	var lcm_of_all_denominators = 440.0*(64*5*3)
 	var totalTime = 2*PI*1/440
 	var periods = []
 	for freq in freqs:
@@ -22,14 +23,14 @@ func build_oscilloscope_points(freqs: Array[Frequency]) -> Array[Vector2]:
 	if(len(periods)==1):
 		totalTime = 2*PI*periods[0]
 	if(len(periods)>=2): 
-		var T1 = round(440.0*(32*5*3)*periods[0])
-		var T2 = round(440.0*(32*5*3)*periods[1])
+		var T1 = round(lcm_of_all_denominators*periods[0])
+		var T2 = round(lcm_of_all_denominators*periods[1])
 		var lcm_12 = T1*T2/gcd(T1,T2)
-		totalTime = 2*PI*lcm_12/(440.0*(32*5*3))
+		totalTime = 2*PI*lcm_12/(lcm_of_all_denominators)
 		if(len(periods)==3):
-			var T3 = round(440.0*(32*5*3)*periods[2])
+			var T3 = round(lcm_of_all_denominators*periods[2])
 			var lcm_123 = T3*lcm_12/gcd(lcm_12,T3)
-			totalTime = 2*PI*lcm_123/(440.0*(32*5*3))
+			totalTime = 2*PI*lcm_123/(lcm_of_all_denominators)
 		
 	
 	for i in range(NUM_POINTS):
