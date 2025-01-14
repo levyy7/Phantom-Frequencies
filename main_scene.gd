@@ -6,12 +6,13 @@ var upcomingGhosts = []
 
 var moves_remaining: int = 2:
 	set(new_moves_remaining):
-		moves_remaining=new_moves_remaining
-		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining) 
+		moves_remaining = new_moves_remaining
+		$"UI frame/Actions_text".text = "Remaining placements: " + str(moves_remaining)
 
 func init_level(level):
 	print("initializing level")
 	$Map/TileManager.setPathwayPreferences(level.getPathwayPreference())
+	moves_remaining = Global.currentLevel.ins_per_round
 
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
@@ -56,7 +57,7 @@ func play_one_round():
 	next_round_button.disabled = false
 	next_round_button.text = "Next Round"
 	
-	moves_remaining = 2
+	moves_remaining = Global.currentLevel.ins_per_round
 	
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()

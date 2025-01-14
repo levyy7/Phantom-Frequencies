@@ -62,10 +62,10 @@ func towers_set_shoot():
 	add_child(glowTimer)
 	add_child(shotTimer)
 	
-	shotTimer.start(0.6)
+	shotTimer.start(0.4)
 	
 	for i in range(grassTiles.size()):
-		glowTimer.start(0.5)
+		glowTimer.start(0.3)
 		var currentGT: GrassTile = grassTiles[i]
 		var currentPT = pathTiles[i]
 		

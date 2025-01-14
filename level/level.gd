@@ -5,6 +5,7 @@ var notes: Array[String]
 var tiles: Array[String]
 var inital_preferences
 var upcoming_preferences
+var ins_per_round: int
 static var note_names = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
 func fromTextToPreferenceList(text: String) -> Array[Preference]:
@@ -30,6 +31,7 @@ func fromTextToPreferenceList(text: String) -> Array[Preference]:
 		elif pref.begins_with("A*2^("):
 			var notePref = NotePreference.new()
 			var semitones_above = pref.substr(5, pref.find("/") - 5)
+			print(pref, note_names[int(semitones_above)])
 			notePref.initWithTxt(note_names[int(semitones_above)], pref)
 			preferences.append(notePref)
 	return preferences
@@ -83,6 +85,7 @@ static func create_level(name: String, description: String, notes: Array[String]
 	level.notes = notes
 	level.inital_preferences = inital_preferences
 	level.upcoming_preferences = upcoming_preferences
+	level.ins_per_round = 2
 	return level
 
 
@@ -90,7 +93,7 @@ static func create_level(name: String, description: String, notes: Array[String]
 # pathway preferences are coded 2 tiles at a time
 # ie A, B, C, D translates to AABBCCDD
 static func create_advanced_level(name: String, description: String, notes: Array[String],
-						inital_preferences: Array[String], upcoming_preferences: Array[String], pathway_preferences: Array[String]) -> Level:
+						inital_preferences: Array[String], upcoming_preferences: Array[String], pathway_preferences: Array[String], insertions: int) -> Level:
 	var level: Level = Level.new()
 	level.name = name
 	level.description = description
@@ -100,4 +103,5 @@ static func create_advanced_level(name: String, description: String, notes: Arra
 		level.tiles.append(p)
 	level.inital_preferences = inital_preferences
 	level.upcoming_preferences = upcoming_preferences
+	level.ins_per_round = insertions
 	return level
