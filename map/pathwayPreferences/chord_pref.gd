@@ -16,4 +16,4 @@ func _init(chord_notes: Array[String], size: int) -> void:
 	chord = chord_notes
 	minSize = size
 	text = "Chord"
-	description = "At least " + str(size) + " notes of this chord"
+	description = ">= " + str(size) + " notes of this chord: " + ", ".join(chord_notes)

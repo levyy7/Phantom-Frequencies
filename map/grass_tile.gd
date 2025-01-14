@@ -4,25 +4,30 @@ extends Node2D
 @onready var tower_slot_group = $TowerSlots
 
 var pref: PathwayPreference = null
+
 func setPref(preference: PathwayPreference) -> void:
+	print("Setting preference")
 	pref = preference
+	$"ShortLabel/DescriptionText".text = pref.text
+	$"ShortLabel".visible = true
 
 var is_mouse_inside = false
 
 func _ready():
 	$"DescriptionPanel/DescriptionText".text = ""
+	$"ShortLabel/DescriptionText".text = ""
 	$TowerSlots.hovered.connect(_on_hovered)
 	$TowerSlots.unhovered.connect(_on_unhovered)
 	
 			
 func _on_hovered():
 	if pref:
-		$DescriptionPanel.visible=true
+		$DescriptionPanel.visible = true
 		$"DescriptionPanel/DescriptionText".text = pref.description
 		print(pref.description)
 
 func _on_unhovered():
-	$DescriptionPanel.visible=false
+	$DescriptionPanel.visible = false
 	
 
 func pathwayPreferenceFulfilled() -> bool:
