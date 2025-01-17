@@ -22,6 +22,9 @@ static func int_to_color_hash(value_float: float) -> Color:
 	
 	return Color(r, g, b)
 
-func _init(freq: float):
+func _init(freq: float, col = null):
 	frequency = freq
-	color = int_to_color_hash(freq)
+	if col:
+		color = col
+	else:
+		color = int_to_color_hash(freq)

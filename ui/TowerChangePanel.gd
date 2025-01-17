@@ -35,7 +35,11 @@ func createNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> Ar
 			else:
 				button.disabled = true
 				button.modulate = Color(0.25, 0.25, 0.25, 1.0)
-				
+			
+			if octave == 0:
+				button.pressed.connect(_on_up_pressed.bind())
+			elif octave == 1:
+				button.pressed.connect(_on_down_pressed.bind())
 			$NoteButtonsContainer.add_child(button)
 			note_buttons.append(button)
 		
@@ -90,10 +94,12 @@ func stop_glows() -> void:
 	# TODO: DO NOTHING, remove
 
 func _on_up_pressed() -> void:
-	_increment_octave()
+	current_octave = 0
+	#_increment_octave()
 
 func _on_down_pressed() -> void:
-	_decrement_octave()
+	current_octave = 1
+	#_decrement_octave()
 
 func _increment_octave() -> bool:
 	if current_octave < MAX_OCTAVE:
