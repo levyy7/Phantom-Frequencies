@@ -6,23 +6,30 @@ var _currentSlot: TowerSlot = null:
 	set(new_slot):
 		print("Setting new slot")
 		_currentSlot = new_slot
-		$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining)
+		$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining, usedSlotsRound)
 
 var _currentTower: Shooter = null
 var _changeButtons = []
+var _deleteButton: Button = null
 
 var octave_offset: int = 0
+var usedSlotsRound: Array[TowerSlot] = []
 @onready var infoPanel = $"PanelContainer/Information Panel"
 @onready var mainScene = get_tree().get_root().get_node("MainScene")
 @onready var towerChangePanel: TowerChangePanel = $"NoteSelectorPanel"
 
 
 func initializeNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> void:
-	var buttons = towerChangePanel.createButtons(notes, enabled_notes)
-	_changeButtons = buttons
+	var noteButtons = towerChangePanel.createNoteButtons(notes, enabled_notes)
+	_changeButtons = noteButtons
+	
+	var deleteButton = towerChangePanel.createDeleteButton(notes)
+	_deleteButton = deleteButton
 
-	for button in buttons:
+	for button in noteButtons:
 		button.pressed.connect(_on_change_button_pressed.bind(button))
+	
+	deleteButton.pressed.connect(_on_delete_button_pressed.bind())
 	
 func _ready() -> void:
 	pass
@@ -71,7 +78,6 @@ func load_default_info() -> void:
 	for button in _changeButtons:
 		button.button_pressed = false
 
-
 # returns if out of moves
 func _on_change_button_pressed(pressed_button):
 	towerChangePanel.stop_glows()
@@ -82,20 +88,33 @@ func _on_change_button_pressed(pressed_button):
 
 	if _currentSlot != null:
 		var note: Note = towerChangePanel.toNote(pressed_button)
-
-		if _currentTower != null:
-			_currentSlot.update_frequency(note)
-		else:
+			
+		if _currentTower == null:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")
 				return
 			mainScene.moves_remaining -= 1
-			$Action_overlay.moves_remaining_updated(mainScene.moves_remaining)
+			usedSlotsRound.append(_currentSlot)
+			$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining, usedSlotsRound)
 			_currentSlot.add_shooter(note)
 			_currentTower = _currentSlot.current_shooter
+			print(usedSlotsRound)
 			assert(_currentTower != null)
+		else:
+			if not _currentSlot in usedSlotsRound:
+				if (mainScene.moves_remaining == 0):
+					print("out of moves for this round")
+					return
+				mainScene.moves_remaining -= 1
+				usedSlotsRound.append(_currentSlot)
+				$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining, usedSlotsRound)
+				_currentSlot.add_shooter(note)
+			
+			_currentSlot.update_frequency(note)
+		
 		load_tower_info(_currentTower)
 		_currentTower.find_parent("TowerSlots")._on_hovered()
+		
 	else:
 		print("No slot selected!")
 
@@ -107,6 +126,11 @@ func _on_play_button_pressed():
 
 func _on_delete_button_pressed():
 	if (_currentTower != null):
+		if _currentSlot in usedSlotsRound:
+			mainScene.moves_remaining += 1
+			usedSlotsRound.erase(_currentSlot)
+			$Action_overlay.current_slot_updated(_currentSlot, mainScene.moves_remaining, usedSlotsRound)
+			
 		_currentSlot.remove_shooter()
 		_currentTower = null
 		load_default_info()
