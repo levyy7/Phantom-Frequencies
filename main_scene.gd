@@ -9,13 +9,20 @@ var moves_remaining: int = 2:
 		moves_remaining=new_moves_remaining
 		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining)
 
+var lives: int = 3:
+	set(newLives):
+		lives=newLives
+		$"UI frame/Lives_text".text=str(lives)+" ghosts away from being haunted"
+
 func init_level(level: Level):
 	print("initializing level")
 	$Map/TileManager.setPathwayPreferences(level.getPathwayPreference())
 
 	var initalGhosts = level.getInitialGhosts()
 	upcomingGhosts = level.getUpcomingGhosts()
+	$"UI frame/TutorialPanel/TutorialText".text = level.description
 	Global.lives = 3
+	lives = Global.lives
 	$Map/TileManager.fill_with_enemies(initalGhosts)
 	$"UI frame/TowerUI".initializeNoteButtons(level.note_names, level.notes)
 	popNextGhost()
@@ -30,16 +37,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			
 func popNextGhost():
+	var enemyPreview = $EnemyPreviewPanel/EnemyPreview
 	var next_ghost = upcomingGhosts.pop_front()
 	if (next_ghost):
 		$Map/TileManager.ini_turn(next_ghost)
-		$EnemyPreview.add_child(next_ghost)
-		for child in $EnemyPreview.get_children():
+		enemyPreview.add_child(next_ghost)
+		for child in enemyPreview.get_children():
 			if child is Enemy:
-				$EnemyPreview.remove_child(child)
+				enemyPreview.remove_child(child)
 	
 		# Add the new child
-		$EnemyPreview.add_child(next_ghost)
+		enemyPreview.add_child(next_ghost)
 	else:
 		$Map/TileManager.ini_turn(null)
 	
@@ -71,11 +79,12 @@ func play_one_round():
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()
 	print("Enemy Count", enemyCount)
+	lives = Global.lives
 	if (Global.lives < 1):
 		print("lose")
 		Global.win = false
 		get_tree().change_scene_to_file("res://ui/game_over.tscn")
-	if (len(upcomingGhosts) == 0 and enemyCount == 0):
+	elif (len(upcomingGhosts) == 0 and enemyCount == 0):
 		Global.win = true
 		get_tree().change_scene_to_file("res://ui/game_over.tscn")
 		print("win")

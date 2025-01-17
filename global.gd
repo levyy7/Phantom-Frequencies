@@ -5,7 +5,9 @@ func maj(root: String, ct: int):
   var base = note_names.find(root)
   return note_names[base] + "," + note_names[(base + 4) % 12] + "," + note_names[(base + 7) % 12] + "," + str(ct)
 
-var level0 = Level.create_level("level0", "introduces pitches", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
+var level0 = Level.create_level("level0", "Level 0: Pitches as frequencies
+As you might already know, musical pitches correspond to frequencies of sound vibrations. Try to place notes such that all ghosts hear what they want to hear. 
+Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
 var level1 = Level.create_level("level1", "octaves are 2^n times frequency", ["A", "G"], ["Oc", "Oc", "2Oc"], ["Oc", "Oc", "2Oc", "Oc", "Oc", "2Oc"])
 var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"])
 
@@ -43,7 +45,7 @@ var level12 = Level.create_advanced_level("level12", "E minor",
 var levelTest = Level.create_level("levelT", "", note_names, ["A", "A#", "E"], ["Hi", "Oc->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
 var levelTest2 = Level.create_level("levelT", "", note_names, ["Lo"], ["Hi", "Lo->Hi", "Hi->Lo->Lo", "A", "A->E", "A->C", "A->C->E", "I3", "I7", "I3->C->Hi"])
 
-var levels = [levelTest, levelTest2, level0, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11]
+var levels = [level0, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11]
 
 var currentLevel = null
 var lives = 3

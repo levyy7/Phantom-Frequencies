@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy45101navcqq"]
+[gd_scene load_steps=4 format=3 uid="uid://cy45101navcqq"]
 
 [ext_resource type="Script" path="res://map/grass_tile.gd" id="1_e52a5"]
 [ext_resource type="PackedScene" uid="uid://df7w0f3hmaa7q" path="res://towers/TowerSlotGroup.tscn" id="2_a7t64"]
+[ext_resource type="Texture2D" uid="uid://c2ko3trgtiucl" path="res://assets/violin.png" id="3_jxvxh"]
 
 [node name="GrassTile" type="Node2D"]
 script = ExtResource("1_e52a5")
@@ -33,19 +34,24 @@ autowrap_mode = 2
 [node name="DescriptionPanel" type="Panel" parent="."]
 offset_left = 53.0
 offset_top = 69.0
-offset_right = 177.0
+offset_right = 191.0
 offset_bottom = 143.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
 [node name="DescriptionText" type="RichTextLabel" parent="DescriptionPanel"]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 1.0
-offset_right = 462.0
-offset_bottom = 281.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 533.0
+offset_bottom = 334.0
 scale = Vector2(0.25, 0.25)
 theme_override_font_sizes/normal_font_size = 60
 text = "adadada"
 scroll_active = false
 autowrap_mode = 2
+
+[node name="Violin" type="Sprite2D" parent="."]
+position = Vector2(107, -6)
+scale = Vector2(3.61184, 3.29054)
+texture = ExtResource("3_jxvxh")

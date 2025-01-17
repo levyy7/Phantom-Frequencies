@@ -10,5 +10,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-columns = 3
+columns = 5
 script = ExtResource("1_6pv3j")
