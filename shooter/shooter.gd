@@ -83,6 +83,7 @@ func spawn_bullet(target: Node2D) -> void:
 
 func update_frequency(note: Note) -> void:
 	current_frequency_index = NOTE_TO_INDEX[note.name] + (note.octave + 1) * 12
+	print(current_frequency_index)
 	current_name = note.name
 
 
