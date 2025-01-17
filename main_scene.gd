@@ -66,9 +66,9 @@ func play_one_round():
 	
 	tile_manager.end_turn()
 	popNextGhost()
-	checkWinLoseCriteria()
 	
 	await tile_manager.turn_finished
+	checkWinLoseCriteria()
 	print("Turn finished")
 	
 	next_round_button.disabled = false
