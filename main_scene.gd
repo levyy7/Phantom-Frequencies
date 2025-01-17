@@ -54,14 +54,14 @@ func popNextGhost():
 	
 func play_one_round():
 	# reset the enemy's bullet
-	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining)
+	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining, [] as Array[TowerSlot])
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager
 	print("Playing one round", "moves remaining ", moves_remaining)
 	
 	# TODO: change the button logic to be inside a script in button
 	next_round_button.disabled = true
-	next_round_button.text = "Round in progress..."
+	#next_round_button.text = "Round in progress..."
 	
 	
 	tile_manager.end_turn()
@@ -72,9 +72,11 @@ func play_one_round():
 	print("Turn finished")
 	
 	next_round_button.disabled = false
-	next_round_button.text = "Next Round"
+	#next_round_button.text = "Next Round"
 	
+	get_node("UI frame/TowerUI").usedSlotsRound = [] as Array[TowerSlot]
 	moves_remaining = 2
+	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining, [] as Array[TowerSlot])
 	
 func checkWinLoseCriteria():
 	var enemyCount = $Map/TileManager.enemyCount()

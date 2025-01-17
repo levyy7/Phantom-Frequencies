@@ -11,10 +11,10 @@ var current_octave := DEFAULT_OCTAVE
 func _ready() -> void:
 	pass
 
-func createButtons(notes: Array[String], enabled_notes: Array[String]) -> Array[NoteButton]:
+func createNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> Array[NoteButton]:
 	var container_width = $NoteButtonsContainer.size.x
 	var container_height = $NoteButtonsContainer.size.y
-	var button_width = container_width / 12
+	var button_width = container_width / (notes.size() + 1)
 	var note_buttons: Array[NoteButton] = []
 
 	var row = 0
@@ -42,6 +42,45 @@ func createButtons(notes: Array[String], enabled_notes: Array[String]) -> Array[
 		row += 1
 
 	return note_buttons
+	
+	
+func createDeleteButton(notes: Array[String]) -> Button:
+	var texture = load("res://assets/x-delete-button-png-15.png")
+	var container_width = $NoteButtonsContainer.size.x
+	var container_height = $NoteButtonsContainer.size.y
+	var button_width = container_width / (notes.size() + 1)
+	
+	var button = Button.new()
+	button.name = "ButtonDel"
+	# Center vertically at 17 pixels from top
+	# Horizontally space based on fraction of container width
+	button.set_position(Vector2(button_width * 12, 0))
+	button.set_size(Vector2(button_width, container_height))
+	
+	button.disabled = false
+	
+	var new_style_normal = button.get_theme_stylebox("normal").duplicate()
+	new_style_normal.bg_color = Color(0.671, 0.031, 0.031)
+	var new_style_pressed = button.get_theme_stylebox("pressed").duplicate()
+	new_style_pressed.bg_color = Color(0.51, 0.004, 0.004)
+	var new_style_hover = button.get_theme_stylebox("hover").duplicate()
+	new_style_hover.bg_color = Color(0.82, 0.012, 0.012)
+	
+	button.add_theme_stylebox_override("normal",new_style_normal)
+	button.add_theme_stylebox_override("pressed", new_style_pressed)
+	button.add_theme_stylebox_override("hover", new_style_hover)
+	
+	
+	button.icon = texture
+	button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	button.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
+	button.expand_icon = true
+	
+	button.focus_mode = Control.FOCUS_NONE
+	
+	$NoteButtonsContainer.add_child(button)
+	
+	return button
 
 func start_glows() -> void:
 	print("Starting glows")

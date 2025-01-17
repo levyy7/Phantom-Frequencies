@@ -15,16 +15,20 @@ func _ready() -> void:
 	label.text = text2
 
 
-func current_slot_updated(slot: TowerSlot, moves_remaining: int) -> void:
+func current_slot_updated(slot: TowerSlot, moves_remaining: int, usedSlotsRound: Array[TowerSlot]) -> void:
+	print("AAAAAAAAA")
+	print(slot)
 	self.current_slot = slot
 	if slot == null:
 		self.visible = true
 		label.text=text2
 	else:
-		moves_remaining_updated(moves_remaining)
+		moves_remaining_updated(moves_remaining, usedSlotsRound)
 		
-func moves_remaining_updated(moves_remaining: int) -> void:
-	if moves_remaining == 0 and (not self.current_slot.has_shooter()):
+func moves_remaining_updated(moves_remaining: int, usedSlotsRound: Array[TowerSlot]) -> void:
+	print(current_slot)
+	print(usedSlotsRound)
+	if moves_remaining == 0 and not (current_slot in usedSlotsRound):
 		self.visible = true
 		label.text=text1
 	else:
