@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5xwbhovlmtqx"]
+[gd_scene load_steps=15 format=3 uid="uid://c5xwbhovlmtqx"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_b5ekj"]
 [ext_resource type="FontFile" uid="uid://oqvx1mhe8hka" path="res://Jersey15-Regular.ttf" id="2_cdbx5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b67t084jvaek4" path="res://ui/TowerUI.tscn" id="3_u5air"]
 [ext_resource type="PackedScene" uid="uid://bmnvyryt3yep8" path="res://visualization_pane/v_box_container.tscn" id="3_yt8cq"]
 [ext_resource type="Texture2D" uid="uid://bidyrpnlwswjj" path="res://assets/next.png" id="4_acbbv"]
+[ext_resource type="PackedScene" uid="uid://u4kp4wfo3u60" path="res://ui/LevelButton.tscn" id="4_upfhr"]
 [ext_resource type="StyleBox" path="res://public/play_button_hover.tres" id="5_w45ix"]
 [ext_resource type="Theme" uid="uid://duhs1xsrhsft5" path="res://default_theme.tres" id="6_63vm8"]
 [ext_resource type="StyleBox" path="res://public/play_button_def.tres" id="7_oq7q4"]
@@ -49,24 +50,27 @@ text = "2/2 moves left
 label_settings = SubResource("LabelSettings_p5aby")
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="UI frame"]
-process_mode = 3
+[node name="LevelButton" parent="UI frame" instance=ExtResource("4_upfhr")]
 layout_mode = 0
-offset_left = 1950.0
-offset_top = 474.0
-offset_right = 2289.0
-offset_bottom = 542.0
-theme_override_fonts/font = ExtResource("2_cdbx5")
-theme_override_font_sizes/font_size = 40
-text = "Back to Level Select"
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1955.0
+offset_top = 470.0
+offset_right = 2295.0
+offset_bottom = 538.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="NextRoundButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
 offset_left = 1962.0
-offset_top = 157.0
+offset_top = 142.0
 offset_right = 2279.0
-offset_bottom = 468.0
+offset_bottom = 453.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 40
 theme_override_icons/icon = ExtResource("4_acbbv")
@@ -149,7 +153,5 @@ offset_bottom = 56.0
 theme_override_font_sizes/font_size = 30
 text = "Upcoming Ghost:"
 
-[connection signal="pressed" from="UI frame/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="toggled" from="UI frame/BackButton" to="." method="_on_back_button_toggled"]
 [connection signal="pressed" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_pressed"]
 [connection signal="toggled" from="UI frame/NextRoundButton" to="." method="_on_next_round_button_toggled"]

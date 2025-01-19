@@ -16,6 +16,7 @@ var lives: int = 3:
 		$"UI frame/Lives_text".text=str(lives)+" ghosts away from being haunted"
 
 func init_level(level: Level):
+	$"UI frame/LevelButton".set_level(level.name)
 	print("initializing level")
 	$Map/TileManager.setPathwayPreferences(level.getPathwayPreference())
 
@@ -28,6 +29,8 @@ func init_level(level: Level):
 	$"UI frame/TowerUI".initializeNoteButtons(level.note_names, level.notes)
 
 	moves_remaining = original_moves_count
+	
+	$"UI frame/LevelButton".pressed.connect(_on_back_button_pressed)
 	popNextGhost()
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -57,7 +57,6 @@ static func _generate_frequencies() -> Array[Frequency]:
 			)
 			
 			frequencies.append(Frequency.new(freq, col))
-	
 	return frequencies
 
 # below not used atm

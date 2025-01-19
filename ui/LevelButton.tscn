@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://u4kp4wfo3u60"]
+
+[ext_resource type="FontFile" uid="uid://oqvx1mhe8hka" path="res://Jersey15-Regular.ttf" id="1_7lacu"]
+[ext_resource type="Script" path="res://ui/level_button.gd" id="2_awwce"]
+
+[node name="LevelButton" type="Button"]
+process_mode = 3
+custom_minimum_size = Vector2(340, 68)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1200.0
+offset_top = -700.0
+offset_right = -860.0
+offset_bottom = -632.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Back to Level Select"
+theme_override_fonts/font = ExtResource("1_7lacu")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("2_awwce")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelText" type="Label" parent="Control"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.9
+theme_override_fonts/font = ExtResource("1_7lacu")
+theme_override_font_sizes/font_size = 40
+text = "Level X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+offset_right = 76.0
+offset_bottom = 68.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="BackHint" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.773438, 0.773438, 0.773438, 1)
+theme_override_fonts/font = ExtResource("1_7lacu")
+theme_override_font_sizes/font_size = 60
+text = "<<"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
