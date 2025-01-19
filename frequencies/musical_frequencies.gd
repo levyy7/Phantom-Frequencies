@@ -22,18 +22,18 @@ const JUST_RATIOS = {
 }
 
 const RAINBOW_12 = {
-	"red": Color(1, 0, 0),
-	"orange": Color(1, 0.5, 0),
-	"yellow": Color(1, 1, 0),
-	"lime green": Color(0.5, 1, 0),
-	"green": Color(0, 1, 0),
-	"spring green": Color(0, 1, 0.5),
-	"cyan": Color(0, 1, 1),
-	"azure blue": Color(0, 0.5, 1),
-	"blue": Color(0, 0, 1),
-	"violet": Color(0.5, 0, 1),
-	"magenta": Color(1, 0, 1),
-	"rose": Color(1, 0, 0.5)
+ "red": Color(1, 0.6, 0.6),
+ "orange": Color(1, 0.8, 0.4),
+ "yellow": Color(1, 1, 0),
+ "lime green": Color(0.5, 1, 0),
+ "green": Color(0.5, 1, 0.5),
+ "spring green": Color(0.4, 1, 0.7),
+ "cyan": Color(0, 1, 1),
+ "azure blue": Color(0.5, 0.8, 1),
+ "blue": Color(0.6, 0.6, 1),
+ "violet": Color(0.8, 0.5, 1),
+ "magenta": Color(1, 0.5, 1),
+ "rose": Color(1, 0.5, 0.8)
 }
 
 static var FREQUENCIES: Array[Frequency] = _generate_frequencies()
