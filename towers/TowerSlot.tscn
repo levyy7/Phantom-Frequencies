@@ -9,6 +9,44 @@ offset_bottom = 40.0
 color = Color(1, 1, 0.737255, 1)
 script = ExtResource("1_elfc6")
 
+[node name="InnerShadowTop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+color = Color(0.95, 0.95, 0.8, 0.7)
+
+[node name="InnerShadowLeft" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_vertical = 2
+color = Color(0.95, 0.95, 0.8, 0.7)
+
+[node name="InnerShadowBottom" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.4, 0.4, 0.3, 0.6)
+
+[node name="InnerShadowRight" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.4, 0.4, 0.3, 0.6)
+
 [node name="Control" type="Control" parent="."]
 process_mode = 3
 layout_mode = 1

@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b67t084jvaek4" path="res://ui/TowerUI.tscn" id="3_u5air"]
 [ext_resource type="PackedScene" uid="uid://bmnvyryt3yep8" path="res://visualization_pane/v_box_container.tscn" id="3_yt8cq"]
 [ext_resource type="Texture2D" uid="uid://bidyrpnlwswjj" path="res://assets/next.png" id="4_acbbv"]
-[ext_resource type="StyleBox" uid="uid://o8rfxde0hx1a" path="res://public/play_button_hover.tres" id="5_w45ix"]
+[ext_resource type="StyleBox" path="res://public/play_button_hover.tres" id="5_w45ix"]
 [ext_resource type="Theme" uid="uid://duhs1xsrhsft5" path="res://default_theme.tres" id="6_63vm8"]
-[ext_resource type="StyleBox" uid="uid://dbx7nphu7x744" path="res://public/play_button_def.tres" id="7_oq7q4"]
+[ext_resource type="StyleBox" path="res://public/play_button_def.tres" id="7_oq7q4"]
 [ext_resource type="Texture2D" uid="uid://ctjqhs3rebidf" path="res://assets/house.png" id="8_g7d3c"]
 
 [sub_resource type="Theme" id="Theme_ei74i"]
