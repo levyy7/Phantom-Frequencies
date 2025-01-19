@@ -26,7 +26,7 @@ position = Vector2(-3, -41)
 script = ExtResource("1_b5ekj")
 
 [node name="Map" parent="." instance=ExtResource("3_4x4u7")]
-position = Vector2(36, 327)
+position = Vector2(36, 298)
 
 [node name="UI frame" type="ReferenceRect" parent="."]
 offset_left = 31.0
@@ -38,22 +38,24 @@ border_width = 4.0
 
 [node name="Actions_text" type="Label" parent="UI frame"]
 layout_mode = 0
-offset_left = 1106.0
-offset_top = -836.0
-offset_right = 1377.0
-offset_bottom = -795.0
-scale = Vector2(1.4, 1.4)
-theme_override_font_sizes/font_size = 20
-text = "Remaining placements: 2"
+offset_left = 1920.0
+offset_top = 62.0
+offset_right = 2177.0
+offset_bottom = 97.0
+scale = Vector2(1.65, 1.65)
+theme_override_font_sizes/font_size = 28
+text = "2/2 moves left
+"
 label_settings = SubResource("LabelSettings_p5aby")
+horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
-offset_left = 9.0
-offset_top = 436.0
-offset_right = 348.0
-offset_bottom = 504.0
+offset_left = 1950.0
+offset_top = 474.0
+offset_right = 2289.0
+offset_bottom = 542.0
 theme_override_fonts/font = ExtResource("2_cdbx5")
 theme_override_font_sizes/font_size = 40
 text = "Back to Level Select"
@@ -61,10 +63,10 @@ text = "Back to Level Select"
 [node name="NextRoundButton" type="Button" parent="UI frame"]
 process_mode = 3
 layout_mode = 0
-offset_left = 30.0
-offset_top = 21.0
-offset_right = 347.0
-offset_bottom = 332.0
+offset_left = 1962.0
+offset_top = 157.0
+offset_right = 2279.0
+offset_bottom = 468.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 40
 theme_override_icons/icon = ExtResource("4_acbbv")
@@ -74,25 +76,25 @@ expand_icon = true
 
 [node name="VBoxContainer" parent="UI frame" instance=ExtResource("3_yt8cq")]
 layout_mode = 0
-offset_left = 1226.0
-offset_top = -19.0
-offset_right = 2295.0
-offset_bottom = 553.0
+offset_left = 803.0
+offset_top = -37.0
+offset_right = 1872.0
+offset_bottom = 535.0
 
 [node name="TowerUI" parent="UI frame" instance=ExtResource("3_u5air")]
 layout_mode = 0
 offset_left = 299.0
-offset_top = -789.0
+offset_top = -821.0
 offset_right = 1549.0
-offset_bottom = -689.0
+offset_bottom = -721.0
 scale = Vector2(1.5, 1.5)
 
 [node name="TutorialPanel" type="Panel" parent="UI frame"]
 layout_mode = 0
-offset_left = 385.0
-offset_top = 14.0
-offset_right = 1209.0
-offset_bottom = 545.0
+offset_left = 10.0
+offset_top = -37.0
+offset_right = 801.0
+offset_bottom = 533.0
 
 [node name="TutorialText" type="Label" parent="UI frame/TutorialPanel"]
 layout_mode = 0
@@ -108,26 +110,26 @@ autowrap_mode = 3
 
 [node name="Lives_text" type="Label" parent="UI frame"]
 layout_mode = 0
-offset_left = 1957.0
-offset_top = -107.0
-offset_right = 2232.0
+offset_left = 1995.0
+offset_top = -110.0
+offset_right = 2264.0
 offset_bottom = -58.0
-scale = Vector2(1.4, 1.4)
+scale = Vector2(1.25, 1.25)
 theme_override_font_sizes/font_size = 20
 text = "Remaining life: 2"
 label_settings = SubResource("LabelSettings_p5aby")
 autowrap_mode = 2
 
 [node name="House" type="Sprite2D" parent="UI frame"]
-position = Vector2(2129, -215)
+position = Vector2(2141, -228)
 scale = Vector2(3.61184, 3.29054)
 texture = ExtResource("8_g7d3c")
 
 [node name="EnemyPreviewPanel" type="Panel" parent="."]
 offset_left = 23.0
-offset_top = 91.0
+offset_top = 55.0
 offset_right = 293.0
-offset_bottom = 294.0
+offset_bottom = 258.0
 
 [node name="EnemyPreview" type="Container" parent="EnemyPreviewPanel"]
 process_mode = 3

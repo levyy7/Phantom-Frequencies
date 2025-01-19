@@ -4,10 +4,11 @@ extends Node2D
 var is_paused: bool = true
 var upcomingGhosts = []
 
+var original_moves_count: int = 2
 var moves_remaining: int = 2:
 	set(new_moves_remaining):
 		moves_remaining=new_moves_remaining
-		$"UI frame/Actions_text".text="Remaining placements: "+str(moves_remaining)
+		$"UI frame/Actions_text".text = str(moves_remaining) + "/" + str(original_moves_count) + " moves left"
 
 var lives: int = 3:
 	set(newLives):
@@ -25,6 +26,8 @@ func init_level(level: Level):
 	lives = Global.lives
 	$Map/TileManager.fill_with_enemies(initalGhosts)
 	$"UI frame/TowerUI".initializeNoteButtons(level.note_names, level.notes)
+
+	moves_remaining = original_moves_count
 	popNextGhost()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -75,7 +78,7 @@ func play_one_round():
 	#next_round_button.text = "Next Round"
 	
 	get_node("UI frame/TowerUI").usedSlotsRound = [] as Array[TowerSlot]
-	moves_remaining = 2
+	moves_remaining = original_moves_count
 	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining, [] as Array[TowerSlot])
 	
 func checkWinLoseCriteria():
