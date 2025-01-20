@@ -16,8 +16,6 @@ func _ready() -> void:
 
 
 func current_slot_updated(slot: TowerSlot, moves_remaining: int, usedSlotsRound: Array[TowerSlot]) -> void:
-	print("AAAAAAAAA")
-	print(slot)
 	self.current_slot = slot
 	if slot == null:
 		self.visible = true
@@ -26,8 +24,6 @@ func current_slot_updated(slot: TowerSlot, moves_remaining: int, usedSlotsRound:
 		moves_remaining_updated(moves_remaining, usedSlotsRound)
 		
 func moves_remaining_updated(moves_remaining: int, usedSlotsRound: Array[TowerSlot]) -> void:
-	print(current_slot)
-	print(usedSlotsRound)
 	if moves_remaining == 0 and not (current_slot in usedSlotsRound):
 		self.visible = true
 		label.text=text1
