@@ -51,10 +51,8 @@ func _draw() -> void:
 	var freq = FREQUENCIES[current_frequency_index]
 
 	# Draw a circle at the spawner's position
-	var radius = 20 # Adjust size as needed
+	var radius = 20
 	draw_circle(Vector2.ZERO, radius, freq.color)
-	#draw_line(Vector2.ZERO, Vector2(radius, 0), Color.BLACK, 2.5)
-	
 	
 	var font = ThemeDB.fallback_font
 	# Draw the note on top of the circle
