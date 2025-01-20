@@ -70,7 +70,7 @@ func load_default_info() -> void:
 		button.button_pressed = false
 
 # returns if out of moves
-func _on_change_button_pressed(pressed_button):
+func _on_change_button_pressed(pressed_button: NoteButton):
 	towerChangePanel.stop_glows()
 	# Reset all buttons except the one pressed
 	for button in _changeButtons:
@@ -78,8 +78,8 @@ func _on_change_button_pressed(pressed_button):
 			button.button_pressed = false
 
 	if _currentSlot != null:
-		var note: Note = towerChangePanel.toNote(pressed_button)
-			
+		var note: Note = pressed_button.to_note()
+		
 		if _currentTower == null:
 			if (mainScene.moves_remaining == 0):
 				print("out of moves for this round")

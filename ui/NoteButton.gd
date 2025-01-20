@@ -30,3 +30,6 @@ func set_octave(new_octave: int) -> void:
 
 func _on_pressed() -> void:
 	note_player.play()
+
+func to_note() -> Note:
+	return Note.new(note_name, octave)

@@ -10,8 +10,8 @@ As you might already know, musical pitches correspond to frequencies of sound vi
 Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"]) \
 	.with_moves_per_round(4)
 	
-var level1 = Level.create_level("level1", "octaves are 2^n times frequency", ["A", "G"], ["Oc", "Oc", "2Oc"], ["Oc", "Oc", "2Oc", "Oc", "Oc", "2Oc"]) \
-	.with_moves_per_round(3)
+var level1 = Level.create_level("level1", "octaves are 2^n times frequency", ["A", "B", "G"], ["Oc", "Oc", "2Oc"], ["Oc", "Oc", "Oc"]) \
+	.with_moves_per_round(2)
 var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"]) \
 	.with_moves_per_round(3)
 

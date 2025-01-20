@@ -23,7 +23,7 @@ func createNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> Ar
 	for octave in [0, 1]:
 		for i in notes.size():
 			var is_enabled = enabled_notes.has(notes[i])
-			var button = NoteButton.new(notes[i], current_octave)
+			var button = NoteButton.new(notes[i], octave)
 			button.name = "Button" + str(i) + str(octave)
 			# Center vertically at 17 pixels from top
 			# Horizontally space based on fraction of container width
