@@ -14,7 +14,6 @@ var _deleteButton: Button = null
 
 var octave_offset: int = 0
 var usedSlotsRound: Array[TowerSlot] = []
-@onready var infoPanel = $"PanelContainer/Information Panel"
 @onready var mainScene = get_tree().get_root().get_node("MainScene")
 @onready var towerChangePanel: TowerChangePanel = $"NoteSelectorPanel"
 
@@ -65,16 +64,8 @@ func load_tower_info(tower: Shooter) -> void:
 	var index = tower.current_frequency_index % 12
 	var octave = int(floor(tower.current_frequency_index / 12)) - 1
 	
-	infoPanel.get_node("Tower Name").text = tower.current_name
-	infoPanel.get_node("Frequency").text = str(tower.current_frequency().frequency) + " Hz"
-	infoPanel.get_node("Octave").text = str(octave + 4) + "th Octave"
-	
 
 func load_default_info() -> void:
-	infoPanel.get_node("Tower Name").text = "Empty Slot"
-	infoPanel.get_node("Frequency").text = "<frequency>"
-	infoPanel.get_node("Octave").text = "<octave>"
-	
 	for button in _changeButtons:
 		button.button_pressed = false
 

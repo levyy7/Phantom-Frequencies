@@ -1,10 +1,16 @@
 class_name Level
 var name: String
+
+
 var description: String
 var notes: Array[String]
 var tiles: Array[String]
 var inital_preferences
 var upcoming_preferences
+
+# Number of allowed moves (insertions) per round
+# See `with_moves_per_round()`
+var moves_per_round: int = 2
 static var note_names: Array[String] = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
 func fromTextToPreferenceList(text: String) -> Array[Preference]:
@@ -101,3 +107,7 @@ static func create_advanced_level(name: String, description: String, notes: Arra
 	level.inital_preferences = inital_preferences
 	level.upcoming_preferences = upcoming_preferences
 	return level
+
+func with_moves_per_round(moves_per_round: int) -> Level:
+	self.moves_per_round = moves_per_round
+	return self

@@ -32,8 +32,9 @@ position = Vector2(36, 298)
 [node name="UI frame" type="ReferenceRect" parent="."]
 offset_left = 31.0
 offset_top = 885.0
-offset_right = 2325.0
-offset_bottom = 1522.0
+offset_right = 78.0
+offset_bottom = 941.0
+mouse_filter = 1
 theme = SubResource("Theme_ei74i")
 border_width = 4.0
 
@@ -44,6 +45,7 @@ offset_top = 62.0
 offset_right = 2177.0
 offset_bottom = 97.0
 scale = Vector2(1.65, 1.65)
+tooltip_text = "fdsa"
 theme_override_font_sizes/font_size = 28
 text = "2/2 moves left
 "

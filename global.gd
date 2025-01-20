@@ -7,9 +7,13 @@ func maj(root: String, ct: int):
 
 var level0 = Level.create_level("level0", "Level 0: Pitches as frequencies
 As you might already know, musical pitches correspond to frequencies of sound vibrations. Try to place notes such that all ghosts hear what they want to hear. 
-Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
-var level1 = Level.create_level("level1", "octaves are 2^n times frequency", ["A", "G"], ["Oc", "Oc", "2Oc"], ["Oc", "Oc", "2Oc", "Oc", "Oc", "2Oc"])
-var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"])
+Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"]) \
+	.with_moves_per_round(4)
+	
+var level1 = Level.create_level("level1", "octaves are 2^n times frequency", ["A", "G"], ["Oc", "Oc", "2Oc"], ["Oc", "Oc", "2Oc", "Oc", "Oc", "2Oc"]) \
+	.with_moves_per_round(3)
+var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"]) \
+	.with_moves_per_round(3)
 
 var level3 = Level.create_advanced_level("level3", "consonance, dissonance",
 ["C", "F", "G", "B"], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"],

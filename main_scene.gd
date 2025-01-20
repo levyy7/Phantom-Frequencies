@@ -8,6 +8,11 @@ var original_moves_count: int = 2
 var moves_remaining: int = 2:
 	set(new_moves_remaining):
 		moves_remaining=new_moves_remaining
+		
+		if moves_remaining == 0:
+			$"UI frame/Actions_text".tooltip_text = "Press 'Next Round' to get more moves"
+		else:
+			$"UI frame/Actions_text".tooltip_text = ""
 		$"UI frame/Actions_text".text = str(moves_remaining) + "/" + str(original_moves_count) + " moves left"
 
 var lives: int = 3:
@@ -28,6 +33,7 @@ func init_level(level: Level):
 	$Map/TileManager.fill_with_enemies(initalGhosts)
 	$"UI frame/TowerUI".initializeNoteButtons(level.note_names, level.notes)
 
+	original_moves_count = level.moves_per_round
 	moves_remaining = original_moves_count
 	
 	$"UI frame/LevelButton".pressed.connect(_on_back_button_pressed)
