@@ -21,6 +21,9 @@ func _ready():
 	$TowerSlots.hovered.connect(_on_hovered)
 	$TowerSlots.unhovered.connect(_on_unhovered)
 	
+	$ShortLabel.mouse_entered.connect(_on_hovered)
+	$ShortLabel.mouse_exited.connect(_on_unhovered)
+	
 	$TowerSlots.shooter_frequency_updated.connect(_recheck_chord_satisfied)
 
 func _recheck_chord_satisfied(_child: TowerSlot):

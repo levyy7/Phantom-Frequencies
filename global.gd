@@ -17,8 +17,8 @@ var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note
 
 var level3 = Level.create_advanced_level("level3", "consonance, dissonance",
 ["C", "F", "G", "B"], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"],
-["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"]) \
- .with_moves_per_round(3)
+["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"])\
+.with_moves_per_round(3)
 var level4 = Level.create_level("level4", "(X, X+k) is X and the note k semitones above it, eg 07 can be CG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"])
 
 var level5 = Level.create_advanced_level("level5", "chords: >= 3 notes at a time. simple->complex = intensify, complex->simple = resolve",
