@@ -5,18 +5,18 @@ const BASE_FREQUENCIES = [220.0, 440.0, 880.0] # A4 note in Hz
 
 # Just intonation ratios based on harmonic series
 const JUST_RATIOS = {
-	"perfect_unison": 1.0,      # 1:1    - A
-	"minor_second": 16.0 / 15,  # 16:15  - Bb
-	"major_second": 9.0 / 8,    # 9:8    - B
-	"minor_third": 6.0 / 5,     # 6:5    - C
-	"major_third": 5.0 / 4,     # 5:4    - C#
-	"perfect_fourth": 4.0 / 3,  # 4:3    - D
-	"tritone": 45.0 / 32,      # 45:32  - Eb
-	"perfect_fifth": 3.0 / 2,   # 3:2    - E
-	"minor_sixth": 8.0 / 5,     # 8:5    - F
-	"major_sixth": 5.0 / 3,     # 5:3    - F#
-	"minor_seventh": 9.0 / 5,   # 9:5    - G
-	"major_seventh": 15.0 / 8,  # 15:8   - G#
+	"perfect_unison": 1.0, # 1:1    - A
+	"minor_second": 16.0 / 15, # 16:15  - Bb
+	"major_second": 9.0 / 8, # 9:8    - B
+	"minor_third": 6.0 / 5, # 6:5    - C
+	"major_third": 5.0 / 4, # 5:4    - C#
+	"perfect_fourth": 4.0 / 3, # 4:3    - D
+	"tritone": 45.0 / 32, # 45:32  - Eb
+	"perfect_fifth": 3.0 / 2, # 3:2    - E
+	"minor_sixth": 8.0 / 5, # 8:5    - F
+	"major_sixth": 5.0 / 3, # 5:3    - F#
+	"minor_seventh": 16 / 9, # 16:9    - G
+	"major_seventh": 15.0 / 8, # 15:8   - G#
 }
 
 const RAINBOW_12 = {
@@ -45,7 +45,7 @@ static func _generate_frequencies() -> Array[Frequency]:
 		
 		# Calculate brightness modifier based on octave
 		# Lower octaves are darker, higher octaves are brighter
-		var brightness = 0.6 + (0.2 * octave_index)  # Ranges from 0.6 to 1.0
+		var brightness = 0.6 + (0.2 * octave_index) # Ranges from 0.6 to 1.0
 		
 		for i in range(12):
 			var ratio = JUST_RATIOS.values()[i]
