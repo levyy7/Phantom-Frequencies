@@ -41,7 +41,7 @@ func build_oscilloscope_points(freqs: Array[Frequency]) -> Array[Vector2]:
 			y += cos(t * freq.frequency)
 		
 		var screen_point = Vector2(
-			t /totalTime *canvas_size.x,
+			t / totalTime * canvas_size.x,
 			center.y + y * scale_factor
 		)
 		

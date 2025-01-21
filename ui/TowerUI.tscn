@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/tower_ui.gd" id="1_l8krk"]
 [ext_resource type="Script" path="res://action_overlay.gd" id="3_f0lfm"]
-[ext_resource type="PackedScene" uid="uid://bwbo7ae1yoqrr" path="res://ui/NoteSelectorPanel.tscn" id="3_hvt2g"]
+[ext_resource type="PackedScene" path="res://ui/NoteSelectorPanel.tscn" id="3_hvt2g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h741e"]
 resource_name = "bg_transparent"

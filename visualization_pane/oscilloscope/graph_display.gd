@@ -1,7 +1,7 @@
 extends Container
 
 
-var margin = 50  # Margin from edges
+var margin = 0  # Margin from edges
 var scale_factor = 80  # Scale the harmonograph pattern
 
 # Called when the node enters the scene tree for the first time.
@@ -45,8 +45,8 @@ func draw_self(points: Array[Vector2], color: Color, num_freq: int) -> void:
 		current_color.a = 0.8 - progress * 0.6  # Fade out towards the end
 		
 		draw_line(
-			(points[i] - center)/num_freq + center,
-			(points[i + 1] - center)/num_freq + center,
+			(points[i] - center)/Vector2(1, num_freq) + center,
+			(points[i + 1] - center)/Vector2(1, num_freq) + center,
 			current_color,
 			6.0/num_freq  # Line width
 		)
