@@ -7,7 +7,7 @@ func _ready() -> void:
 	set_title(Global.win)
 
 func set_title(win: bool):
-	
+	Track.track("Game over. Win: %s" % win)
 	if win:
 		title.text = "YOU WIN!"
 		restartButton.text = "Next Level"

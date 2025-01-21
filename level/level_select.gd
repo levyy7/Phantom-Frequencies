@@ -1,8 +1,10 @@
 extends GridContainer
 
+
 var main_scene_path = "res://main_scene.tscn"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Track.track("Level select opened")
 	var y_offset = 0
 	for level in Global.levels:
 		var button = Button.new()
@@ -15,7 +17,7 @@ func _ready() -> void:
 
 # Callback for button press
 func _on_button_pressed(level):
-	print("Button pressed for item: %s" % level)
+	Track.track("Level opened %s" % level.name)
 	var main_scene = load(main_scene_path)
 	Global.currentLevel=level
 	get_tree().change_scene_to_packed(main_scene)
