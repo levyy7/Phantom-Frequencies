@@ -41,6 +41,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.9
+theme_override_colors/font_color = Color(0.947266, 0.947266, 0.947266, 1)
 theme_override_fonts/font = ExtResource("1_7lacu")
 theme_override_font_sizes/font_size = 40
 text = "Level X"
@@ -56,7 +57,7 @@ theme_override_constants/margin_right = 8
 
 [node name="BackHint" type="Label" parent="Control/MarginContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.773438, 0.773438, 0.773438, 1)
+theme_override_colors/font_color = Color(0.705078, 0.478455, 0.349113, 1)
 theme_override_fonts/font = ExtResource("1_7lacu")
 theme_override_font_sizes/font_size = 60
 text = "<<"

@@ -11,6 +11,7 @@ func _ready() -> void:
 		button.text = level.name
 		button.name = level.name
 		button.custom_minimum_size = Vector2(400, 200)
+		button.add_theme_font_size_override("font_size", 24)
 		
 		button.connect("pressed", Callable(self, "_on_button_pressed").bind(level))
 		add_child(button)

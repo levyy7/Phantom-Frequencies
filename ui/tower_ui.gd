@@ -116,6 +116,7 @@ func _on_play_button_pressed():
 
 
 func _on_delete_button_pressed():
+	#TODO DELETE BROKEN
 	if (_currentTower != null):
 		if _currentSlot in usedSlotsRound:
 			mainScene.moves_remaining += 1

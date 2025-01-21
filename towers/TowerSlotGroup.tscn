@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c2ko3trgtiucl" path="res://assets/violin.png" id="4_8o0ck"]
 
 [node name="TowerSlotGroup" type="Node2D" groups=["pausable", "tower_slot_group"]]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_73tln")
 
 [node name="GlowRect" type="ColorRect" parent="."]
@@ -20,17 +21,17 @@ color = Color(0.750856, 0.499085, 0.268345, 1)
 offset_left = -12.0
 offset_top = -16.0
 offset_right = 51.0
-offset_bottom = 181.0
+offset_bottom = 167.0
 color = Color(0.692359, 0.506738, 0.526852, 1)
 script = ExtResource("2_1svp2")
 
 [node name="TowerSlot3" parent="." instance=ExtResource("1_qdg76")]
-offset_top = 124.0
-offset_bottom = 164.0
+offset_top = 113.333
+offset_bottom = 153.333
 
 [node name="TowerSlot2" parent="." instance=ExtResource("1_qdg76")]
-offset_top = 62.0
-offset_bottom = 102.0
+offset_top = 56.0
+offset_bottom = 96.0
 
 [node name="TowerSlot" parent="." instance=ExtResource("1_qdg76")]
 

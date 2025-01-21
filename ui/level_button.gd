@@ -14,10 +14,14 @@ func set_level(level_name: String):
 
 # Mouse hover handlers
 func _on_mouse_entered() -> void:
+	# Make BackHint visible and use brighter color
 	$"Control/MarginContainer".visible = true
+	$"Control/MarginContainer/BackHint".add_theme_color_override("font_color", Color(0.95, 0.65, 0.45, 1))
 
 func _on_mouse_exited() -> void:
+	# Return to original color
 	$"Control/MarginContainer".visible = true
+	$"Control/MarginContainer/BackHint".add_theme_color_override("font_color", Color(0.705, 0.478, 0.349, 1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
