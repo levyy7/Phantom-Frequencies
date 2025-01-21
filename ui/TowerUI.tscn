@@ -12,9 +12,9 @@ bg_color = Color(0.23212, 0.23212, 0.23212, 0)
 bg_color = Color(0.846968, 1.54018e-06, 0.502327, 0)
 
 [node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(1250, 100)
-offset_right = 1250.0
-offset_bottom = 116.0
+custom_minimum_size = Vector2(850, 100)
+offset_right = 1084.0
+offset_bottom = 115.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h741e")
 script = ExtResource("1_l8krk")
 
@@ -33,6 +33,7 @@ anchors_preset = -1
 anchor_left = 0.142
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 38.072
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
@@ -69,9 +70,9 @@ autowrap_mode = 0
 
 [node name="OctaveLabels" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.142
+anchor_right = 0.173
 anchor_bottom = 1.0
-offset_right = 2.5
+offset_right = 0.467987
 grow_vertical = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="OctaveLabels"]

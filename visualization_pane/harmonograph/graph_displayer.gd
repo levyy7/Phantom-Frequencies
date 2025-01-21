@@ -8,7 +8,6 @@ var scale_factor = 80  # Scale the harmonograph pattern
 func _ready() -> void:
 	pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw()

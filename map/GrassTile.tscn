@@ -10,20 +10,21 @@ script = ExtResource("1_e52a5")
 position = Vector2(-19, -82)
 
 [node name="ShortLabel" type="Panel" parent="."]
-offset_left = -33.0
-offset_top = -132.0
-offset_right = 33.0
-offset_bottom = -103.0
+offset_left = -45.0
+offset_top = -133.0
+offset_right = 46.0
+offset_bottom = -100.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
 [node name="DescriptionText" type="RichTextLabel" parent="ShortLabel"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 2.0
-offset_right = 285.0
-offset_bottom = 127.0
-scale = Vector2(0.2, 0.2)
+offset_left = 8.0
+offset_top = -1.0
+offset_right = 288.0
+offset_bottom = 124.0
+scale = Vector2(0.28, 0.28)
+mouse_filter = 1
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 80
 text = "adadada"
@@ -31,20 +32,20 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-offset_left = 53.0
-offset_top = 69.0
-offset_right = 191.0
-offset_bottom = 143.0
+offset_left = 46.0
+offset_top = 68.0
+offset_right = 259.0
+offset_bottom = 206.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
 [node name="DescriptionText" type="RichTextLabel" parent="DescriptionPanel"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 533.0
-offset_bottom = 334.0
-scale = Vector2(0.25, 0.25)
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 500.0
+offset_bottom = 317.0
+scale = Vector2(0.4, 0.4)
 theme_override_font_sizes/normal_font_size = 60
 text = "adadada"
 scroll_active = false
