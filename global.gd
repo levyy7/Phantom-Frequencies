@@ -17,21 +17,21 @@ var level2 = Level.create_level("level2", "notes are roughly 440*2^(k/12)", note
 
 var level3 = Level.create_advanced_level("level3", "consonance, dissonance",
 ["C", "F", "G", "B"], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"],
-["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"])
-.with_moves_per_round(3)
+["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"]) \
+ .with_moves_per_round(3)
 var level4 = Level.create_level("level4", "(X, X+k) is X and the note k semitones above it, eg 07 can be CG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"])
 
 var level5 = Level.create_advanced_level("level5", "chords: >= 3 notes at a time. simple->complex = intensify, complex->simple = resolve",
   ["A", "B", "C", "D", "E", "F", "G"], ["C", "E", "F", "F"], ["C", "E", "G", "D"],
-  [maj("C", 3), maj("C", 3), "F,A,C,3", "F,A,C,3", maj("G", 3), maj("G", 3), maj("C", 3), maj("C", 3)])
+  [maj("C", 3), maj("C", 3), "F,A,C,3", "F,A,C,3", maj("G", 3), maj("G", 3), maj("C", 3), maj("C", 3)]) \
   .with_moves_per_round(4)
 var level6 = Level.create_advanced_level("level6", "major vs minor chords",
   ["A", "B", "C", "D", "E", "F#", "G"], ["G", "B", "C", "E"], ["D", "F#", "A", "E"],
-  ["maj", "maj", "maj", "maj", "min", "min", "maj", "maj"])
+  ["maj", "maj", "maj", "maj", "min", "min", "maj", "maj"]) \
   .with_moves_per_round(4)
 var level7 = Level.create_advanced_level("level7", "a sad song",
   ["A", "B", "C", "D", "E", "F", "G#"], ["A", "A", "A", "A"], ["A", "A", "A", "A"],
-  ["min", "min", "min", "min", "maj", "maj", "min", "min"])
+  ["min", "min", "min", "min", "maj", "maj", "min", "min"]) \
   .with_moves_per_round(4)
 
 var level8 = Level.create_advanced_level("level8", "A major (is it happy?)",
@@ -42,15 +42,15 @@ var level9 = Level.create_advanced_level("level9", "A minor (is it sad?)",
   ["", "", "A,C,E,1", "E,G#,B,1", "", "", "E,G#,B,1", "A,C,E,1"])
 var level10 = Level.create_advanced_level("level10", "G major",
   ["A", "B", "C", "D", "E", "F#", "G"], ["A", "Hi", "A*2^(7/12)", "Lo->Hi"], ["Oc", "I6", "D->C", "Hi"],
-  ["Con", "Con", maj("G", 1), "D,F#,A,1", "Dis", "Dis", "D,F#,A,C,1", maj("G", 1)])
+  ["Con", "Con", maj("G", 1), "D,F#,A,1", "Dis", "Dis", "D,F#,A,C,1", maj("G", 1)]) \
   .with_moves_per_round(3)
 var level11 = Level.create_advanced_level("level11", "G major again",
   ["A", "B", "C", "D", "E", "F#", "G"], ["Hi", "Hi", "Lo", "Lo->Hi"], ["Lo", "Hi", "Lo", "Lo"],
-  ["Con", "Con", "Con", "Con", "Dis", "Dis", maj("C", 3), maj("G", 3)])
+  ["Con", "Con", "Con", "Con", "Dis", "Dis", maj("C", 3), maj("G", 3)]) \
   .with_moves_per_round(4)
 var level12 = Level.create_advanced_level("level12", "E minor",
   ["A", "B", "C", "D#", "E", "F#", "G"], ["Hi", "Hi", "Lo", "Lo->Hi"], ["Lo", "Hi", "Lo", "Lo"],
-  ["Con", "Con", "Con", "Con", "Dis", "Dis", "B,D#,F#,3", "E,G,B,3"])
+  ["Con", "Con", "Con", "Con", "Dis", "Dis", "B,D#,F#,3", "E,G,B,3"]) \
   .with_moves_per_round(4)
 
 var levelTest = Level.create_level("levelT", "", note_names, ["A", "A#", "E"], ["Hi", "Oc->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
