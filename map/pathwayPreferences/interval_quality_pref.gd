@@ -6,7 +6,8 @@ func fulfilled(frequencies) -> bool:
 	if len(frequencies) == 2:
 		var bigger = max(frequencies[0].frequency, frequencies[1].frequency)
 		var smaller = min(frequencies[0].frequency, frequencies[1].frequency)
-		return intervalSizes.has(round(12 * log((bigger / smaller)) / log(2.0)))
+		var diff = int(round(12 * log((bigger / smaller)) / log(2.0))) 
+		return intervalSizes.has(diff)
 	return false
 
 
