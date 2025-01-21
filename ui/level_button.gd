@@ -10,14 +10,14 @@ func _ready() -> void:
 
 func set_level(level_name: String):
 	$"Control/LevelText".text = level_name
-	$"Control/MarginContainer".visible = false
+	#$"Control/MarginContainer".visible = false
 
 # Mouse hover handlers
 func _on_mouse_entered() -> void:
 	$"Control/MarginContainer".visible = true
 
 func _on_mouse_exited() -> void:
-	$"Control/MarginContainer".visible = false
+	$"Control/MarginContainer".visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
