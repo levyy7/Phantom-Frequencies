@@ -16,7 +16,8 @@ func createNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> Ar
 	var container_height = $NoteButtonsContainer.size.y
 	var button_width = container_width / (notes.size() + 1)
 	var note_buttons: Array[NoteButton] = []
-
+	var frequencies: Array[Frequency] = MusicalFrequencies.FREQUENCIES
+	
 	var row = 0
 	var row_height = container_height / 2
 	
@@ -30,14 +31,17 @@ func createNoteButtons(notes: Array[String], enabled_notes: Array[String]) -> Ar
 			button.set_position(Vector2(button_width * i, row * row_height))
 			button.set_size(Vector2(button_width, row_height))
 			
+			button.modulate = frequencies[i + (octave + 1) * 12].color
+			
 			if is_enabled:
 				button.disabled = false
 			else:
 				button.disabled = true
-				button.modulate = Color(0.25, 0.25, 0.25, 1.0)
+				button.modulate = button.modulate * Color(0.4, 0.4, 0.4, 1.0)
 			
 			if octave == 0:
 				button.pressed.connect(_on_up_pressed.bind())
+				button.modulate = button.modulate * Color(0.8, 0.8, 0.8, 1.0)
 			elif octave == 1:
 				button.pressed.connect(_on_down_pressed.bind())
 			$NoteButtonsContainer.add_child(button)
