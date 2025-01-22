@@ -17,6 +17,8 @@ var is_mouse_inside = false
 func _ready():
 	$"DescriptionPanel/DescriptionText".text = ""
 	$"ShortLabel/DescriptionText".text = ""
+	$"ShortLabel/DescriptionText".set_meta("original_text", "")
+	
 	$ShortLabel.visible = false
 	$DescriptionPanel.visible = false
 	
