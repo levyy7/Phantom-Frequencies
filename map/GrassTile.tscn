@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy45101navcqq"]
+[gd_scene load_steps=4 format=3 uid="uid://cy45101navcqq"]
 
 [ext_resource type="Script" path="res://map/grass_tile.gd" id="1_e52a5"]
 [ext_resource type="PackedScene" uid="uid://df7w0f3hmaa7q" path="res://towers/TowerSlotGroup.tscn" id="2_a7t64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xur0l"]
+bg_color = Color(0.156, 0.156, 0.156, 0.912)
 
 [node name="GrassTile" type="Node2D"]
 script = ExtResource("1_e52a5")
@@ -38,22 +41,25 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-offset_left = 46.0
-offset_top = 68.0
-offset_right = 351.0
-offset_bottom = 242.0
+z_index = 10
+offset_left = 60.0
+offset_top = 72.0
+offset_right = 308.0
+offset_bottom = 245.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
+theme_override_styles/panel = SubResource("StyleBoxFlat_xur0l")
 
 [node name="DescriptionText" type="RichTextLabel" parent="DescriptionPanel"]
+z_index = 4096
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 428.0
-offset_bottom = 234.0
+offset_right = 347.0
+offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)

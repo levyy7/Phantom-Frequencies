@@ -171,23 +171,11 @@ position = Vector2(859, 93)
 [node name="GrassTile2" parent="TileManager" instance=ExtResource("5_oq7ny")]
 position = Vector2(608, 93)
 
-
 [node name="GrassTile1" parent="TileManager" instance=ExtResource("5_oq7ny")]
 position = Vector2(360, 93)
 
 [node name="GrassTile0" parent="TileManager" instance=ExtResource("5_oq7ny")]
 position = Vector2(106, 93)
-
-
-
-
-
-
-
-
-
-
-
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 visible = false
