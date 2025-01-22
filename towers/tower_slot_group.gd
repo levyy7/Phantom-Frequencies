@@ -74,8 +74,8 @@ func shoot_bullets(target: PathTile, soundOn: bool, timer: Timer):
 	timer.timeout.connect(disable_glow)
 
 
-func getGroupFrequencies():
-	var frequencies = []
+func getGroupFrequencies() -> Array[Frequency]:
+	var frequencies: Array[Frequency] = []
 	for node: TowerSlot in tower_slot_children():
 		if (node.has_shooter()):
 			frequencies.append(node.current_shooter.current_frequency()) # shoot_bullet(target)

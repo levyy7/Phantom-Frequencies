@@ -13,10 +13,10 @@ script = ExtResource("1_e52a5")
 position = Vector2(-19, -82)
 
 [node name="ShortLabel" type="Panel" parent="."]
-offset_left = -33.0
-offset_top = -142.0
-offset_right = 56.0
-offset_bottom = -108.0
+offset_left = -64.0
+offset_top = -144.0
+offset_right = 73.0
+offset_bottom = -109.0
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.51
 
@@ -28,17 +28,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = 2.0
-offset_right = 285.0
-offset_bottom = 94.0
+offset_right = 399.0
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.24, 0.24)
 mouse_filter = 1
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 80
-text = "adadada"
+bbcode_enabled = true
+text = "[center]Minor triad[/center]"
+fit_content = true
 scroll_active = false
 autowrap_mode = 2
+metadata/fdsa = false
 
 [node name="DescriptionPanel" type="Panel" parent="."]
 z_index = 10

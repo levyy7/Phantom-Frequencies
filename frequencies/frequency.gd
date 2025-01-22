@@ -28,3 +28,13 @@ func _init(freq: float, col = null):
 		color = col
 	else:
 		color = int_to_color_hash(freq)
+
+static func custom_sort(a: Frequency, b: Frequency) -> int:
+	"""
+	void sort_custom( func: Callable )
+Sorts the array using a custom Callable. func is called as many times as necessary, receiving two array elements as arguments. The function should return true if the first element should be moved behind the second one, otherwise it should return false.
+	"""
+	if a.frequency < b.frequency:
+		return true
+	else:
+		return false

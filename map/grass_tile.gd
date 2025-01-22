@@ -7,8 +7,10 @@ var pref: PathwayPreference = null
 
 func setPref(preference: PathwayPreference) -> void:
 	pref = preference
-	$"ShortLabel/DescriptionText".text = pref.text
+	$"ShortLabel/DescriptionText".set_meta("original_text", pref.text)
+	$"ShortLabel/DescriptionText".text = "[center]%s[/center]" % pref.text
 	$"ShortLabel".visible = true
+	_recheck_chord_satisfied(null)
 
 var is_mouse_inside = false
 
@@ -25,20 +27,25 @@ func _ready():
 	$ShortLabel.mouse_exited.connect(_on_unhovered)
 	
 	$TowerSlots.shooter_frequency_updated.connect(_recheck_chord_satisfied)
+	
 
 func _recheck_chord_satisfied(_child: TowerSlot):
 	var rich_text: RichTextLabel = $"ShortLabel/DescriptionText"
-	var original_text = rich_text.text
-	if pathwayPreferenceFulfilled():
+	var original_text = rich_text.get_meta("original_text")
+	if _child != null && pathwayPreferenceFulfilled():
 		rich_text.clear()
 		rich_text.push_color(Color.GREEN)
 		rich_text.add_text(original_text)
 		rich_text.pop()
+		rich_text.tooltip_text = "%s not satisfied" % original_text
 	else:
+		var bad_color = Color(1, 0.35, 0.36)
 		rich_text.clear()
-		rich_text.push_color(Color.WHITE)
+		rich_text.push_color(bad_color)
 		rich_text.add_text(original_text)
 		rich_text.pop()
+		rich_text.tooltip_text = "%s satisfied" % original_text
+		
 		
 			
 func _on_hovered():
@@ -51,10 +58,10 @@ func _on_unhovered():
 	
 
 func pathwayPreferenceFulfilled() -> bool:
-	print("preference", pref, tower_slot_group.getGroupNoteNames())
 	if pref == null:
 		return true
-	elif pref is IntervalQualityPreference:
-		return pref.fulfilled(tower_slot_group.getGroupFrequencies())
-	else:
+	elif pref is ChordPreference:
 		return pref.fulfilled(tower_slot_group.getGroupNoteNames())
+	else:
+		return pref.fulfilled(tower_slot_group.getGroupFrequencies())
+		
