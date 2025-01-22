@@ -10,7 +10,7 @@ As you might already know, musical pitches correspond to frequencies of sound vi
 Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"]) \
 	.with_moves_per_round(4)
 	
-var level1 = Level.create_level("level1", "Notes are divided into octaves. Notes are named ABCDEFGABCDEFG. After G, a new octave starts and the next A is double the frequency of the first A.
+var level1 = Level.create_level("level1", "Notes are divided into octaves. Notes are named ABCDEFG. After G, a new octave starts and the next A is double the frequency of the first A.
 The 4th A on a piano is 440Hz and the 5th A on a piano is 880Hz.
 Likewise, if the 3rd C is 261.63 Hz, then the 5th C is 1046.50 Hz
 ", ["A", "B", "G"], ["Hi->Oc", "Lo->Oc", "Oc->Hi"], ["Lo->Hi->Lo->Hi->Oc", "Oc->Oc->Oc", "Oc->Lo"]) \
