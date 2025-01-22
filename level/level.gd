@@ -45,10 +45,8 @@ func parsePathwayPreference(text: String) -> PathwayPreference:
 		return IntervalQualityPreference.new(true)
 	elif text == "Dis":
 		return IntervalQualityPreference.new(false)
-	elif text == "maj":
-		return null
-	elif text == "min":
-		return null
+	elif text == "maj" or text == "min":
+		return ChordQualityPref.new(text)
 	elif text.contains(","): # this is a list of note names
 		var temp = text.split(",")
 		var N = len(temp) - 1
