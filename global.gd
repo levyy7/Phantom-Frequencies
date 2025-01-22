@@ -44,11 +44,11 @@ var level6 = Level.create_advanced_level("level6", "Major vs Minor triads
 Triad = chord with 3 notes
 Major triad = 047, ratios 4:5:6. It is a happy triad.
 Minor triad = 037, ratios 10:12:15. It is a more sad/dissonant triad.",
-  ["A", "B", "C", "D", "E", "F#", "G"], ["G", "B", "C", "E"], ["D", "F#", "A", "E"],
+  ["A", "B", "C", "D", "E", "F#", "G"], ["G->Lo", "B->Hi->Lo->Lo", "C->Hi", "E->Hi"], ["E->C", "A->Lo", "F#->Lo", "D"],
   ["maj", "maj", "maj", "maj", "min", "min", "maj", "maj"]) \
   .with_moves_per_round(4)
 var level7 = Level.create_advanced_level("level7", "A sad song.",
-  ["A", "B", "C", "D", "E", "F", "G#"], ["A", "A", "A", "A"], ["A", "A", "A", "A"],
+  ["A", "B", "C", "D", "E", "F", "G#"], ["A->Lo->Lo->Lo", "A->Lo->Lo", "A->Lo", "A"], ["A->Lo->Lo->Lo->Hi", "A->Lo->Lo->Lo->Hi->E", "Hi->E->A", "Hi->E->A->A"],
   ["min", "min", "min", "min", "maj", "maj", "min", "min"]) \
   .with_moves_per_round(4)
 
