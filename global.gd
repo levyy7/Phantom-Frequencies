@@ -16,33 +16,27 @@ Eg. the 4th A on a piano is 440Hz and the 5th A on a piano is 880Hz, the pair (A
 Likewise, if the 3rd C has is x Hz, the 5th C is 4x Hz. They are two octaves apart
 ", ["A", "B", "G"], ["Hi->Oc", "Lo->Oc", "Oc->Hi"], ["Lo->Hi->Lo->Hi->Oc", "Oc->Oc->Oc", "Oc->Lo"]) \
 	.with_moves_per_round(2)
-var level2 = Level.create_level("level2", "Classical music notes are roughly 440*2^(k/12)
-Piano keys are discrete but frequencies are continuous? Then what goes on the piano?
-The standardization point is A4=440Hz (4th A on the piano). An octave up is 2x frequency. Within an octave distance, there are 12 notes (A A# B C C# D D# E F F# G G# A). Hence, the distance between two adjacent keys on a piano is 2^(1/12). This makes the distance between (C,G) and (D,A) sound the same to the human ear, since both are a factor of 2^(7/12) apart. A distance factor of 2^(1/12) is a semitone. C and G are 7 semitones apart, likewise for D and A.
-Thus, each note on a piano is 440*2^(k/12) Hz, where k is an integer!
-Fun fact - The #'s are the black keys on a piano, the basic ones are the white keys.
+var level2 = Level.create_level("level2", "Music notes are roughly 440*2^(k/12) Hz. Music notation is centered around A4=440Hz (4th A on the piano). An octave up is double the frequency. Within an octave, there are 12 notes (A A# B C C# D D# E F F# G G#; A ...). Each note is a key on the piano. The difference between two adjacent notes is the ratio 2^(1/12). The difference between notes (C,G) and (D,A) sound similar because both are a factor of 2^(7/12) apart. This distance factor of 2^(1/12) is a semitone. C and G are 7 semitones apart, likewise for D and A.
+Thus, each note on a piano is 440*2^(k/12) Hz!
+Fun fact - The #'s are called sharps and are the black keys on a piano, the basic ones are the white keys.
 ", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"]) \
 	.with_moves_per_round(3)
 
 var level3 = Level.create_advanced_level("level3", "Consonance, Dissonance
-If you play two notes at the same time (ie a harmonic interval), why does it sometimes sound nice but sometimes sound like ear torture?
-It's because of the interference between the waveform emitted by each note!
-When superposing two periodic waveforms, we get a new periodic waveform with longer wavelength. Shorter superposed wavelength = easier for brain to process = sounds nicer. In our frequencies of 440*2^(k/12), this means if the ratios between two notes is closer to a simpler rational number (like 2^(7/12)≈3/2), it sounds more consonant. Otherwise (like 2^(6/12)≈45/32), it sounds dissonant.
-When A≈440Hz and G≈660Hz are played together, the harmonic interval has is 220Hz.
-So A has wavelength 3x and G has wavelength 2x, the harmonic interval has wavelength 6x.
-A:G ≈ 2:3, LCM(2,3) = 6
-Consonance is lower LCM of ratios, dissonance is higher LCM of ratios.
-
+If you play two notes at the same time, why does it sometimes sound nice but sometimes sound like ear torture?
+It's because of the interference between the sound waves of each note!
+Superposed waves generate a new wave with a longer wavelength. Shorter superposed wavelength => easier for brain to process => sounds nicer. In our frequencies of 440*2^(k/12), this means if the ratios between two notes is closer to a simpler rational number (like 2^(7/12)≈3/2), it sounds more consonant because the waves superimpose 'simply'. When A≈440Hz and G≈660Hz are played together, the new wave has a shorter wavelength compared to dissonant notes like A≈440Hz and F#≈622Hz. Essentially, consonance is lower LCM of frequency ratios, dissonance is higher LCM of ratios.
 Tip - pay attention to the harmonograph!
 ",
 ["C", "F", "G", "B"], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"],
 ["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"]) \
  .with_moves_per_round(3)
-var level4 = Level.create_level("level4", "(X, X+k_1, X+k_2, ...) notation
-k_i is the number of semitones above X. Setting C=0, 07 is the interval CG, 047 is CEG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"])
+var level4 = Level.create_level("level4", "Notes played at the same time are a chord or an interval. To describe these, we use chord/interval notation: (X, X+k_1, X+k_2, ...), where k_i is the number of semitones above a base X. 
+
+With the base C as '0', '07' is the interval CG, '047' is the chord CEG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"])
 
 var level5 = Level.create_advanced_level("level5", "Chords: >= 3 notes at a time
-Chords also have harmonographs. Simple then complex = music intensifies, complex then simple = music calms down and resolves to an ending.",
+Harmonographs visualize the emotional 'intensity' of a chord. Simple then complex = music intensifies, complex then simple = music calms down and resolves to an ending.",
   ["A", "B", "C", "D", "E", "F", "G"], ["C", "E", "F", "F"], ["C", "E", "G", "D"],
   [maj("C", 3), maj("C", 3), "F,A,C,3", "F,A,C,3", maj("G", 3), maj("G", 3), maj("C", 3), maj("C", 3)]) \
   .with_moves_per_round(4)
