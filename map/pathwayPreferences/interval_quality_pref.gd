@@ -2,7 +2,7 @@ class_name IntervalQualityPreference extends PathwayPreference
 
 var color = Color.GREEN_YELLOW
 var intervalSizes: Array[int]
-func fulfilled(frequencies) -> bool:
+func fulfilled(frequencies: Array[Frequency]) -> bool:
 	if len(frequencies) == 2:
 		var bigger = max(frequencies[0].frequency, frequencies[1].frequency)
 		var smaller = min(frequencies[0].frequency, frequencies[1].frequency)
