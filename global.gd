@@ -10,10 +10,9 @@ As you might already know, musical pitches correspond to frequencies of sound vi
 Tip - Hover over ghosts to see their preference", ["A", "B", "C", "E", "G", ], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"]) \
 	.with_moves_per_round(4)
 	
-var level1 = Level.create_level("level1", "Octaves are 2^n times frequency
-Notes are typically named ABCDEFGABCDEFG... Between two adjacent occurrences of the same letter is 2x of frequency
-Eg. the 4th A on a piano is 440Hz and the 5th A on a piano is 880Hz, the pair (A4,A5) is an\"octave\"
-Likewise, if the 3rd C has is x Hz, the 5th C is 4x Hz. They are two octaves apart
+var level1 = Level.create_level("level1", "Notes are divided into octaves. Notes are named ABCDEFGABCDEFG. After G, a new octave starts and the next A is double the frequency of the first A.
+The 4th A on a piano is 440Hz and the 5th A on a piano is 880Hz.
+Likewise, if the 3rd C is 261.63 Hz, then the 5th C is 1046.50 Hz
 ", ["A", "B", "G"], ["Hi->Oc", "Lo->Oc", "Oc->Hi"], ["Lo->Hi->Lo->Hi->Oc", "Oc->Oc->Oc", "Oc->Lo"]) \
 	.with_moves_per_round(2)
 var level2 = Level.create_level("level2", "Music notes are roughly 440*2^(k/12) Hz. Music notation is centered around A4=440Hz (4th A on the piano). An octave up is double the frequency. Within an octave, there are 12 notes (A A# B C C# D D# E F F# G G#; A ...). Each note is a key on the piano. The difference between two adjacent notes is the ratio 2^(1/12). The difference between notes (C,G) and (D,A) sound similar because both are a factor of 2^(7/12) apart. This distance factor of 2^(1/12) is a semitone. C and G are 7 semitones apart, likewise for D and A.
