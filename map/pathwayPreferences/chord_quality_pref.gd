@@ -23,4 +23,4 @@ func _init(kind: String) -> void:
 	elif kind == "min":
 		text = "Minor Triad"
 		semitones = [0, 3, 7]
-		description = "A " + text + ": a chord of form" + ", ".join(semitones)
+	description = "A " + text + ": a chord of form" + ", ".join(semitones)

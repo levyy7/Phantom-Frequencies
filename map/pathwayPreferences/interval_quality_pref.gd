@@ -6,7 +6,7 @@ func fulfilled(frequencies: Array[Frequency]) -> bool:
 	if len(frequencies) == 2:
 		var bigger = max(frequencies[0].frequency, frequencies[1].frequency)
 		var smaller = min(frequencies[0].frequency, frequencies[1].frequency)
-		var diff = int(round(12 * log((bigger / smaller)) / log(2.0))) 
+		var diff = int(round(12 * log((bigger / smaller)) / log(2.0)))
 		return intervalSizes.has(diff)
 	return false
 
@@ -18,5 +18,5 @@ func _init(consonance: bool) -> void:
 		intervalSizes = [5, 7, 12]
 	else:
 		text = "Dis"
-		description = "A dissonant interval with a complex harmonograph. Exactly two notes 6 or 11 semitones apart. These form ratios [insert #TODO]."
-		intervalSizes = [6, 11]
+		description = "A dissonant interval with a complex harmonograph. Exactly two notes 1, 6 or 11 semitones apart. These form ratios 15:16, 32:45, 8:15."
+		intervalSizes = [1, 6, 11]

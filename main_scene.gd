@@ -7,7 +7,7 @@ var upcomingGhosts = []
 var original_moves_count: int = 2
 var moves_remaining: int = 2:
 	set(new_moves_remaining):
-		moves_remaining=new_moves_remaining
+		moves_remaining = new_moves_remaining
 		
 		if moves_remaining == 0:
 			$"UI frame/Actions_text".tooltip_text = "Press 'Next Round' to get more moves"
@@ -17,8 +17,8 @@ var moves_remaining: int = 2:
 
 var lives: int = 3:
 	set(newLives):
-		lives=newLives
-		$"UI frame/Lives_text".text=str(lives)+" ghosts away from being haunted"
+		lives = newLives
+		$"UI frame/Lives_text".text = str(lives) + " ghosts away from being haunted"
 
 func init_level(level: Level):
 	$"UI frame/LevelButton".set_level(level.name)
@@ -69,7 +69,6 @@ func play_one_round():
 	$"UI frame/TowerUI/Action_overlay".moves_remaining_updated(moves_remaining, [] as Array[TowerSlot])
 	var next_round_button := $"UI frame/NextRoundButton" as Button
 	var tile_manager := $Map/TileManager as TileManager
-	print("Playing one round", "moves remaining ", moves_remaining)
 	
 	# TODO: change the button logic to be inside a script in button
 	next_round_button.disabled = true

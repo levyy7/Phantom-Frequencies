@@ -18,7 +18,7 @@ Likewise, if the 3rd C is 261.63 Hz, then the 5th C is 1046.50 Hz
 var level2 = Level.create_level("level2", "Music notes are roughly 440*2^(k/12) Hz. Music notation is centered around A4=440Hz (4th A on the piano). An octave up is double the frequency. Within an octave, there are 12 notes (A A# B C C# D D# E F F# G G#; A ...). Each note is a key on the piano. The difference between two adjacent notes is the ratio 2^(1/12). The difference between notes (C,G) and (D,A) sound similar because both are a factor of 2^(7/12) apart. This distance factor of 2^(1/12) is a semitone. C and G are 7 semitones apart, likewise for D and A.
 Thus, each note on a piano is 440*2^(k/12) Hz!
 Fun fact - The #'s are called sharps and are the black keys on a piano, the basic ones are the white keys.
-", note_names, ["A*2^(0/12)", "A*2^(4/12)", "A*2^(7/12)"], ["A*2^(0/12)", "A*2^(2/12)", "A*2^(4/12)", "A*2^(5/12)", "A*2^(7/12)"]) \
+", note_names, ["A*2^(0/12)->Hi", "A*2^(4/12)->G", "A*2^(7/12)"], ["A*2^(0/12)->Lo", "A*2^(2/12)->A*2^(9/12)", "A*2^(4/12)->Oc", "A*2^(5/12)->Oc->A", "A*2^(7/12)->E->A"]) \
 	.with_moves_per_round(3)
 
 var level3 = Level.create_advanced_level("level3", "Consonance, Dissonance
@@ -27,18 +27,19 @@ It's because of the interference between the sound waves of each note!
 Superposed waves generate a new wave with a longer wavelength. Shorter superposed wavelength => easier for brain to process => sounds nicer. In our frequencies of 440*2^(k/12), this means if the ratios between two notes is closer to a simpler rational number (like 2^(7/12)≈3/2), it sounds more consonant because the waves superimpose 'simply'. When A≈440Hz and G≈660Hz are played together, the new wave has a shorter wavelength compared to dissonant notes like A≈440Hz and F#≈622Hz. Essentially, consonance is lower LCM of frequency ratios, dissonance is higher LCM of ratios.
 Tip - pay attention to the harmonograph!
 ",
-["C", "F", "G", "B"], ["Hi", "Lo", "Lo"], ["Hi", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"],
+["C", "F", "G", "B"], ["A*2^(8/12)", "Lo", "Hi"], ["Oc", "Lo->Hi->Hi", "Lo->Lo->Hi", "Lo->Oc->Hi", "F->G->C->A*2^(2/12)->Oc->C"],
 ["Con", "Con", "Con", "Con", "Dis", "Dis", "Con", "Con"]) \
  .with_moves_per_round(3)
 var level4 = Level.create_level("level4", "Notes played at the same time are a chord or an interval. To describe these, we use chord/interval notation: (X, X+k_1, X+k_2, ...), where k_i is the number of semitones above a base X. 
 
-With the base C as '0', '07' is the interval CG, '047' is the chord CEG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"])
+With the base C as '0', '07' is the interval CG, '047' is the chord CEG", note_names, ["I12", "I7", "I12"], ["I5", "I3->I8", "I9", "I11->I6", "I7", "I12"]).with_moves_per_round(3)
 
 var level5 = Level.create_advanced_level("level5", "Chords: >= 3 notes at a time
 Harmonographs visualize the emotional 'intensity' of a chord. Simple then complex = music intensifies, complex then simple = music calms down and resolves to an ending.",
-  ["A", "B", "C", "D", "E", "F", "G"], ["C", "E", "F", "F"], ["C", "E", "G", "D"],
+  ["A", "B", "C", "D", "E", "F", "G"], ["C->G", "E", "A->C", "F->Hi->B"], ["D->G->I7", "B->Lo->Hi", "C->C", "E"],
   [maj("C", 3), maj("C", 3), "F,A,C,3", "F,A,C,3", maj("G", 3), maj("G", 3), maj("C", 3), maj("C", 3)]) \
   .with_moves_per_round(4)
+
 var level6 = Level.create_advanced_level("level6", "Major vs Minor triads
 Triad = chord with 3 notes
 Major triad = 047, ratios 4:5:6. It is a happy triad.

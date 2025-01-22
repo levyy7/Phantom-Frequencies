@@ -15,7 +15,7 @@ const JUST_RATIOS = {
 	"perfect_fifth": 3.0 / 2, # 3:2    - E
 	"minor_sixth": 8.0 / 5, # 8:5    - F
 	"major_sixth": 5.0 / 3, # 5:3    - F#
-	"minor_seventh": 16 / 9, # 16:9    - G
+	"minor_seventh": 16.0 / 9, # 16:9    - G
 	"major_seventh": 15.0 / 8, # 15:8   - G#
 }
 
@@ -58,5 +58,6 @@ static func _generate_frequencies() -> Array[Frequency]:
 				baseColor.b * brightness
 			)
 			
+			print("gen", i, " ", ratio, " ", freq)
 			frequencies.append(Frequency.new(freq, col))
 	return frequencies

@@ -82,7 +82,6 @@ func _on_change_button_pressed(pressed_button: NoteButton):
 		
 		if _currentTower == null:
 			if (mainScene.moves_remaining == 0):
-				print("out of moves for this round")
 				return
 			mainScene.moves_remaining -= 1
 			usedSlotsRound.append(_currentSlot)
@@ -94,7 +93,6 @@ func _on_change_button_pressed(pressed_button: NoteButton):
 		else:
 			if not _currentSlot in usedSlotsRound:
 				if (mainScene.moves_remaining == 0):
-					print("out of moves for this round")
 					return
 				mainScene.moves_remaining -= 1
 				usedSlotsRound.append(_currentSlot)
