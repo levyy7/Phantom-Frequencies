@@ -4,9 +4,19 @@ extends Button
 var note_name: String
 var octave: int
 var note_player: AudioStreamPlayer
+var number_hint: int
 static var AUDIO_VOLUME = 0.3
 
-func _init(in_note_name: String, in_octave: int) -> void:
+static var NoteButtonScene = preload("res://ui/NoteButton.tscn")
+
+
+static func create(note_name: String, octave: int, number_hint: int) -> NoteButton:
+	var button = NoteButtonScene.instantiate() as NoteButton
+
+	button._init_params(note_name, octave, number_hint)
+	return button
+
+func _init_params(in_note_name: String, in_octave: int, number_hint: int) -> void:
 	note_name = in_note_name
 	octave = in_octave
 	text = note_name
@@ -14,9 +24,14 @@ func _init(in_note_name: String, in_octave: int) -> void:
 	note_player = AudioStreamPlayer.new()
 	note_player.volume_db = linear_to_db(AUDIO_VOLUME)  # Convert linear scale to decibels
 	add_child(note_player)
+	
+	# Set the number hint text
+	self.number_hint = number_hint
 	update_note()
 
 func _ready() -> void:
+	$NumberHint.text = str(number_hint)
+	
 	pressed.connect(_on_pressed)
 
 func update_note() -> void:

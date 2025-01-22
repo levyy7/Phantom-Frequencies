@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq2hmpm33ek7i"]
+
+[ext_resource type="Script" path="res://ui/NoteButton.gd" id="1_o2l1l"]
+
+[node name="NoteButton" type="Button"]
+custom_minimum_size = Vector2(30, 25)
+offset_right = 132.0
+offset_bottom = 107.0
+script = ExtResource("1_o2l1l")
+
+[node name="NumberHint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.85
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_left = -16.2
+offset_top = -14.0
+offset_right = 20.2
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "dafds"
+horizontal_alignment = 2
+vertical_alignment = 2
