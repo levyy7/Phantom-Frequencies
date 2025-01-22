@@ -153,29 +153,41 @@ position = Vector2(1620, 370)
 [node name="PathTile7" parent="TileManager" instance=ExtResource("4_tlhjl")]
 position = Vector2(1871, 370)
 
-[node name="GrassTile0" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(106, 93)
-
-[node name="GrassTile1" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(360, 93)
-
-[node name="GrassTile2" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(608, 93)
-
-[node name="GrassTile3" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(859, 93)
-
-[node name="GrassTile4" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1108, 93)
-
-[node name="GrassTile5" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1356, 93)
+[node name="GrassTile7" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1853, 93)
 
 [node name="GrassTile6" parent="TileManager" instance=ExtResource("5_oq7ny")]
 position = Vector2(1603, 93)
 
-[node name="GrassTile7" parent="TileManager" instance=ExtResource("5_oq7ny")]
-position = Vector2(1853, 93)
+[node name="GrassTile5" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1356, 93)
+
+[node name="GrassTile4" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(1108, 93)
+
+[node name="GrassTile3" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(859, 93)
+
+[node name="GrassTile2" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(608, 93)
+
+
+[node name="GrassTile1" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(360, 93)
+
+[node name="GrassTile0" parent="TileManager" instance=ExtResource("5_oq7ny")]
+position = Vector2(106, 93)
+
+
+
+
+
+
+
+
+
+
+
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 visible = false
