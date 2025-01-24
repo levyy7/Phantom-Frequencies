@@ -52,10 +52,12 @@ func popNextGhost():
 	var enemyPreview = $EnemyPreviewPanel/EnemyPreview
 	var next_ghost = upcomingGhosts.pop_front()
 	if (next_ghost):
+		print(next_ghost)
 		$Map/TileManager.ini_turn(next_ghost)
 		enemyPreview.add_child(next_ghost)
 		for child in enemyPreview.get_children():
 			if child is Enemy:
+				print("ENEMY DETECTED", child)
 				enemyPreview.remove_child(child)
 	
 		# Add the new child
@@ -76,9 +78,9 @@ func play_one_round():
 	
 	
 	tile_manager.end_turn()
-	popNextGhost()
 	
 	await tile_manager.turn_finished
+	popNextGhost()
 	checkWinLoseCriteria()
 	print("Turn finished")
 	

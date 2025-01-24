@@ -44,11 +44,11 @@ var level6 = Level.create_advanced_level("level6", "Major vs Minor triads
 Triad = chord with 3 notes
 Major triad = 047, ratios 4:5:6. It is a happy triad.
 Minor triad = 037, ratios 10:12:15. It is a more sad/dissonant triad.",
-  ["A", "B", "C", "D", "E", "F#", "G"], ["G", "B", "C", "E"], ["D", "F#", "A", "E"],
+  ["A", "B", "C", "D", "E", "F#", "G"], ["G->Lo", "B->Hi->Lo->Lo", "C->Hi", "E->Hi"], ["E->C", "A->Lo", "F#->Lo", "D"],
   ["maj", "maj", "maj", "maj", "min", "min", "maj", "maj"]) \
   .with_moves_per_round(4)
 var level7 = Level.create_advanced_level("level7", "A sad song.",
-  ["A", "B", "C", "D", "E", "F", "G#"], ["A", "A", "A", "A"], ["A", "A", "A", "A"],
+  ["A", "B", "C", "D", "E", "F", "G#"], ["A->Lo->Lo->Lo", "A->Lo->Lo", "A->Lo", "A"], ["A->Lo->Lo->Lo->Hi", "A->Lo->Lo->Lo->Hi->E", "Hi->E->A", "Hi->E->A->A"],
   ["min", "min", "min", "min", "maj", "maj", "min", "min"]) \
   .with_moves_per_round(4)
 
@@ -59,7 +59,7 @@ Eg. C major is CDEFGAB.
 
 Key: A major (is it happy?)
 Tip - try figuring out which notes belong in A major!",
-  ["C#", "A", "B", "D", "E", "F#", "G#"], ["A", "Hi", "Lo", "Lo->Hi"], ["Oc", "Hi", "E->G#", "E"],
+  ["C#", "A", "B", "D", "E", "F#", "G#"], ["Hi->Hi->Hi->Hi", "Hi->Hi->Hi", "Oc->Hi", "Oc"], ["Hi->Hi->Hi->Hi->Hi", "Hi->Hi->Hi->Hi->Hi->Hi->A", "A*2^(2/12)->A*2^(9/12)", "I3->Oc"],
   ["", "", "A,C#,E,1", "E,G#,B,1", "", "", "E,G#,B,1", "A,C#,E,1"])
 var level9 = Level.create_advanced_level("level9", "Minor keys
 A song in a\"minor key from 0=X\" (where X is one of A, A#, ..., G) almost always uses notes with 0 2 3 5 7 8 11 mod 12.
@@ -69,20 +69,22 @@ Tip - To get keys for X minor, grab the major keys for X+3 major, then turn the 
 Eg A minor <-> A+3=C major (CDEFGAB) with G mapped to G+1=G# (ABCDEFG#).
 
 Key: A minor (is it sad?)",
-  ["A", "B", "C", "D", "E", "F", "G#"], ["A", "Hi", "Lo", "Lo->Hi"], ["Oc", "Hi", "E->G#", "E"],
+  ["A", "B", "C", "D", "E", "F", "G#"], ["A", "B", "C", "D"], ["E", "F", "G#", "A->A"],
   ["", "", "A,C,E,1", "E,G#,B,1", "", "", "E,G#,B,1", "A,C,E,1"])
 var level10 = Level.create_advanced_level("level10", "Key: G major",
-  ["A", "B", "C", "D", "E", "F#", "G"], ["A", "Hi", "A*2^(7/12)", "Lo->Hi"], ["Oc", "I6", "D->C", "Hi"],
-  ["Con", "Con", maj("G", 1), "D,F#,A,1", "Dis", "Dis", "D,F#,A,C,1", maj("G", 1)]) \
+  ["A", "B", "C", "D", "E", "F#", "G"], ["A->G", "Hi->Lo->E", "A*2^(9/12)", "Lo->B->Hi"], ["I4", "D->C", "I6", "Oc"],
+  ["Con", "Con", maj("G", 1), "D,F#,A,1", "Con", "Dis", "D,F#,A,C,1", maj("G", 1)]) \
   .with_moves_per_round(3)
-var level11 = Level.create_advanced_level("level11", "Key: G major again",
-  ["A", "B", "C", "D", "E", "F#", "G"], ["Hi", "Hi", "Lo", "Lo->Hi"], ["Lo", "Hi", "Lo", "Lo"],
+var level11 = Level.create_advanced_level("level11", "Key: G major again
+Challenge: try to fill at least one note in each column!",
+  ["A", "B", "C", "D", "E", "F#", "G"], ["A", "G", "D", "E"], ["C->B", "F#", "G->G->G->C->E->G", "I6"],
   ["Con", "Con", "Con", "Con", "Dis", "Dis", maj("C", 3), maj("G", 3)]) \
-  .with_moves_per_round(4)
-var level12 = Level.create_advanced_level("level12", "Key: E minor",
-  ["A", "B", "C", "D#", "E", "F#", "G"], ["Hi", "Hi", "Lo", "Lo->Hi"], ["Lo", "Hi", "Lo", "Lo"],
+  .with_moves_per_round(3)
+var level12 = Level.create_advanced_level("level12", "Key: E minor
+Challenge: try to fill at least one note in each column!",
+  ["A", "B", "C", "D#", "E", "F#", "G"], ["Hi", "Hi->Lo", "Lo", "Lo->Hi"], ["Oc", "I5->Oc", "I6->Lo->E", "Oc->E->Oc->E"],
   ["Con", "Con", "Con", "Con", "Dis", "Dis", "B,D#,F#,3", "E,G,B,3"]) \
-  .with_moves_per_round(4)
+  .with_moves_per_round(3)
 
 var levelTest = Level.create_level("levelT", "", note_names, ["A", "A#", "E"], ["Hi", "Oc->Hi->Hi", "Lo->Lo->Hi", "Lo->Hi->Hi", "Lo->Lo->Hi"])
 var levelTest2 = Level.create_level("levelT", "", note_names, ["Lo"], ["Hi", "Lo->Hi", "Hi->Lo->Lo", "A", "A->E", "A->C", "A->C->E", "I3", "I7", "I3->C->Hi"])
